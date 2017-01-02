@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>sort.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id="background"></div>
+<div id='container'>
+  <div class='section'>
+    <div class='docs'><h1>sort.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Pedagogical implementations of some sorting algorithms.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <h2>Bubblesort</h2>
+<p>The key insight is to swap adjacent items that are in the wrong order,
+until no swaps are possible: at that point the items are sorted.
+The following implementation uses a while-loop because
+Python has no repeat-until loop.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Sort the list of items in place, in ascending order.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="n">items</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">swapped</span> <span class="o">=</span> <span class="bp">True</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Keep going while at least one swap was done.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">while</span> <span class="n">swapped</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Go through the whole list.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">swapped</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">for</span> <span class="n">current</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Swap current and next item if they're in the wrong order.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="k">if</span> <span class="n">items</span><span class="p">[</span><span class="n">current</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">items</span><span class="p">[</span><span class="n">current</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">temporary</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">current</span><span class="p">]</span>
+                <span class="n">items</span><span class="p">[</span><span class="n">current</span><span class="p">]</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">current</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">items</span><span class="p">[</span><span class="n">current</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temporary</span>
+                <span class="n">swapped</span> <span class="o">=</span> <span class="bp">True</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <h2>Selection sort</h2>
+<p>The key insight is to see the list has having two parts,
+those already sorted in the left part (initially empty)
+and those still unsorted in the right part (initially the whole list).
+In each pass, select the smallest item of the unsorted part
+and put it at then end of the sorted part.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>Sort the list of items in place, in ascending order.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">items</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>The border between the sorted and unsorted part moves up in each pass.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">for</span> <span class="n">border</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <p>Find the position of the smallest item from the border onwards.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">minimum</span> <span class="o">=</span> <span class="n">border</span>
+        <span class="k">for</span> <span class="n">current</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">border</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">items</span><span class="p">[</span><span class="n">current</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">items</span><span class="p">[</span><span class="n">minimum</span><span class="p">]:</span>
+                <span class="n">minimum</span> <span class="o">=</span> <span class="n">current</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>Swap that item with the one at the border.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">temporary</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">border</span><span class="p">]</span>
+        <span class="n">items</span><span class="p">[</span><span class="n">border</span><span class="p">]</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">minimum</span><span class="p">]</span>
+        <span class="n">items</span><span class="p">[</span><span class="n">minimum</span><span class="p">]</span> <span class="o">=</span> <span class="n">temporary</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      <h2>Insertion sort</h2>
+<p>Like selection sort, the list has a sorted part that grows
+and an unsorted part that shrinks in each pass.
+In each pass, the next unsorted item is inserted into its correct
+position in the sorted part.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>Sort the list of items in place, in ascending order.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="n">items</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <p>The sorted part starts with the item that is in the first position.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">for</span> <span class="n">border</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      <p>The item at the border is the next item to sort.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">to_sort</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">border</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      <p>Find the position where to insert it.
+If it is larger than all sorted items, it will stay at the border.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">position</span> <span class="o">=</span> <span class="n">border</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-17'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-17'>#</a>
+      </div>
+      <p>Shift to the right all sorted items larger than the one to sort.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">while</span> <span class="n">position</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">items</span><span class="p">[</span><span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">to_sort</span><span class="p">:</span>
+            <span class="n">items</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="n">position</span> <span class="o">-</span> <span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-18'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-18'>#</a>
+      </div>
+      <p>Put the item to sort at the found position.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">items</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_sort</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-19'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-19'>#</a>
+      </div>
+      <h2>Merge sort</h2>
+<p>The key insight is to split the unsorted list in two halves, sort each one,
+and then merge the sorted halves together by repeatedly taking the smallest
+item of both halves.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-20'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-20'>#</a>
+      </div>
+      <p>Return a list of all items in list unsorted, in ascending order.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">unsorted</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-21'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-21'>#</a>
+      </div>
+      <p>Base cases: lists with zero or one items are already sorted.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unsorted</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">unsorted</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-22'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-22'>#</a>
+      </div>
+      <p>Reduction step: split the list in two halves</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">middle</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">unsorted</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">left_unsorted</span> <span class="o">=</span> <span class="n">unsorted</span><span class="p">[:</span><span class="n">middle</span><span class="p">]</span>
+    <span class="n">right_unsorted</span> <span class="o">=</span> <span class="n">unsorted</span><span class="p">[</span><span class="n">middle</span><span class="p">:]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-23'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-23'>#</a>
+      </div>
+      <p>Recursive step: sort each half.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">left_sorted</span> <span class="o">=</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">left_unsorted</span><span class="p">)</span>
+    <span class="n">right_sorted</span> <span class="o">=</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">right_unsorted</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-24'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-24'>#</a>
+      </div>
+      <p>Inductive step: merge the sorted halves.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">merged</span> <span class="o">=</span> <span class="p">[]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-25'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-25'>#</a>
+      </div>
+      <p>While neither half is empty, move the smallest item
+from its half to the merged list.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">while</span> <span class="n">left_sorted</span> <span class="o">!=</span> <span class="p">[]</span> <span class="ow">and</span> <span class="n">right_sorted</span> <span class="o">!=</span> <span class="p">[]:</span>
+        <span class="k">if</span> <span class="n">left_sorted</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">right_sorted</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">merged</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">left_sorted</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">left_sorted</span> <span class="o">=</span> <span class="n">left_sorted</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">merged</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">right_sorted</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">right_sorted</span> <span class="o">=</span> <span class="n">right_sorted</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-26'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-26'>#</a>
+      </div>
+      <p>One or both halves are now empty. Add any remaining items.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">merged</span> <span class="o">+</span> <span class="n">left_sorted</span> <span class="o">+</span> <span class="n">right_sorted</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-27'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-27'>#</a>
+      </div>
+      <h2>Quicksort</h2>
+<p>This approach also splits the list in two, sorts each part,
+and puts the sorted parts together.
+Compared to mergesort, it puts more effort into the splitting,
+making the 'merging' trivial.
+The key insight is to pick an item and then split the list into those
+that are smaller or equal than the item and those that are larger.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-28'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-28'>#</a>
+      </div>
+      <p>Return a list of all items in list unsorted, in ascending order.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">quicksort</span><span class="p">(</span><span class="n">unsorted</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-29'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-29'>#</a>
+      </div>
+      <p>Base case: the empty list is already sorted.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">unsorted</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">return</span> <span class="n">unsorted</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-30'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-30'>#</a>
+      </div>
+      <p>Reduction step: take the first item (call it the pivot)
+and put the remaining items in two partitions,
+those smaller or equal than the pivot, and those greater.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">pivot</span> <span class="o">=</span> <span class="n">unsorted</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">left_unsorted</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">right_unsorted</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">unsorted</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">&lt;=</span> <span class="n">pivot</span><span class="p">:</span>
+            <span class="n">left_unsorted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right_unsorted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-31'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-31'>#</a>
+      </div>
+      <p>Recursive step: sort each of the partitions.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">left_sorted</span> <span class="o">=</span> <span class="n">quicksort</span><span class="p">(</span><span class="n">left_unsorted</span><span class="p">)</span>
+    <span class="n">right_sorted</span> <span class="o">=</span> <span class="n">quicksort</span><span class="p">(</span><span class="n">right_unsorted</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-32'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-32'>#</a>
+      </div>
+      <p>Inductive step: put the sorted partitions and the pivot
+in the correct order.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">left_sorted</span> <span class="o">+</span> <span class="p">[</span><span class="n">pivot</span><span class="p">]</span> <span class="o">+</span> <span class="n">right_sorted</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-33'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-33'>#</a>
+      </div>
+      <h2>Tests</h2>
+<p>A test is a pair made of an input and the corresponding expected output.
+Running a test is checking whether the actual and expected outputs match.
+All sorting algorithms do the same, so a single set of tests can be used.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-34'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-34'>#</a>
+      </div>
+      <p>Return a list of unsorted-sorted pairs to test a sorting algorithm.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">sort_tests</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-35'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-35'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="p">[</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-36'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-36'>#</a>
+      </div>
+      <p>Test the base cases.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="p">[[],</span> <span class="p">[]],</span>
+        <span class="p">[[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">]],</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-37'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-37'>#</a>
+      </div>
+      <p>Test an already sorted list.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-38'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-38'>#</a>
+      </div>
+      <p>Test a reversed list.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-39'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-39'>#</a>
+      </div>
+      <p>Test a list with duplicates.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-40'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-40'>#</a>
+      </div>
+      <p>Test a list with another type of items.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="p">[[</span><span class="s">&quot;hi&quot;</span><span class="p">,</span> <span class="s">&quot;Bob&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span> <span class="s">&quot;hi&quot;</span><span class="p">]]</span>
+    <span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-41'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-41'>#</a>
+      </div>
+      <p>Print an error message if sort(unsorted) is not the same as expected,
+otherwise do nothing.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_sort</span><span class="p">(</span><span class="n">sort</span><span class="p">,</span> <span class="n">unsorted</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-42'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-42'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">quicksort</span> <span class="ow">or</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">merge_sort</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">unsorted</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-43'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-43'>#</a>
+      </div>
+      <p>Make a copy of the input before sorting it in-place.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">result</span> <span class="o">=</span> <span class="n">unsorted</span><span class="p">[:]</span>
+        <span class="n">sort</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="n">expected</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">bubble_sort</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Bubble sort&quot;</span>
+        <span class="k">elif</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">selection_sort</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Selection sort&quot;</span>
+        <span class="k">elif</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">insertion_sort</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Insertion sort&quot;</span>
+        <span class="k">elif</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">merge_sort</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Merge sort&quot;</span>
+        <span class="k">elif</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">quicksort</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Quicksort&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&quot;of&quot;</span><span class="p">,</span> <span class="n">unsorted</span><span class="p">,</span> <span class="s">&quot;is&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="s">&quot;instead of&quot;</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-44'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-44'>#</a>
+      </div>
+      <p>Run tests if this file is executed, instead of imported.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">sort</span> <span class="ow">in</span> <span class="p">[</span><span class="n">bubble_sort</span><span class="p">,</span> <span class="n">selection_sort</span><span class="p">,</span> <span class="n">insertion_sort</span><span class="p">,</span>
+                 <span class="n">merge_sort</span><span class="p">,</span> <span class="n">quicksort</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">sort_tests</span><span class="p">():</span>
+            <span class="n">test_sort</span><span class="p">(</span><span class="n">sort</span><span class="p">,</span> <span class="n">unsorted</span><span class="o">=</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">expected</span><span class="o">=</span><span class="n">test</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-45'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-45'>#</a>
+      </div>
+      <h2>Exercises</h2>
+<ul>
+<li>Why must a list of length 1 also be a base case for merge sort?</li>
+<li>In quicksort, could the items equal to the pivot be added
+  to the right instead of the left partition?</li>
+<li>What needs to change in each function to sort in descending order?</li>
+</ul>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

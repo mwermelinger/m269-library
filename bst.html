@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>bst.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id="background"></div>
+<div id='container'>
+  <div class='section'>
+    <div class='docs'><h1>bst.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>A pedagogical implementation of binary search trees (BSTs).</p>
+<p>A BST is a binary tree in which every node is a key-value pair,
+every key in the left subtree is smaller than the root's key,
+and every key in the right subtree is larger than the root's key.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <h2>Representation</h2>
+<p>The empty BST is represented by the Python value <code>None</code>.
+A non-empty BST is represented by a list with 3 items:
+the root node, the left subtree, the right subtree.
+Each node is represented by a Python list with 2 items:
+the key and the value.
+For example, a BST with a single node
+with key <code>"Mary"</code> and value <code>"female"</code> is represented as
+<code>[["Mary", "female"], None, None]</code>.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>The following auxiliary functions make the rest of the code more readable.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Return the root node of the non-empty tree.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">root</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">tree</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Return the left subtree of the non-empty tree.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">tree</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>Return the right subtree of the non-empty tree.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">tree</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>Return the key of the node.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">key</span><span class="p">(</span><span class="n">node</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">node</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>Return the value of the node.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="n">node</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">node</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <h2>Creator</h2>
+<p>Return the empty binary search tree.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">empty</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="bp">None</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      <h2>Inspectors</h2>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      <p>The following function is needed later, but can be useful on its own.
+It is the equivalent of findinding the minimum in a list.
+Return the node with the smallest key in the non-empty tree.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">smallest</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-17'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-17'>#</a>
+      </div>
+      <p>In a BST, <em>every</em> key in the left subtree is smaller than the root's key,
+and the root's key is smaller than <em>every</em> key in the right subtree.
+Base case: if there's no left subtree, the smallest key is in the root.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">left</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="ow">is</span> <span class="n">empty</span><span class="p">():</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">root</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-18'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-18'>#</a>
+      </div>
+      <p>Reduction step: only consider the left subtree.
+Recursive step: find the smallest key in the left subtree.
+Inductive step: not needed.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">node</span> <span class="o">=</span> <span class="n">smallest</span><span class="p">(</span><span class="n">left</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">node</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-19'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-19'>#</a>
+      </div>
+      <p>For BSTs, only the inorder traversal makes sense.
+Return a string with the keys in sorted order.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">sorted_keys</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-20'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-20'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">tree</span> <span class="ow">is</span> <span class="n">empty</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s">&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">sorted_keys</span><span class="p">(</span><span class="n">left</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">(</span><span class="n">root</span><span class="p">(</span><span class="n">tree</span><span class="p">)))</span> <span class="o">+</span> <span class="s">&quot; &quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="n">sorted_keys</span><span class="p">(</span><span class="n">right</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-21'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-21'>#</a>
+      </div>
+      <p>If tree has the_key, return the associated value, otherwise return None.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-22'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-22'>#</a>
+      </div>
+      <p>This is essentially a decision problem, that returns the value or None,
+instead of True/False. There are two bases cases, one for each outcome.
+Base case: if the tree is empty, the key wasn't found.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">tree</span> <span class="ow">is</span> <span class="n">empty</span><span class="p">():</span>
+        <span class="n">the_value</span> <span class="o">=</span> <span class="bp">None</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-23'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-23'>#</a>
+      </div>
+      <p>Base case: if the key is in the root, return associated value.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">elif</span> <span class="n">the_key</span> <span class="o">==</span> <span class="n">key</span><span class="p">(</span><span class="n">root</span><span class="p">(</span><span class="n">tree</span><span class="p">)):</span>
+        <span class="n">the_value</span> <span class="o">=</span> <span class="n">value</span><span class="p">(</span><span class="n">root</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-24'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-24'>#</a>
+      </div>
+      <p>Reduction step: choose the appropriate subtree.
+Recursive step: get the value in that subtree.
+Inductive step: not needed.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">elif</span> <span class="n">the_key</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">(</span><span class="n">root</span><span class="p">(</span><span class="n">tree</span><span class="p">)):</span>
+        <span class="n">the_value</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">left</span><span class="p">(</span><span class="n">tree</span><span class="p">),</span> <span class="n">the_key</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">the_value</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">right</span><span class="p">(</span><span class="n">tree</span><span class="p">),</span> <span class="n">the_key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">the_value</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-25'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-25'>#</a>
+      </div>
+      <h2>Modifiers</h2>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="n">the_value</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-26'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-26'>#</a>
+      </div>
+      <p>If tree has the_key, replace its associated value by the_value.
+If it hasn't, add a new node with the_key and the_value.
+In either case, return the new tree.
+Raise a ValueError if the_value is None.</p>
+<p>None can't be used as a value because
+it's used by <code>get()</code> to represent the absence of key.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;value can&#39;t be None&quot;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-27'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-27'>#</a>
+      </div>
+      <p>Base case: if the tree is empty, create one with the key-value pair.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">tree</span> <span class="ow">is</span> <span class="n">empty</span><span class="p">():</span>
+        <span class="n">the_root</span> <span class="o">=</span> <span class="p">[</span><span class="n">the_key</span><span class="p">,</span> <span class="n">the_value</span><span class="p">]</span>
+        <span class="n">left_tree</span> <span class="o">=</span> <span class="n">empty</span><span class="p">()</span>
+        <span class="n">right_tree</span> <span class="o">=</span> <span class="n">empty</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">the_root</span> <span class="o">=</span> <span class="n">root</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="n">left_tree</span> <span class="o">=</span> <span class="n">left</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="n">right_tree</span> <span class="o">=</span> <span class="n">right</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-28'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-28'>#</a>
+      </div>
+      <p>Base case: if the key is in the root, replace the value.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">the_key</span> <span class="o">==</span> <span class="n">key</span><span class="p">(</span><span class="n">the_root</span><span class="p">):</span>
+            <span class="n">the_root</span> <span class="o">=</span> <span class="p">(</span><span class="n">the_key</span><span class="p">,</span> <span class="n">the_value</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-29'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-29'>#</a>
+      </div>
+      <p>Reduction step: choose the appropriate subtree.
+Recursive step: add/replace the key-value pair in that subtree.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">elif</span> <span class="n">the_key</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">(</span><span class="n">the_root</span><span class="p">):</span>
+            <span class="n">left_tree</span> <span class="o">=</span> <span class="n">put</span><span class="p">(</span><span class="n">left_tree</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="n">the_value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right_tree</span> <span class="o">=</span> <span class="n">put</span><span class="p">(</span><span class="n">right_tree</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="n">the_value</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-30'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-30'>#</a>
+      </div>
+      <p>Inductive step: put the new tree together from its parts.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="p">[</span><span class="n">the_root</span><span class="p">,</span> <span class="n">left_tree</span><span class="p">,</span> <span class="n">right_tree</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-31'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-31'>#</a>
+      </div>
+      <p>Delete the node with the_key from tree and return the modified tree.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-32'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-32'>#</a>
+      </div>
+      <p>Base case: if the tree is empty (key not found), don't modify it.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">tree</span> <span class="ow">is</span> <span class="n">empty</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">tree</span>
+
+    <span class="n">the_root</span> <span class="o">=</span> <span class="n">root</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+    <span class="n">left_tree</span> <span class="o">=</span> <span class="n">left</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+    <span class="n">right_tree</span> <span class="o">=</span> <span class="n">right</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">the_key</span> <span class="o">==</span> <span class="n">key</span><span class="p">(</span><span class="n">the_root</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-33'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-33'>#</a>
+      </div>
+      <p>Base case: found the key, delete the root node.
+If the tree has only one subtree, that's the new tree.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">left_tree</span> <span class="ow">is</span> <span class="n">empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">right_tree</span>
+        <span class="k">elif</span> <span class="n">right_tree</span> <span class="ow">is</span> <span class="n">empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">left_tree</span>
+        <span class="k">else</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-34'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-34'>#</a>
+      </div>
+      <p>If root has two non-empty subtrees,
+replace the root by its successor,
+which is the smallest node in the right subtree.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="n">the_root</span> <span class="o">=</span> <span class="n">smallest</span><span class="p">(</span><span class="n">right_tree</span><span class="p">)</span>
+            <span class="n">right_tree</span> <span class="o">=</span> <span class="n">delete</span><span class="p">(</span><span class="n">right_tree</span><span class="p">,</span> <span class="n">key</span><span class="p">(</span><span class="n">the_root</span><span class="p">))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-35'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-35'>#</a>
+      </div>
+      <p>Reduction step: choose the appropriate subtree.
+Recursive step: delete the node from that subtree.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">elif</span> <span class="n">the_key</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">(</span><span class="n">the_root</span><span class="p">):</span>
+        <span class="n">left_tree</span> <span class="o">=</span> <span class="n">delete</span><span class="p">(</span><span class="n">left_tree</span><span class="p">,</span> <span class="n">the_key</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">right_tree</span> <span class="o">=</span> <span class="n">delete</span><span class="p">(</span><span class="n">right_tree</span><span class="p">,</span> <span class="n">the_key</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-36'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-36'>#</a>
+      </div>
+      <p>Inductive step: put the new tree together from its parts.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="p">[</span><span class="n">the_root</span><span class="p">,</span> <span class="n">left_tree</span><span class="p">,</span> <span class="n">right_tree</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-37'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-37'>#</a>
+      </div>
+      <h2>Tests</h2>
+<p>Run tests if this file is executed, instead of imported.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-38'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-38'>#</a>
+      </div>
+      <p>First scenario: string keys and values</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">bst</span> <span class="o">=</span> <span class="n">empty</span><span class="p">()</span>
+    <span class="n">key1</span> <span class="o">=</span> <span class="s">&quot;Mary&quot;</span>
+    <span class="n">value1</span> <span class="o">=</span> <span class="s">&quot;female&quot;</span>
+    <span class="n">key2</span> <span class="o">=</span> <span class="s">&quot;John&quot;</span>
+    <span class="n">value2</span> <span class="o">=</span> <span class="s">&quot;male&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-39'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-39'>#</a>
+      </div>
+      <p>Add the larger key first and try to get it back</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">bst</span> <span class="o">=</span> <span class="n">put</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="n">key1</span><span class="p">,</span> <span class="n">value1</span><span class="p">)</span>
+    <span class="n">the_value</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="n">key1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">the_value</span> <span class="o">!=</span> <span class="n">value1</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;get(&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">key1</span><span class="p">,</span> <span class="s">&quot;) is&quot;</span><span class="p">,</span> <span class="n">the_value</span><span class="p">,</span> <span class="s">&quot;instead of&quot;</span><span class="p">,</span> <span class="n">value1</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-40'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-40'>#</a>
+      </div>
+      <p>Add the smaller key next and retrieve it with <code>smallest()</code></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">bst</span> <span class="o">=</span> <span class="n">put</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="n">key2</span><span class="p">,</span> <span class="n">value2</span><span class="p">)</span>
+    <span class="n">the_value</span> <span class="o">=</span> <span class="n">value</span><span class="p">(</span><span class="n">smallest</span><span class="p">(</span><span class="n">bst</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">the_value</span> <span class="o">!=</span> <span class="n">value2</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;value(smallest(&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;)) is&quot;</span><span class="p">,</span> <span class="n">the_value</span><span class="p">,</span> <span class="s">&quot;instead of&quot;</span><span class="p">,</span> <span class="n">value2</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-41'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-41'>#</a>
+      </div>
+      <p>Replace the values and retrieve them</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">value1</span> <span class="o">=</span> <span class="s">&quot;sister&quot;</span>
+    <span class="n">value2</span> <span class="o">=</span> <span class="s">&quot;brother&quot;</span>
+    <span class="n">bst</span> <span class="o">=</span> <span class="n">put</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="n">key1</span><span class="p">,</span> <span class="n">value1</span><span class="p">)</span>
+    <span class="n">the_value</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="n">key1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">the_value</span> <span class="o">!=</span> <span class="n">value1</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;get(&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">key1</span><span class="p">,</span> <span class="s">&quot;) is&quot;</span><span class="p">,</span> <span class="n">the_value</span><span class="p">,</span> <span class="s">&quot;instead of&quot;</span><span class="p">,</span> <span class="n">value1</span><span class="p">)</span>
+    <span class="n">bst</span> <span class="o">=</span> <span class="n">put</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="n">key2</span><span class="p">,</span> <span class="n">value2</span><span class="p">)</span>
+    <span class="n">the_value</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="n">key2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">the_value</span> <span class="o">!=</span> <span class="n">value2</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;get(&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">key2</span><span class="p">,</span> <span class="s">&quot;) is&quot;</span><span class="p">,</span> <span class="n">the_value</span><span class="p">,</span> <span class="s">&quot;instead of&quot;</span><span class="p">,</span> <span class="n">value2</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-42'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-42'>#</a>
+      </div>
+      <p>Delete the smaller key. The smallest key is now the first one.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">bst</span> <span class="o">=</span> <span class="n">delete</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="n">key2</span><span class="p">)</span>
+    <span class="n">the_value</span> <span class="o">=</span> <span class="n">value</span><span class="p">(</span><span class="n">smallest</span><span class="p">(</span><span class="n">bst</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">the_value</span> <span class="o">!=</span> <span class="n">value1</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;value(smallest(&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;)) is&quot;</span><span class="p">,</span> <span class="n">the_value</span><span class="p">,</span> <span class="s">&quot;instead of&quot;</span><span class="p">,</span> <span class="n">value1</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-43'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-43'>#</a>
+      </div>
+      <p>Delete the only node, the tree should be empty again.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">bst</span> <span class="o">=</span> <span class="n">delete</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="n">key1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">bst</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">empty</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;the bst is&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;instead of empty:&quot;</span><span class="p">,</span> <span class="n">empty</span><span class="p">())</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-44'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-44'>#</a>
+      </div>
+      <p>Another test, with numeric keys and irrelevant values.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">bst</span> <span class="o">=</span> <span class="n">empty</span><span class="p">()</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">the_key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="n">bst</span> <span class="o">=</span> <span class="n">put</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-45'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-45'>#</a>
+      </div>
+      <p>Test if the keys are in the right order.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">expected</span> <span class="o">=</span> <span class="s">&quot;0 2 4 6 9 &quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">sorted_keys</span><span class="p">(</span><span class="n">bst</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="n">expected</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;sorted_keys(&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;) is&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="s">&quot;instead of&quot;</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-46'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-46'>#</a>
+      </div>
+      <p>Test the value for existing and non-existing keys.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">for</span> <span class="n">the_key</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]:</span>
+        <span class="n">the_value</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="n">the_key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">the_key</span> <span class="ow">in</span> <span class="n">keys</span> <span class="ow">and</span> <span class="n">the_value</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;get(&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;) is&quot;</span><span class="p">,</span>
+                  <span class="n">the_value</span><span class="p">,</span> <span class="s">&quot;instead of &#39;&#39;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">the_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">keys</span> <span class="ow">and</span> <span class="n">the_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;get(&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;) is&quot;</span><span class="p">,</span>
+                  <span class="n">the_value</span><span class="p">,</span> <span class="s">&quot;instead of None&quot;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-47'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-47'>#</a>
+      </div>
+      <p>Test the smallest key is found.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">the_key</span> <span class="o">=</span> <span class="n">key</span><span class="p">(</span><span class="n">smallest</span><span class="p">(</span><span class="n">bst</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">the_key</span> <span class="o">!=</span> <span class="nb">min</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;key(smallest(&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;)) is&quot;</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;instead of&quot;</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">keys</span><span class="p">))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-48'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-48'>#</a>
+      </div>
+      <p>Delete a node without children, i.e. a leaf.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">bst</span> <span class="o">=</span> <span class="n">delete</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">the_value</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">the_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;get(&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;, 0) is&quot;</span><span class="p">,</span> <span class="n">the_value</span><span class="p">,</span> <span class="s">&quot;instead of None&quot;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-49'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-49'>#</a>
+      </div>
+      <p>Delete a node with one child</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">bst</span> <span class="o">=</span> <span class="n">delete</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">the_value</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">the_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;get(&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;, 6) is&quot;</span><span class="p">,</span> <span class="n">the_value</span><span class="p">,</span> <span class="s">&quot;instead of None&quot;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-50'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-50'>#</a>
+      </div>
+      <p>The tree should now have root 4 with left child 2 and right child 9</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">the_key</span> <span class="o">=</span> <span class="n">key</span><span class="p">(</span><span class="n">root</span><span class="p">(</span><span class="n">bst</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">the_key</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;root of&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;is&quot;</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;instead of 4&quot;</span><span class="p">)</span>
+    <span class="n">the_key</span> <span class="o">=</span> <span class="n">key</span><span class="p">(</span><span class="n">root</span><span class="p">(</span><span class="n">left</span><span class="p">(</span><span class="n">bst</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">the_key</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;left child of&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;is&quot;</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;instead of 2&quot;</span><span class="p">)</span>
+    <span class="n">the_key</span> <span class="o">=</span> <span class="n">key</span><span class="p">(</span><span class="n">root</span><span class="p">(</span><span class="n">right</span><span class="p">(</span><span class="n">bst</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">the_key</span> <span class="o">!=</span> <span class="mi">9</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;right child of&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;is&quot;</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;instead of 9&quot;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-51'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-51'>#</a>
+      </div>
+      <p>Delete a node with two children: its successor is new root</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">bst</span> <span class="o">=</span> <span class="n">delete</span><span class="p">(</span><span class="n">bst</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">the_key</span> <span class="o">=</span> <span class="n">key</span><span class="p">(</span><span class="n">root</span><span class="p">(</span><span class="n">bst</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">the_key</span> <span class="o">!=</span> <span class="mi">9</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;root of&quot;</span><span class="p">,</span> <span class="n">bst</span><span class="p">,</span> <span class="s">&quot;is&quot;</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;instead of 9&quot;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-52'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-52'>#</a>
+      </div>
+      <h2>Exercises</h2>
+<ul>
+<li>Write <code>smallest()</code> in an iterative way.</li>
+<li>Write a function that returns the height of a BST.</li>
+<li>Write a function that returns the size of a BST, i.e. the number of nodes.</li>
+</ul>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
