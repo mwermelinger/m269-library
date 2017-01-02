@@ -1,15 +1,16 @@
 """A pedagogical implementation of hash tables.
 
-This implementation uses linear probing for collision resolution,
-but changing to quadratic probing is trivial.
-The hash table doesn't grow when it is full.
+This implements a closed hash table that doesn't grow and that
+uses linear probing for collision resolution.
+Changing to quadratic probing is trivial.
 """
 
 # Representation
 # --------------
 # A hash table is represented by a fixed size list,
 # each item being a key-value pair, represented by a list of length 2.
-# An empty slot in the hash table is represented by None in the list.
+# An empty slot in the hash table is represented by the item None,
+# whereas a deleted item is represented by a pair key-None.
 
 # The following auxiliary functions make the rest of the code more readable.
 
@@ -22,6 +23,20 @@ def key(item):
 def value(item):
     """Return the value of the item."""
     return item[1]
+
+
+def is_empty(item):
+    """Return True if the item is empty, otherwise False."""
+    return item is None
+
+
+def deleted(item):
+    """Return True if the item was previously deleted, otherwise False."""
+    if is_empty(item):
+        return False
+    else:
+        return value(item) is None
+
 
 # Hashing
 # -------
@@ -58,6 +73,7 @@ def mid_square(the_key):
     # Convert the string back to an integer with a Python function.
     return int(middle)
 
+
 # The following functions are used internally by the hash table operations.
 # Python already has a `hash()` function, so we must use a different name.
 
@@ -89,6 +105,7 @@ def empty(size):
         table.append(None)
     return table
 
+
 # Inspectors
 # ----------
 
@@ -104,12 +121,13 @@ def get(table, the_key):
     slot = start_slot
     # Keep going until we know whether the key exists or not.
     while True:
+        item = table[slot]
         # If the slot is empty, the key doesn't exist.
-        if table[slot] is None:
+        if is_empty(item):
             return None
         # If the slot has the key, return the associated value.
-        if key(table[slot]) == the_key:
-            return value(table[slot])
+        if key(item) == the_key:
+            return value(item)
         # Otherwise try the next slot.
         attempt = attempt + 1
         slot = rehash_value(start_slot, attempt) % len(table)
@@ -129,8 +147,7 @@ def put(table, the_key, the_value):
     Return True if the operation succeeded, otherwise False (e.g. full table).
     Raise a ValueError if the_value is None.
     """
-    # None can't be used as a value because
-    # it's used by `get()` to represent the absence of key.
+    # None can't be used as a normal value because it marks deleted items.
 
     # Remember the first slot tried.
     start_slot = hash_value(the_key) % len(table)
@@ -139,8 +156,9 @@ def put(table, the_key, the_value):
     slot = start_slot
     # Keep trying until the operation succeeds or fails.
     while True:
-        # If the slot is empty or has the same key, store the item there.
-        if table[slot] is None or key(table[slot]) == the_key:
+        # If the slot is empty, deleted or has the_key, store the item there.
+        item = table[slot]
+        if is_empty(item) or deleted(item) or key(item) == the_key:
             table[slot] = [the_key, the_value]
             return True
         # Otherwise try the next slot.
@@ -158,31 +176,35 @@ def delete(table, the_key):
     # The 'zero-th' attempt is the start_slot.
     attempt = 0
     slot = start_slot
-    # An alternative to using infinite loops is to have a stop flag.
-    stop = False
-    while not stop:
+    # Keep going until we know whether the key exists or not.
+    while True:
+        item = table[slot]
         # If the slot is empty, the key doesn't exist, so do nothing.
-        if table[slot] is None:
-            stop = True
-        # If the slot has the key, empty it and stop.
-        if key(table[slot]) == the_key:
-            table[slot] = None
-            stop = True
+        if is_empty(item):
+            return
+        # If the slot has the key, mark it as deleted and stop.
+        if key(item) == the_key:
+            table[slot] = [the_key, None]
+            return
         # Otherwise try the next slot.
         attempt = attempt + 1
         slot = rehash_value(start_slot, attempt) % len(table)
-        # If the search 'wrapped around', the key doesn't exist.
+        # If the search 'wrapped around', the key doesn't exist, we can stop.
         if slot == start_slot:
-            stop = True
+            return
 
 
 # Tests
 # -----
 # Run tests if this file is executed, instead of imported.
+# The tests need to be modified if the (re)hashing functions change.
 
 if __name__ == "__main__":
     table = empty(3)
     # Fill the table.
+    # Due to the particular hash function, all keys collide in slot 1.
+    # Due to linear probing, this means that
+    # Mary ends up in slot 1, iris in slot 2, Baloo in slot 0.
     keys = ["Mary", "iris", "Baloo"]
     values = ["person", "flower", "bear"]
     for index in range(len(keys)):
@@ -196,9 +218,25 @@ if __name__ == "__main__":
     # The table is full, so another addition has to fail.
     if put(table, "Nemo", "fish"):
         print("Adding another item to", table, "should have failed.")
-    # Make space for Nemo and retry.
+    # Removing iris from slot 2 should allow to find Baloo in slot 0.
     delete(table, "iris")
-    if put(table, "Nemo", "fish") is False:
+    result = get(table, keys[2])
+    if result != values[2]:
+        print("get(", table, ",", keys[2], ") is",
+              result, "instead of", values[2])
+    # Retry adding Nemo.
+    if not put(table, "Nemo", "fish"):
         print("Adding Nemo to", table, "should have succeeded.")
     if get(table, "Nemo") != "fish":
         print("Can't find Nemo in", table)
+    # Deleting an item and adding it back should keep it in the same slot.
+    item = table[0]
+    the_key = key(item)
+    the_value = value(item)
+    delete(table, the_key)
+    if get(table, the_key) == the_value:
+        print(the_key, "wasn't deleted from", table)
+    if not put(table, the_key, the_value):
+        print("Adding", the_key, "to", table, "should have succeeded.")
+    if key(table[0]) != the_key:
+        print(the_key, "should be in slot 0 of", table)
