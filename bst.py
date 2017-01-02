@@ -44,9 +44,10 @@ def value(node):
     """Return the value of the node."""
     return node[1]
 
-
 # Creator
 # -------
+
+
 def empty():
     """Return the empty binary search tree."""
     return None
@@ -57,10 +58,10 @@ def empty():
 
 # The following function is needed later, but can be useful on its own.
 # It is the equivalent of findinding the minimum in a list.
+
+
 def smallest(tree):
     """Return the node with the smallest key in the non-empty tree."""
-    # In a BST, _every_ key in the left subtree is smaller than the root's key,
-    # and the root's key is smaller than _every_ key in the right subtree.
     # Base case: if there's no left subtree, the smallest key is in the root.
     if left(tree) is empty():
         node = root(tree)
@@ -73,6 +74,8 @@ def smallest(tree):
 
 
 # For BSTs, only the inorder traversal makes sense.
+
+
 def sorted_keys(tree):
     """Return a string with the keys in sorted order."""
     if tree is empty():
@@ -107,6 +110,8 @@ def get(tree, the_key):
 
 # Modifiers
 # ---------
+
+
 def put(tree, the_key, the_value):
     """
     If tree has the_key, replace its associated value by the_value.
@@ -116,7 +121,7 @@ def put(tree, the_key, the_value):
     """
     # None can't be used as a value because
     # it's used by `get()` to represent the absence of key.
-    if value is None:
+    if the_value is None:
         raise ValueError("value can't be None")
     # Base case: if the tree is empty, create one with the key-value pair.
     if tree is empty():

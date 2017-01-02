@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module hash_table</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>hash_table</strong></big></big></font></td
+><td align=right valign=bottom
+></td></tr></table>
+    <p><tt>A&nbsp;pedagogical&nbsp;implementation&nbsp;of&nbsp;hash&nbsp;tables.<br>
+&nbsp;<br>
+This&nbsp;implementation&nbsp;uses&nbsp;linear&nbsp;probing&nbsp;for&nbsp;collision&nbsp;resolution,<br>
+but&nbsp;changing&nbsp;to&nbsp;quadratic&nbsp;probing&nbsp;is&nbsp;trivial.<br>
+The&nbsp;hash&nbsp;table&nbsp;doesn't&nbsp;grow&nbsp;when&nbsp;it&nbsp;is&nbsp;full.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-delete"><strong>delete</strong></a>(table, the_key)</dt><dd><tt>Delete&nbsp;the&nbsp;item&nbsp;with&nbsp;the_key,&nbsp;if&nbsp;there&nbsp;is&nbsp;one,&nbsp;otherwise&nbsp;do&nbsp;nothing.</tt></dd></dl>
+ <dl><dt><a name="-empty"><strong>empty</strong></a>(size)</dt><dd><tt>Return&nbsp;an&nbsp;empty&nbsp;hash&nbsp;table&nbsp;of&nbsp;the&nbsp;given&nbsp;size.</tt></dd></dl>
+ <dl><dt><a name="-get"><strong>get</strong></a>(table, the_key)</dt><dd><tt>If&nbsp;table&nbsp;has&nbsp;the_key,&nbsp;return&nbsp;the&nbsp;associated&nbsp;value,&nbsp;otherwise&nbsp;return&nbsp;None.</tt></dd></dl>
+ <dl><dt><a name="-hash_string"><strong>hash_string</strong></a>(the_key)</dt><dd><tt>Return&nbsp;a&nbsp;hash&nbsp;value&nbsp;for&nbsp;the&nbsp;string&nbsp;the_key.</tt></dd></dl>
+ <dl><dt><a name="-hash_value"><strong>hash_value</strong></a>(the_key)</dt><dd><tt>Return&nbsp;a&nbsp;hash&nbsp;value&nbsp;for&nbsp;the_key.</tt></dd></dl>
+ <dl><dt><a name="-key"><strong>key</strong></a>(item)</dt><dd><tt>Return&nbsp;the&nbsp;key&nbsp;of&nbsp;the&nbsp;item.</tt></dd></dl>
+ <dl><dt><a name="-mid_square"><strong>mid_square</strong></a>(the_key)</dt><dd><tt>Square&nbsp;the&nbsp;integer&nbsp;the_key&nbsp;and&nbsp;return&nbsp;its&nbsp;3&nbsp;middle&nbsp;digits.</tt></dd></dl>
+ <dl><dt><a name="-put"><strong>put</strong></a>(table, the_key, the_value)</dt><dd><tt>If&nbsp;table&nbsp;has&nbsp;the_key,&nbsp;replace&nbsp;its&nbsp;associated&nbsp;value&nbsp;by&nbsp;the_value.<br>
+If&nbsp;it&nbsp;hasn't,&nbsp;add&nbsp;a&nbsp;new&nbsp;item&nbsp;with&nbsp;the_key&nbsp;and&nbsp;the_value.<br>
+Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operation&nbsp;succeeded,&nbsp;otherwise&nbsp;False&nbsp;(e.g.&nbsp;full&nbsp;table).<br>
+Raise&nbsp;a&nbsp;ValueError&nbsp;if&nbsp;the_value&nbsp;is&nbsp;None.</tt></dd></dl>
+ <dl><dt><a name="-rehash_value"><strong>rehash_value</strong></a>(hash_value, n)</dt><dd><tt>Return&nbsp;the&nbsp;n-th&nbsp;rehash&nbsp;value&nbsp;for&nbsp;the&nbsp;original&nbsp;hash_value.<br>
+If&nbsp;n&nbsp;is&nbsp;0,&nbsp;return&nbsp;the&nbsp;hash_value.<br>
+Currently&nbsp;implements&nbsp;linear&nbsp;probing.</tt></dd></dl>
+ <dl><dt><a name="-value"><strong>value</strong></a>(item)</dt><dd><tt>Return&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;item.</tt></dd></dl>
+</td></tr></table>
+</body></html>
