@@ -134,7 +134,7 @@ def put(tree, the_key, the_value):
         right_tree = right(tree)
         # Base case: if the key is in the root, replace the value.
         if the_key == key(the_root):
-            the_root = (the_key, the_value)
+            the_root = [the_key, the_value]
         # Reduction step: choose the appropriate subtree.
         # Recursive step: add/replace the key-value pair in that subtree.
         elif the_key < key(the_root):

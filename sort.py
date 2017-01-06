@@ -1,6 +1,4 @@
-"""Pedagogical implementations of some sorting algorithms.
-
-"""
+"""Pedagogical implementations of some sorting algorithms."""
 
 # Bubblesort
 # ----------
