@@ -38,4 +38,7 @@ All the code was checked with
 
 Contrary to M269, the code here uses underscores instead of camel case.
 
+There are some suggested optional exercises at the end of code files.
+You're welcome to discuss them in the M269 forums and tutorials.
+
 (c) Copyright 2017 Michel Wermelinger. All Rights Reserved. 

@@ -19,8 +19,7 @@
       </div>
       <p>A pedagogical implementation of hash tables.</p>
 <p>This implements a closed hash table that doesn't grow and that
-uses linear probing for collision resolution.
-Changing to quadratic probing is trivial.</p>
+uses linear probing for collision resolution.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre></pre></div>
@@ -534,7 +533,8 @@ Raise a ValueError if the_value is None.</p>
       <p>None can't be used as a normal value because it marks deleted items.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre></pre></div>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">the_value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;can&#39;t put None in hash table&quot;</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -786,7 +786,7 @@ Mary ends up in slot 1, iris in slot 2, Baloo in slot 0.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-59'>#</a>
       </div>
-      <p>Removing iris from slot 2 should allow to find Baloo in slot 0.</p>
+      <p>Removing iris from slot 2 should still allow to find Baloo in slot 0.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>    <span class="n">delete</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="s">&quot;iris&quot;</span><span class="p">)</span>
@@ -829,9 +829,26 @@ Mary ends up in slot 1, iris in slot 2, Baloo in slot 0.</p>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">put</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="n">the_value</span><span class="p">):</span>
         <span class="k">print</span><span class="p">(</span><span class="s">&quot;Adding&quot;</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;to&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="s">&quot;should have succeeded.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">key</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">!=</span> <span class="n">the_key</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;should be in slot 0 of&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
-
-</pre></div>
+        <span class="k">print</span><span class="p">(</span><span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;should be in slot 0 of&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-62'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-62'>#</a>
+      </div>
+      <h2>Exercise</h2>
+<ul>
+<li>If quadratic probing is used,
+  after putting Mary and iris in the empty table,
+  putting Baloo will fail. Why?</li>
+<li>Implement quadratic probing and modify the tests.</li>
+<li>Write a function that calculates the load factor of a table.</li>
+</ul>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
     </div>
   </div>
   <div class='clearall'></div>

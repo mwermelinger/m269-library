@@ -2,7 +2,6 @@
 
 This implements a closed hash table that doesn't grow and that
 uses linear probing for collision resolution.
-Changing to quadratic probing is trivial.
 """
 
 # Representation
@@ -148,7 +147,8 @@ def put(table, the_key, the_value):
     Raise a ValueError if the_value is None.
     """
     # None can't be used as a normal value because it marks deleted items.
-
+    if the_value is None:
+        raise ValueError("can't put None in hash table")
     # Remember the first slot tried.
     start_slot = hash_value(the_key) % len(table)
     # The 'zero-th' attempt is the start_slot.
@@ -218,7 +218,7 @@ if __name__ == "__main__":
     # The table is full, so another addition has to fail.
     if put(table, "Nemo", "fish"):
         print("Adding another item to", table, "should have failed.")
-    # Removing iris from slot 2 should allow to find Baloo in slot 0.
+    # Removing iris from slot 2 should still allow to find Baloo in slot 0.
     delete(table, "iris")
     result = get(table, keys[2])
     if result != values[2]:
@@ -240,3 +240,11 @@ if __name__ == "__main__":
         print("Adding", the_key, "to", table, "should have succeeded.")
     if key(table[0]) != the_key:
         print(the_key, "should be in slot 0 of", table)
+
+# Exercise
+# --------
+# - If quadratic probing is used,
+#   after putting Mary and iris in the empty table,
+#   putting Baloo will fail. Why?
+# - Implement quadratic probing and modify the tests.
+# - Write a function that calculates the load factor of a table.
