@@ -12,5 +12,5 @@ all: *.html
 	pycco -d . $< 				
 	
 clean:
-	rm *.html help/*.html
 	rm -r __pycache__
+
