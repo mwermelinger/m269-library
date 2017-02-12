@@ -9,7 +9,7 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>digraph</strong></big></big></font></td
 ><td align=right valign=bottom
 ></td></tr></table>
-    <p><tt>A&nbsp;pedagogical&nbsp;implementation&nbsp;of&nbsp;directed&nbsp;graphs.<br>
+    <p><tt>A&nbsp;pedagogical&nbsp;implementation&nbsp;of&nbsp;unweighted&nbsp;directed&nbsp;graphs.<br>
 &nbsp;<br>
 A&nbsp;directed&nbsp;graph&nbsp;is&nbsp;a&nbsp;possibly&nbsp;empty&nbsp;collection&nbsp;of&nbsp;nodes&nbsp;and&nbsp;edges.<br>
 Each&nbsp;edge&nbsp;goes&nbsp;*from*&nbsp;one&nbsp;node&nbsp;(called&nbsp;the&nbsp;**source**&nbsp;node)<br>
@@ -34,6 +34,9 @@ Raise&nbsp;ValueError&nbsp;if&nbsp;`graph`&nbsp;hasn't&nbsp;`node`.</tt></dd></d
  <dl><dt><a name="-dfs"><strong>dfs</strong></a>(graph, node)</dt><dd><tt>Do&nbsp;a&nbsp;depth-first&nbsp;search&nbsp;of&nbsp;`graph`,&nbsp;starting&nbsp;from&nbsp;`node`.<br>
 Return&nbsp;a&nbsp;list&nbsp;of&nbsp;nodes&nbsp;in&nbsp;visited&nbsp;order,&nbsp;the&nbsp;first&nbsp;being&nbsp;`node`.<br>
 Raise&nbsp;ValueError&nbsp;if&nbsp;`graph`&nbsp;hasn't&nbsp;`node`.</tt></dd></dl>
+ <dl><dt><a name="-distance"><strong>distance</strong></a>(graph, start, end)</dt><dd><tt>Return&nbsp;the&nbsp;smallest&nbsp;number&nbsp;of&nbsp;edges&nbsp;to&nbsp;go&nbsp;from&nbsp;`start`&nbsp;to&nbsp;`end`.<br>
+Return&nbsp;-1&nbsp;if&nbsp;there&nbsp;is&nbsp;no&nbsp;path&nbsp;from&nbsp;`start`&nbsp;to&nbsp;`end`.<br>
+Raise&nbsp;ValueError&nbsp;if&nbsp;`graph`&nbsp;hasn't&nbsp;`start`.</tt></dd></dl>
  <dl><dt><a name="-empty"><strong>empty</strong></a>()</dt><dd><tt>Return&nbsp;the&nbsp;empty&nbsp;graph.</tt></dd></dl>
  <dl><dt><a name="-has_node"><strong>has_node</strong></a>(graph, node)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;`graph`&nbsp;has&nbsp;`node`,&nbsp;otherwise&nbsp;False.</tt></dd></dl>
  <dl><dt><a name="-neighbours"><strong>neighbours</strong></a>(graph, node)</dt><dd><tt>Return&nbsp;the&nbsp;set&nbsp;of&nbsp;neighbours&nbsp;of&nbsp;`node`&nbsp;in&nbsp;`graph`.<br>

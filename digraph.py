@@ -1,4 +1,4 @@
-"""A pedagogical implementation of directed graphs.
+"""A pedagogical implementation of unweighted directed graphs.
 
 A directed graph is a possibly empty collection of nodes and edges.
 Each edge goes *from* one node (called the **source** node)
@@ -122,6 +122,33 @@ def dfs(graph, node):
     return visited
 
 
+# A breadth-first search can be used to find the shortest distance
+# between two nodes, because it first visits all nodes at distance 1,
+# then those at distance 2, etc.
+
+
+def distance(graph, start, end):
+    """Return the smallest number of edges to go from `start` to `end`.
+    Return -1 if there is no path from `start` to `end`.
+    Raise ValueError if `graph` hasn't `start`.
+    """
+    # Like `bfs()` but keep each node's distance from `start`.
+    visited = []
+    to_visit = [start]
+    distances = [0]
+    while to_visit != []:
+        next_node = to_visit.pop(0)
+        distance = distances.pop(0)
+        # If the next node is the end node, return its distance.
+        if next_node == end:
+            return distance
+        for neighbour in neighbours(graph, next_node):
+            if neighbour not in visited + to_visit:
+                to_visit.append(neighbour)
+                distances.append(distance + 1)
+    return -1
+
+
 # Tests
 # -----
 # Run tests if this file is executed, instead of imported.
@@ -179,6 +206,25 @@ if __name__ == "__main__":
     if actual != expected:
         print("bfs(", graph, ", 3) is", actual, "instead of", expected)
 
+    actual = distance(graph, 1, 1)
+    expected = 0
+    if actual != expected:
+        print("distance from 1 to 1 is", actual, "instead of", expected)
+
+    actual = distance(graph, 1, 3)
+    expected = 1
+    if actual != expected:
+        print("distance from 1 to 3 is", actual, "instead of", expected)
+
+    actual = distance(graph, 2, 4)
+    expected = 1
+    if actual != expected:
+        print("distance from 2 to 4 is", actual, "instead of", expected)
+
+    actual = distance(graph, 4, 2)
+    expected = -1
+    if actual != expected:
+        print("distance from 4 to 2 is", actual, "instead of", expected)
 
 # Exercises
 # ---------
