@@ -16,7 +16,7 @@ For example, code was often simplified by returning a new data structure
 Also in the name of simplicity, 
 most of the code is procedural instead of object-oriented. 
 
-For each source code file, there is a corresponding HTML file that
+The `doc` folder contains, for each source file, one HTML file that
 shows the code side by side with the documentation. 
 The HTML files were generated with [Pycco](https://pycco-docs.github.io/pycco/).
 

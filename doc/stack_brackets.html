@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>stack_brackets.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id="background"></div>
+<div id='container'>
+  <div class='section'>
+    <div class='docs'><h1>stack_brackets.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Use a stack to check if brackets match correctly in a string.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">stack</span> <span class="kn">import</span> <span class="n">Stack</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Check if all brackets in the_text (a string) are correctly matched.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">brackets_match</span><span class="p">(</span><span class="n">the_text</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Return True if they are, otherwise False.
+Only consider round and square brackets, i.e. () and [].</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">open_brackets</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">character</span> <span class="ow">in</span> <span class="n">the_text</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">character</span> <span class="o">==</span> <span class="s">&#39;(&#39;</span> <span class="ow">or</span> <span class="n">character</span> <span class="o">==</span> <span class="s">&#39;[&#39;</span><span class="p">:</span>
+            <span class="n">open_brackets</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">character</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">character</span> <span class="o">==</span> <span class="s">&#39;)&#39;</span> <span class="ow">or</span> <span class="n">character</span> <span class="o">==</span> <span class="s">&#39;]&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">open_brackets</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">if</span> <span class="n">character</span> <span class="o">==</span> <span class="s">&#39;)&#39;</span> <span class="ow">and</span> <span class="n">open_brackets</span><span class="o">.</span><span class="n">top</span><span class="p">()</span> <span class="o">!=</span> <span class="s">&#39;(&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">if</span> <span class="n">character</span> <span class="o">==</span> <span class="s">&#39;]&#39;</span> <span class="ow">and</span> <span class="n">open_brackets</span><span class="o">.</span><span class="n">top</span><span class="p">()</span> <span class="o">!=</span> <span class="s">&#39;[&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="n">open_brackets</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">open_brackets</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Check if the_text's brackets match or not, as expected.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_brackets</span><span class="p">(</span><span class="n">the_text</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Print a message stating if the test passed (result is as expected),
+or failed (result is different from expected).</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">brackets_match</span><span class="p">(</span><span class="n">the_text</span><span class="p">)</span> <span class="o">!=</span> <span class="n">expected</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;FAILED:&#39;</span><span class="p">,</span> <span class="n">the_text</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;PASSED:&#39;</span><span class="p">,</span> <span class="n">the_text</span><span class="p">)</span>
+
+
+<span class="n">test_brackets</span><span class="p">(</span><span class="s">&#39;No brackets is OK.&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">test_brackets</span><span class="p">(</span><span class="s">&#39;After ( and [ comes ] and )&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">test_brackets</span><span class="p">(</span><span class="s">&#39;After ( and [ it cannot be ) and ]&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="n">test_brackets</span><span class="p">(</span><span class="s">&#39;This ( has no closing bracket.&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="n">test_brackets</span><span class="p">(</span><span class="s">&#39;This ] has no opening bracket.&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="n">test_brackets</span><span class="p">(</span><span class="s">&#39;Snarks are rarely seen (according to Smith (1999))&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <h2>Exercises</h2>
+<ul>
+<li>If only one type of brackets has to be checked, is a stack needed?
+  If not, write and test a <code>parentheses_match</code> function.</li>
+<li>Extend and test the <code>brackets_match</code> function to handle { and }.</li>
+<li>Write and test a function that returns the first position with an error.
+  For example, for the string <code>'( not closed'</code> it should return 0.
+  Decide what position to return if the brackets are matched.
+  Then rewrite <code>brackets_match</code> to use the new function instead.</li>
+<li>Write a function that returns the input string if the brackets match,
+  otherwise returns a corrected string.
+  For example, for the input <code>'(['</code> it may return <code>'([])'</code>.</li>
+</ul>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
