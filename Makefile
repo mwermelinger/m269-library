@@ -12,5 +12,6 @@ doc/%.html: %.py
 	pycco -d doc $< 				
 	
 clean:
-	rm -r __pycache__
+	rm -r *html __pycache__
+	
 

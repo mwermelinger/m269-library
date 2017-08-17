@@ -1,4 +1,4 @@
-# M269
+# The M269 Library
 
 This repository provides Python implementations of some of the 
 algorithms and data structures taught in M269, the Open University's
@@ -16,7 +16,7 @@ For example, code was often simplified by returning a new data structure
 Also in the name of simplicity, 
 most of the code is procedural instead of object-oriented. 
 
-The `doc` folder contains, for each source file, one HTML file that
+The `doc` folder contains, for each source file, an HTML file that
 shows the code side by side with the documentation. 
 The HTML files were generated with [Pycco](https://pycco-docs.github.io/pycco/).
 
