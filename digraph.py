@@ -3,6 +3,8 @@
 This file is part of the M269 Library (http://tiny.cc/m269-library).
 """
 
+from stack import Stack  # for the depth-first search
+
 
 class DirectedGraph:
     """Implement a directed graph (digraph).
@@ -147,17 +149,19 @@ class DirectedGraph:
         Assume the start node exists.
         """
         assert self.has_node(start)
+        # Use the same algorithm, but keep nodes to visit in a stack.
         visited = []
-        to_visit = [start]
+        to_visit = Stack()
+        to_visit.push(start)
         for node in self._nodes:
             self._nodes[node]['seen'] = False
         self._nodes[start]['seen'] = True
-        while to_visit:
+        while not to_visit.is_empty():
             next_node = to_visit.pop()
             visited.append(next_node)
             for neighbour in self.neighbours(next_node):
                 if not self._nodes[neighbour]['seen']:
-                    to_visit.append(neighbour)
+                    to_visit.push(neighbour)
                     self._nodes[neighbour]['seen'] = True
         return visited
 
