@@ -1,4 +1,4 @@
-all: doc/*.html
+all: doc/*.html clean
 
 doc/%.html: %.py
 # Fix any spacing issues

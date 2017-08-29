@@ -190,6 +190,30 @@ The returned set doesn't duplicate edges, i.e. only one of
       <div class='octowrap'>
         <a class='octothorpe' href='#section-12'>#</a>
       </div>
+      <p>Return the empty list.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">topological_sort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>Undirected graphs don't have a topological sort.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">return</span> <span class="p">[]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
       <h2>The Travelling Salesman Problem</h2>
 <p>The problem consists in finding a best tour in
 a complete weighted undirected graph.
@@ -205,10 +229,10 @@ so the best tours are the shortest or cheapest ones.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-13'>
+  <div class='section' id='section-15'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-13'>#</a>
+        <a class='octothorpe' href='#section-15'>#</a>
       </div>
       <p>Return a best tour of the graph.</p>
     </div>
@@ -217,10 +241,10 @@ so the best tours are the shortest or cheapest ones.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-14'>
+  <div class='section' id='section-16'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-14'>#</a>
+        <a class='octothorpe' href='#section-16'>#</a>
       </div>
       <p>Assume the graph is complete.
 A tour is a list with all the graph's nodes, in the order visited,
@@ -236,10 +260,10 @@ Mark that no tour has been found yet.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-15'>
+  <div class='section' id='section-17'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-15'>#</a>
+        <a class='octothorpe' href='#section-17'>#</a>
       </div>
       <p>Go through all possible orderings of the nodes.</p>
     </div>
@@ -248,10 +272,10 @@ Mark that no tour has been found yet.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-16'>
+  <div class='section' id='section-18'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-16'>#</a>
+        <a class='octothorpe' href='#section-18'>#</a>
       </div>
       <p>A tour is a permutation with the start node at the end.
 First convert the permutation from a tuple to a list.</p>
@@ -262,10 +286,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-17'>
+  <div class='section' id='section-19'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-17'>#</a>
+        <a class='octothorpe' href='#section-19'>#</a>
       </div>
       <p>Compute the tour's weight. Update the best found, if the case.</p>
     </div>
@@ -278,10 +302,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-18'>
+  <div class='section' id='section-20'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-18'>#</a>
+        <a class='octothorpe' href='#section-20'>#</a>
       </div>
       <h2>Modifiers</h2>
 <p><code>add_node</code> and <code>remove_node</code> inherited from <code>Digraph</code>.</p>
@@ -291,10 +315,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-19'>
+  <div class='section' id='section-21'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-19'>#</a>
+        <a class='octothorpe' href='#section-21'>#</a>
       </div>
       <p>Add an edge between the two nodes with the given weight.</p>
     </div>
@@ -303,10 +327,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-20'>
+  <div class='section' id='section-22'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-20'>#</a>
+        <a class='octothorpe' href='#section-22'>#</a>
       </div>
       <p>Replace the weight value if the edge already exists.
 Assume the nodes are of a hashable type and different.
@@ -322,10 +346,10 @@ Assume the weight is a positive number.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-21'>
+  <div class='section' id='section-23'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-21'>#</a>
+        <a class='octothorpe' href='#section-23'>#</a>
       </div>
       <p>Remove the edge between the nodes from the graph.</p>
     </div>
@@ -334,10 +358,10 @@ Assume the weight is a positive number.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-22'>
+  <div class='section' id='section-24'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-22'>#</a>
+        <a class='octothorpe' href='#section-24'>#</a>
       </div>
       <p>Do nothing if the edge doesn't exist.</p>
     </div>
@@ -348,10 +372,10 @@ Assume the weight is a positive number.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-23'>
+  <div class='section' id='section-25'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-23'>#</a>
+        <a class='octothorpe' href='#section-25'>#</a>
       </div>
       <h2>Exercises</h2>
 <ul>

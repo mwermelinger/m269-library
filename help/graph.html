@@ -69,6 +69,10 @@ Return&nbsp;False&nbsp;if&nbsp;the&nbsp;edge&nbsp;or&nbsp;either&nbsp;node&nbsp;
 &nbsp;<br>
 Do&nbsp;nothing&nbsp;if&nbsp;the&nbsp;edge&nbsp;doesn't&nbsp;exist.</tt></dd></dl>
 
+<dl><dt><a name="Graph-topological_sort"><strong>topological_sort</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;empty&nbsp;list.<br>
+&nbsp;<br>
+Undirected&nbsp;graphs&nbsp;don't&nbsp;have&nbsp;a&nbsp;topological&nbsp;sort.</tt></dd></dl>
+
 <dl><dt><a name="Graph-unweighted_edges"><strong>unweighted_edges</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;set&nbsp;of&nbsp;all&nbsp;edges&nbsp;in&nbsp;self,&nbsp;without&nbsp;weights.<br>
 &nbsp;<br>
 An&nbsp;edge&nbsp;is&nbsp;a&nbsp;tuple&nbsp;(node1,&nbsp;node2).<br>
@@ -101,6 +105,11 @@ Assume&nbsp;the&nbsp;graph&nbsp;has&nbsp;the&nbsp;node.</tt></dd></dl>
 <dl><dt><a name="Graph-remove_node"><strong>remove_node</strong></a>(self, node)</dt><dd><tt>Remove&nbsp;the&nbsp;node&nbsp;and&nbsp;its&nbsp;edges&nbsp;from&nbsp;the&nbsp;graph.<br>
 &nbsp;<br>
 Do&nbsp;nothing&nbsp;if&nbsp;the&nbsp;node&nbsp;doesn't&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="Graph-unweighted_distance"><strong>unweighted_distance</strong></a>(self, start, end)</dt><dd><tt>Return&nbsp;the&nbsp;smallest&nbsp;number&nbsp;of&nbsp;edges&nbsp;to&nbsp;go&nbsp;from&nbsp;`start`&nbsp;to&nbsp;`end`.<br>
+&nbsp;<br>
+Return&nbsp;infinity&nbsp;if&nbsp;there&nbsp;is&nbsp;no&nbsp;path&nbsp;from&nbsp;`start`&nbsp;to&nbsp;`end`.<br>
+Assume&nbsp;the&nbsp;graph&nbsp;has&nbsp;the&nbsp;start&nbsp;node.</tt></dd></dl>
 
 <dl><dt><a name="Graph-visited_bfs"><strong>visited_bfs</strong></a>(self, start)</dt><dd><tt>Do&nbsp;a&nbsp;breadth-first&nbsp;search&nbsp;of&nbsp;the&nbsp;graph,&nbsp;from&nbsp;the&nbsp;start&nbsp;node.<br>
 &nbsp;<br>

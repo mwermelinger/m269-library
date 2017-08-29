@@ -56,3 +56,22 @@ test('from fox to fox', food_web.unweighted_distance('fox', 'fox'), [0])
 test('from grass to fox', food_web.unweighted_distance('grass', 'fox'), [2])
 test('from fox to grass', food_web.unweighted_distance('fox', 'grass'),
      [float('infinity')])
+
+# Recipe
+# ------
+# Graph from Section 7.20 of Miller and Ranum's
+# [book](http://interactivepython.org/runestone/static/pythonds/index.html)
+# _Problem Solving with Algorithms and Data Structures using Python_
+
+recipe = DirectedGraph()
+recipe.add_edge('3/4 cup milk', '1 cup mix')
+recipe.add_edge('1 egg', '1 cup mix')
+recipe.add_edge('1 Tbl Oil', '1 cup mix')
+recipe.add_edge('1 cup mix', 'pour 1/4 cup')
+recipe.add_edge('1 cup mix', 'heat syrup')
+recipe.add_edge('heat syrup', 'eat')
+recipe.add_edge('heat griddle', 'pour 1/4 cup')
+recipe.add_edge('pour 1/4 cup', 'turn when bubbly')
+recipe.add_edge('turn when bubbly', 'eat')
+
+print('Order of steps:', recipe.topological_sort())

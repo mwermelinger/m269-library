@@ -177,7 +177,33 @@ Nodes are species and an edge from A to B states that A is eaten by B.</p>
 <span class="n">test</span><span class="p">(</span><span class="s">&#39;from fox to fox&#39;</span><span class="p">,</span> <span class="n">food_web</span><span class="o">.</span><span class="n">unweighted_distance</span><span class="p">(</span><span class="s">&#39;fox&#39;</span><span class="p">,</span> <span class="s">&#39;fox&#39;</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">test</span><span class="p">(</span><span class="s">&#39;from grass to fox&#39;</span><span class="p">,</span> <span class="n">food_web</span><span class="o">.</span><span class="n">unweighted_distance</span><span class="p">(</span><span class="s">&#39;grass&#39;</span><span class="p">,</span> <span class="s">&#39;fox&#39;</span><span class="p">),</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">test</span><span class="p">(</span><span class="s">&#39;from fox to grass&#39;</span><span class="p">,</span> <span class="n">food_web</span><span class="o">.</span><span class="n">unweighted_distance</span><span class="p">(</span><span class="s">&#39;fox&#39;</span><span class="p">,</span> <span class="s">&#39;grass&#39;</span><span class="p">),</span>
-     <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)])</span>
+     <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)])</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      <h2>Recipe</h2>
+<p>Graph from Section 7.20 of Miller and Ranum's
+<a href="http://interactivepython.org/runestone/static/pythonds/index.html">book</a>
+<em>Problem Solving with Algorithms and Data Structures using Python</em></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">recipe</span> <span class="o">=</span> <span class="n">DirectedGraph</span><span class="p">()</span>
+<span class="n">recipe</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;3/4 cup milk&#39;</span><span class="p">,</span> <span class="s">&#39;1 cup mix&#39;</span><span class="p">)</span>
+<span class="n">recipe</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;1 egg&#39;</span><span class="p">,</span> <span class="s">&#39;1 cup mix&#39;</span><span class="p">)</span>
+<span class="n">recipe</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;1 Tbl Oil&#39;</span><span class="p">,</span> <span class="s">&#39;1 cup mix&#39;</span><span class="p">)</span>
+<span class="n">recipe</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;1 cup mix&#39;</span><span class="p">,</span> <span class="s">&#39;pour 1/4 cup&#39;</span><span class="p">)</span>
+<span class="n">recipe</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;1 cup mix&#39;</span><span class="p">,</span> <span class="s">&#39;heat syrup&#39;</span><span class="p">)</span>
+<span class="n">recipe</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;heat syrup&#39;</span><span class="p">,</span> <span class="s">&#39;eat&#39;</span><span class="p">)</span>
+<span class="n">recipe</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;heat griddle&#39;</span><span class="p">,</span> <span class="s">&#39;pour 1/4 cup&#39;</span><span class="p">)</span>
+<span class="n">recipe</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;pour 1/4 cup&#39;</span><span class="p">,</span> <span class="s">&#39;turn when bubbly&#39;</span><span class="p">)</span>
+<span class="n">recipe</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;turn when bubbly&#39;</span><span class="p">,</span> <span class="s">&#39;eat&#39;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;Order of steps:&#39;</span><span class="p">,</span> <span class="n">recipe</span><span class="o">.</span><span class="n">topological_sort</span><span class="p">())</span>
 
 </pre></div>
     </div>

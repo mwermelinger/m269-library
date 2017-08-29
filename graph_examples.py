@@ -55,6 +55,8 @@ print('Removed node w')
 print('from u to z:', example.unweighted_distance('u', 'z'), 'hops')
 print('from u to w:', example.unweighted_distance('u', 'w'), 'hops')
 
+print('topological sort:', example.topological_sort())
+
 # Graph from Python activity 5.1 from Unit 5 of M269
 
 cities = Graph()

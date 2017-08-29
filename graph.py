@@ -68,6 +68,13 @@ class Graph(DirectedGraph):
                     the_edges.add((source, target))
         return the_edges
 
+    def topological_sort(self):
+        """Return the empty list.
+
+        Undirected graphs don't have a topological sort.
+        """
+        return []
+
     # The Travelling Salesman Problem
     # -------------------------------
     # The problem consists in finding a best tour in

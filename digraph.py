@@ -195,6 +195,38 @@ class DirectedGraph:
                     self._nodes[neighbour]['seen'] = True
         return visited
 
+    def topological_sort(self):
+        """Return a list of nodes, in topological order.
+
+        Return the empty list if the graph is cyclic.
+        """
+        sort = []
+        # Initially, all nodes have 0 incoming edges and can be visited.
+        to_visit = self.nodes()
+        for node in to_visit:
+            self._nodes[node]['incoming'] = 0
+        # For each edge, its target has 1 more incoming edge,
+        # and can't be yet visited (the source must be visited first).
+        # pylint: disable=unused-variable
+        for (source, target) in self.unweighted_edges():
+            to_visit.discard(target)
+            self._nodes[target]['incoming'] += 1
+        # While there are nodes to visit,
+        while to_visit:
+            # visit any of them,
+            node = to_visit.pop()
+            sort.append(node)
+            # and virtually remove it from the graph, by
+            # decrementing its neighbours' incoming edges.
+            for neighbour in self.neighbours(node):
+                self._nodes[neighbour]['incoming'] -= 1
+                # If a node has no incoming edges left,
+                # all its predecessors were visited and 'removed',
+                # hence it can be visited.
+                if self._nodes[neighbour]['incoming'] == 0:
+                    to_visit.add(neighbour)
+        return sort
+
     # Modifiers
     # ---------
 
