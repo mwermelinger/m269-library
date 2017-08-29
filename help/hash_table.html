@@ -9,33 +9,64 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>hash_table</strong></big></big></font></td
 ><td align=right valign=bottom
 ></td></tr></table>
-    <p><tt>A&nbsp;pedagogical&nbsp;implementation&nbsp;of&nbsp;hash&nbsp;tables.<br>
-&nbsp;<br>
-This&nbsp;implements&nbsp;a&nbsp;closed&nbsp;hash&nbsp;table&nbsp;that&nbsp;doesn't&nbsp;grow&nbsp;and&nbsp;that<br>
-uses&nbsp;linear&nbsp;probing&nbsp;for&nbsp;collision&nbsp;resolution.</tt></p>
+    <p><tt>An&nbsp;implementation&nbsp;of&nbsp;hash&nbsp;tables.</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="#eeaa77">
+<tr bgcolor="#ee77aa">
 <td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
     
-<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-delete"><strong>delete</strong></a>(table, the_key)</dt><dd><tt>Delete&nbsp;the&nbsp;item&nbsp;with&nbsp;the_key,&nbsp;if&nbsp;there&nbsp;is&nbsp;one,&nbsp;otherwise&nbsp;do&nbsp;nothing.</tt></dd></dl>
- <dl><dt><a name="-deleted"><strong>deleted</strong></a>(item)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;item&nbsp;was&nbsp;previously&nbsp;deleted,&nbsp;otherwise&nbsp;False.</tt></dd></dl>
- <dl><dt><a name="-empty"><strong>empty</strong></a>(size)</dt><dd><tt>Return&nbsp;an&nbsp;empty&nbsp;hash&nbsp;table&nbsp;of&nbsp;the&nbsp;given&nbsp;size.</tt></dd></dl>
- <dl><dt><a name="-get"><strong>get</strong></a>(table, the_key)</dt><dd><tt>If&nbsp;table&nbsp;has&nbsp;the_key,&nbsp;return&nbsp;the&nbsp;associated&nbsp;value,&nbsp;otherwise&nbsp;return&nbsp;None.</tt></dd></dl>
- <dl><dt><a name="-hash_string"><strong>hash_string</strong></a>(the_key)</dt><dd><tt>Return&nbsp;a&nbsp;hash&nbsp;value&nbsp;for&nbsp;the&nbsp;string&nbsp;the_key.</tt></dd></dl>
- <dl><dt><a name="-hash_value"><strong>hash_value</strong></a>(the_key)</dt><dd><tt>Return&nbsp;a&nbsp;hash&nbsp;value&nbsp;for&nbsp;the_key.</tt></dd></dl>
- <dl><dt><a name="-is_empty"><strong>is_empty</strong></a>(item)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;item&nbsp;is&nbsp;empty,&nbsp;otherwise&nbsp;False.</tt></dd></dl>
- <dl><dt><a name="-key"><strong>key</strong></a>(item)</dt><dd><tt>Return&nbsp;the&nbsp;key&nbsp;of&nbsp;the&nbsp;item.</tt></dd></dl>
- <dl><dt><a name="-mid_square"><strong>mid_square</strong></a>(the_key)</dt><dd><tt>Square&nbsp;the&nbsp;integer&nbsp;the_key&nbsp;and&nbsp;return&nbsp;its&nbsp;3&nbsp;middle&nbsp;digits.</tt></dd></dl>
- <dl><dt><a name="-put"><strong>put</strong></a>(table, the_key, the_value)</dt><dd><tt>If&nbsp;table&nbsp;has&nbsp;the_key,&nbsp;replace&nbsp;its&nbsp;associated&nbsp;value&nbsp;by&nbsp;the_value.<br>
-If&nbsp;it&nbsp;hasn't,&nbsp;add&nbsp;a&nbsp;new&nbsp;item&nbsp;with&nbsp;the_key&nbsp;and&nbsp;the_value.<br>
-Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operation&nbsp;succeeded,&nbsp;otherwise&nbsp;False&nbsp;(e.g.&nbsp;full&nbsp;table).<br>
-Raise&nbsp;a&nbsp;ValueError&nbsp;if&nbsp;the_value&nbsp;is&nbsp;None.</tt></dd></dl>
- <dl><dt><a name="-rehash_value"><strong>rehash_value</strong></a>(hash_value, n)</dt><dd><tt>Return&nbsp;the&nbsp;n-th&nbsp;rehash&nbsp;value&nbsp;for&nbsp;the&nbsp;original&nbsp;hash_value.<br>
-If&nbsp;n&nbsp;is&nbsp;0,&nbsp;return&nbsp;the&nbsp;hash_value.<br>
-Currently&nbsp;implements&nbsp;linear&nbsp;probing.</tt></dd></dl>
- <dl><dt><a name="-value"><strong>value</strong></a>(item)</dt><dd><tt>Return&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;item.</tt></dd></dl>
-</td></tr></table>
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="hash_table.html#HashTable">HashTable</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="HashTable">class <strong>HashTable</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Provide&nbsp;a&nbsp;collection&nbsp;of&nbsp;key-value&nbsp;pairs&nbsp;with&nbsp;unique&nbsp;keys.<br>
+&nbsp;<br>
+Implement&nbsp;a&nbsp;closed&nbsp;hash&nbsp;table&nbsp;that&nbsp;doesn't&nbsp;grow.<br>
+Use&nbsp;linear&nbsp;probing&nbsp;for&nbsp;collision&nbsp;resolution.<br>
+Use&nbsp;the&nbsp;built-in&nbsp;hashing&nbsp;function.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="HashTable-__init__"><strong>__init__</strong></a>(self, number_of_buckets)</dt><dd><tt>Initialise&nbsp;the&nbsp;table&nbsp;with&nbsp;the&nbsp;given&nbsp;number_of_buckets.<br>
+&nbsp;<br>
+Assume&nbsp;that&nbsp;the&nbsp;number_of_buckets&nbsp;is&nbsp;positive.</tt></dd></dl>
+
+<dl><dt><a name="HashTable-add"><strong>add</strong></a>(self, the_key, the_value)</dt><dd><tt>Add&nbsp;an&nbsp;item&nbsp;to&nbsp;the&nbsp;table&nbsp;and&nbsp;return&nbsp;if&nbsp;the&nbsp;operation&nbsp;succeeded.<br>
+&nbsp;<br>
+If&nbsp;there&nbsp;is&nbsp;an&nbsp;item&nbsp;with&nbsp;the_key,&nbsp;replace&nbsp;its&nbsp;value&nbsp;by&nbsp;the_value,<br>
+otherwise&nbsp;try&nbsp;to&nbsp;add&nbsp;a&nbsp;new&nbsp;item&nbsp;with&nbsp;the_key&nbsp;and&nbsp;the_value.<br>
+Return&nbsp;True&nbsp;if&nbsp;the&nbsp;item&nbsp;was&nbsp;added.<br>
+Return&nbsp;False&nbsp;if&nbsp;the_value&nbsp;is&nbsp;None&nbsp;or&nbsp;the&nbsp;table&nbsp;is&nbsp;full.</tt></dd></dl>
+
+<dl><dt><a name="HashTable-has"><strong>has</strong></a>(self, the_key)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;table&nbsp;has&nbsp;the_key,&nbsp;otherwise&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="HashTable-remove"><strong>remove</strong></a>(self, the_key)</dt><dd><tt>Remove&nbsp;the&nbsp;item&nbsp;with&nbsp;the_key&nbsp;from&nbsp;the&nbsp;table.&nbsp;Return&nbsp;nothing.<br>
+&nbsp;<br>
+Do&nbsp;nothing&nbsp;if&nbsp;there's&nbsp;no&nbsp;item&nbsp;with&nbsp;the_key.</tt></dd></dl>
+
+<dl><dt><a name="HashTable-value"><strong>value</strong></a>(self, the_key)</dt><dd><tt>If&nbsp;the&nbsp;table&nbsp;has&nbsp;the_key,&nbsp;return&nbsp;the&nbsp;associated&nbsp;value.<br>
+&nbsp;<br>
+Otherwise&nbsp;return&nbsp;None.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
 </body></html>

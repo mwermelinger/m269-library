@@ -17,9 +17,7 @@
       <div class='octowrap'>
         <a class='octothorpe' href='#section-0'>#</a>
       </div>
-      <p>A pedagogical implementation of hash tables.</p>
-<p>This implements a closed hash table that doesn't grow and that
-uses linear probing for collision resolution.</p>
+      <p>An implementation of hash tables.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre></pre></div>
@@ -31,14 +29,11 @@ uses linear probing for collision resolution.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-1'>#</a>
       </div>
-      <h2>Representation</h2>
-<p>A hash table is represented by a fixed size list,
-each item being a key-value pair, represented by a list of length 2.
-An empty slot in the hash table is represented by the item None,
-whereas a deleted item is represented by a pair key-None.</p>
+      <p>The following constants make the code more readable.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre></pre></div>
+      <div class="highlight"><pre><span class="n">_KEY</span> <span class="o">=</span> <span class="mi">0</span>    <span class="c"># pylint: disable=invalid-name</span>
+<span class="n">_VALUE</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c"># pylint: disable=invalid-name</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -47,10 +42,10 @@ whereas a deleted item is represented by a pair key-None.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-2'>#</a>
       </div>
-      <p>The following auxiliary functions make the rest of the code more readable.</p>
+      <p>Provide a collection of key-value pairs with unique keys.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre></pre></div>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">HashTable</span><span class="p">:</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -59,10 +54,12 @@ whereas a deleted item is represented by a pair key-None.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-3'>#</a>
       </div>
-      <p>Return the key of the item.</p>
+      <p>Implement a closed hash table that doesn't grow.
+Use linear probing for collision resolution.
+Use the built-in hashing function.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">key</span><span class="p">(</span><span class="n">item</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -71,10 +68,14 @@ whereas a deleted item is represented by a pair key-None.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-4'>#</a>
       </div>
-      
+      <h2>Representation</h2>
+<p>A hash table is represented by a fixed size list,
+each item being a key-value pair, represented by a list of length 2.
+An empty slot in the hash table is represented by the pair None-None,
+whereas a deleted item is represented by a pair key-None.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></pre></div>
+      <div class="highlight"><pre></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -83,10 +84,10 @@ whereas a deleted item is represented by a pair key-None.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-5'>#</a>
       </div>
-      <p>Return the value of the item.</p>
+      <h2>Creator</h2>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="n">item</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -95,10 +96,10 @@ whereas a deleted item is represented by a pair key-None.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-6'>#</a>
       </div>
-      
+      <p>Initialise the table with the given number_of_buckets.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_buckets</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -107,10 +108,11 @@ whereas a deleted item is represented by a pair key-None.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-7'>#</a>
       </div>
-      <p>Return True if the item is empty, otherwise False.</p>
+      <p>Assume that the number_of_buckets is positive.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="n">item</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>        <span class="k">assert</span> <span class="n">number_of_buckets</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]]</span> <span class="o">*</span> <span class="n">number_of_buckets</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -119,10 +121,10 @@ whereas a deleted item is represented by a pair key-None.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-8'>#</a>
       </div>
-      
+      <h2>Inspectors</h2>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">item</span> <span class="ow">is</span> <span class="bp">None</span></pre></div>
+      <div class="highlight"><pre></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -131,10 +133,10 @@ whereas a deleted item is represented by a pair key-None.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-9'>#</a>
       </div>
-      <p>Return True if the item was previously deleted, otherwise False.</p>
+      <p>If the table has the_key, return the associated value.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">deleted</span><span class="p">(</span><span class="n">item</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -143,13 +145,12 @@ whereas a deleted item is represented by a pair key-None.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-10'>#</a>
       </div>
-      
+      <p>Otherwise return None.</p>
+<p>Remember the first bucket tried.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">value</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">None</span></pre></div>
+      <div class="highlight"><pre>        <span class="n">start_index</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">the_key</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span><span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">start_index</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -158,12 +159,11 @@ whereas a deleted item is represented by a pair key-None.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-11'>#</a>
       </div>
-      <h2>Hashing</h2>
-<p>The following are examples of hashing functions.
-They are written independently of the hash table size.</p>
+      <p>Keep going until we know whether the key exists or not.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre></pre></div>
+      <div class="highlight"><pre>        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -172,10 +172,11 @@ They are written independently of the hash table size.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-12'>#</a>
       </div>
-      <p>Return a hash value for the string the_key.</p>
+      <p>If the bucket is empty, the item doesn't exist.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">hash_string</span><span class="p">(</span><span class="n">the_key</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>            <span class="k">if</span> <span class="n">bucket</span><span class="p">[</span><span class="n">_KEY</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">None</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -184,11 +185,11 @@ They are written independently of the hash table size.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-13'>#</a>
       </div>
-      
+      <p>If the bucket has the key, return the value.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">character</span> <span class="ow">in</span> <span class="n">the_key</span><span class="p">:</span></pre></div>
+      <div class="highlight"><pre>            <span class="k">if</span> <span class="n">bucket</span><span class="p">[</span><span class="n">_KEY</span><span class="p">]</span> <span class="o">==</span> <span class="n">the_key</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">bucket</span><span class="p">[</span><span class="n">_VALUE</span><span class="p">]</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -197,11 +198,10 @@ They are written independently of the hash table size.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-14'>#</a>
       </div>
-      <p>Convert each character to its ordinal number with a Python function.</p>
+      <p>Otherwise try the next bucket.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="n">character</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">sum</span></pre></div>
+      <div class="highlight"><pre>            <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -210,11 +210,11 @@ They are written independently of the hash table size.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-15'>#</a>
       </div>
-      <p>The following function returns a hash value in the range 0 to 999.
-It has to be modified if the table size is greater than 1000.</p>
+      <p>If the search 'wrapped around', the item doesn't exist.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre></pre></div>
+      <div class="highlight"><pre>            <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="n">start_index</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">None</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -223,10 +223,10 @@ It has to be modified if the table size is greater than 1000.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-16'>#</a>
       </div>
-      <p>Square the integer the_key and return its 3 middle digits.</p>
+      <p>Return True if the table has the_key, otherwise False.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">mid_square</span><span class="p">(</span><span class="n">the_key</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">has</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -235,11 +235,10 @@ It has to be modified if the table size is greater than 1000.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-17'>#</a>
       </div>
-      <p>Square the number and convert to a string with a Python function.</p>
+      
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="n">square</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">the_key</span> <span class="o">*</span> <span class="n">the_key</span><span class="p">)</span>
-    <span class="n">digits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">square</span><span class="p">)</span></pre></div>
+      <div class="highlight"><pre>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">the_key</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -248,11 +247,10 @@ It has to be modified if the table size is greater than 1000.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-18'>#</a>
       </div>
-      <p>If the square has up to 3 digits, use them all.</p>
+      <h2>Modifiers</h2>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">digits</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">middle</span> <span class="o">=</span> <span class="n">square</span></pre></div>
+      <div class="highlight"><pre></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -261,11 +259,10 @@ It has to be modified if the table size is greater than 1000.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-19'>#</a>
       </div>
-      <p>Otherwise use the 3 digits from before to after the middle.</p>
+      <p>Add an item to the table and return if the operation succeeded.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">else</span><span class="p">:</span>
-        <span class="n">middle</span> <span class="o">=</span> <span class="n">square</span><span class="p">[</span><span class="n">digits</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span><span class="n">digits</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="n">the_value</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -274,10 +271,18 @@ It has to be modified if the table size is greater than 1000.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-20'>#</a>
       </div>
-      <p>Convert the string back to an integer with a Python function.</p>
+      <p>If there is an item with the_key, replace its value by the_value,
+otherwise try to add a new item with the_key and the_value.
+Return True if the item was added.
+Return False if the_value is None or the table is full.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">middle</span><span class="p">)</span></pre></div>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">the_value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">start_index</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">the_key</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span><span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">start_index</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -286,11 +291,13 @@ It has to be modified if the table size is greater than 1000.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-21'>#</a>
       </div>
-      <p>The following functions are used internally by the hash table operations.
-Python already has a <code>hash()</code> function, so we must use a different name.</p>
+      <p>If the bucket is empty or has the_key, store the item there.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre></pre></div>
+      <div class="highlight"><pre>            <span class="k">if</span> <span class="n">bucket</span><span class="p">[</span><span class="n">_KEY</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">bucket</span><span class="p">[</span><span class="n">_KEY</span><span class="p">]</span> <span class="o">==</span> <span class="n">the_key</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">the_key</span><span class="p">,</span> <span class="n">the_value</span><span class="p">]</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -299,10 +306,11 @@ Python already has a <code>hash()</code> function, so we must use a different na
       <div class='octowrap'>
         <a class='octothorpe' href='#section-22'>#</a>
       </div>
-      <p>Return a hash value for the_key.</p>
+      <p>If the search 'wrapped around', the table is full.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">hash_value</span><span class="p">(</span><span class="n">the_key</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>            <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="n">start_index</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -311,11 +319,10 @@ Python already has a <code>hash()</code> function, so we must use a different na
       <div class='octowrap'>
         <a class='octothorpe' href='#section-23'>#</a>
       </div>
-      <p>Convert the_key to a string and hash it.
-This allows to handle keys of any type.</p>
+      <p>Remove the item with the_key from the table. Return nothing.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">hash_string</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">the_key</span><span class="p">))</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -324,12 +331,13 @@ This allows to handle keys of any type.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-24'>#</a>
       </div>
-      <p>Return the n-th rehash value for the original hash_value.
-If n is 0, return the hash_value.
-Currently implements linear probing.</p>
+      <p>Do nothing if there's no item with the_key.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">rehash_value</span><span class="p">(</span><span class="n">hash_value</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>        <span class="n">start_index</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">the_key</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span><span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">start_index</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -338,10 +346,11 @@ Currently implements linear probing.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-25'>#</a>
       </div>
-      
+      <p>If the bucket is empty, the item doesn't exist.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">hash_value</span> <span class="o">+</span> <span class="n">n</span></pre></div>
+      <div class="highlight"><pre>            <span class="k">if</span> <span class="n">bucket</span><span class="p">[</span><span class="n">_KEY</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -350,10 +359,15 @@ Currently implements linear probing.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-26'>#</a>
       </div>
-      <h2>Creator</h2>
+      <p>If the bucket has the key, mark it as deleted.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre></pre></div>
+      <div class="highlight"><pre>            <span class="k">if</span> <span class="n">bucket</span><span class="p">[</span><span class="n">_KEY</span><span class="p">]</span> <span class="o">==</span> <span class="n">the_key</span><span class="p">:</span>
+                <span class="n">bucket</span><span class="p">[</span><span class="n">_VALUE</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="k">return</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="n">start_index</span><span class="p">:</span>
+                <span class="k">return</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -362,489 +376,10 @@ Currently implements linear probing.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-27'>#</a>
       </div>
-      <p>Return an empty hash table of the given size.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="n">size</span><span class="p">):</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-28'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-28'>#</a>
-      </div>
-      
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="n">table</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
-        <span class="n">table</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">table</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-29'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-29'>#</a>
-      </div>
-      <h2>Inspectors</h2>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-30'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-30'>#</a>
-      </div>
-      <p>If table has the_key, return the associated value, otherwise return None.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-31'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-31'>#</a>
-      </div>
-      <p>Remember the first slot tried.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="n">start_slot</span> <span class="o">=</span> <span class="n">hash_value</span><span class="p">(</span><span class="n">the_key</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-32'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-32'>#</a>
-      </div>
-      <p>The 'zero-th' attempt is the start_slot.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="n">attempt</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">slot</span> <span class="o">=</span> <span class="n">start_slot</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-33'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-33'>#</a>
-      </div>
-      <p>Keep going until we know whether the key exists or not.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">item</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">slot</span><span class="p">]</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-34'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-34'>#</a>
-      </div>
-      <p>If the slot is empty, the key doesn't exist.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">None</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-35'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-35'>#</a>
-      </div>
-      <p>If the slot has the key, return the associated value.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">key</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">==</span> <span class="n">the_key</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">value</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-36'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-36'>#</a>
-      </div>
-      <p>Otherwise try the next slot.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="n">attempt</span> <span class="o">=</span> <span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">slot</span> <span class="o">=</span> <span class="n">rehash_value</span><span class="p">(</span><span class="n">start_slot</span><span class="p">,</span> <span class="n">attempt</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-37'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-37'>#</a>
-      </div>
-      <p>If the search 'wrapped around', the key doesn't exist.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">slot</span> <span class="o">==</span> <span class="n">start_slot</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">None</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-38'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-38'>#</a>
-      </div>
-      <h2>Modifiers</h2>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-39'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-39'>#</a>
-      </div>
-      <p>If table has the_key, replace its associated value by the_value.
-If it hasn't, add a new item with the_key and the_value.
-Return True if the operation succeeded, otherwise False (e.g. full table).
-Raise a ValueError if the_value is None.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="n">the_value</span><span class="p">):</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-40'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-40'>#</a>
-      </div>
-      <p>None can't be used as a normal value because it marks deleted items.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">the_value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;can&#39;t put None in hash table&quot;</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-41'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-41'>#</a>
-      </div>
-      <p>Remember the first slot tried.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="n">start_slot</span> <span class="o">=</span> <span class="n">hash_value</span><span class="p">(</span><span class="n">the_key</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-42'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-42'>#</a>
-      </div>
-      <p>The 'zero-th' attempt is the start_slot.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="n">attempt</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">slot</span> <span class="o">=</span> <span class="n">start_slot</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-43'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-43'>#</a>
-      </div>
-      <p>Keep trying until the operation succeeds or fails.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-44'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-44'>#</a>
-      </div>
-      <p>If the slot is empty, deleted or has the_key, store the item there.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="n">item</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">slot</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="ow">or</span> <span class="n">deleted</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">==</span> <span class="n">the_key</span><span class="p">:</span>
-            <span class="n">table</span><span class="p">[</span><span class="n">slot</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">the_key</span><span class="p">,</span> <span class="n">the_value</span><span class="p">]</span>
-            <span class="k">return</span> <span class="bp">True</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-45'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-45'>#</a>
-      </div>
-      <p>Otherwise try the next slot.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="n">attempt</span> <span class="o">=</span> <span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">slot</span> <span class="o">=</span> <span class="n">rehash_value</span><span class="p">(</span><span class="n">start_slot</span><span class="p">,</span> <span class="n">attempt</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-46'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-46'>#</a>
-      </div>
-      <p>If the search 'wrapped around', the operation failed.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">slot</span> <span class="o">==</span> <span class="n">start_slot</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-47'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-47'>#</a>
-      </div>
-      <p>Delete the item with the_key, if there is one, otherwise do nothing.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-48'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-48'>#</a>
-      </div>
-      <p>Remember the first slot tried.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="n">start_slot</span> <span class="o">=</span> <span class="n">hash_value</span><span class="p">(</span><span class="n">the_key</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-49'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-49'>#</a>
-      </div>
-      <p>The 'zero-th' attempt is the start_slot.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="n">attempt</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">slot</span> <span class="o">=</span> <span class="n">start_slot</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-50'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-50'>#</a>
-      </div>
-      <p>Keep going until we know whether the key exists or not.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">item</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">slot</span><span class="p">]</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-51'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-51'>#</a>
-      </div>
-      <p>If the slot is empty, the key doesn't exist, so do nothing.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
-            <span class="k">return</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-52'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-52'>#</a>
-      </div>
-      <p>If the slot has the key, mark it as deleted and stop.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">key</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">==</span> <span class="n">the_key</span><span class="p">:</span>
-            <span class="n">table</span><span class="p">[</span><span class="n">slot</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">the_key</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span>
-            <span class="k">return</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-53'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-53'>#</a>
-      </div>
-      <p>Otherwise try the next slot.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="n">attempt</span> <span class="o">=</span> <span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">slot</span> <span class="o">=</span> <span class="n">rehash_value</span><span class="p">(</span><span class="n">start_slot</span><span class="p">,</span> <span class="n">attempt</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-54'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-54'>#</a>
-      </div>
-      <p>If the search 'wrapped around', the key doesn't exist, we can stop.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">slot</span> <span class="o">==</span> <span class="n">start_slot</span><span class="p">:</span>
-            <span class="k">return</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-55'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-55'>#</a>
-      </div>
-      <h2>Tests</h2>
-<p>Run tests if this file is executed, instead of imported.
-The tests need to be modified if the (re)hashing functions change.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">table</span> <span class="o">=</span> <span class="n">empty</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-56'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-56'>#</a>
-      </div>
-      <p>Fill the table.
-Due to the particular hash function, all keys collide in slot 1.
-Due to linear probing, this means that
-Mary ends up in slot 1, iris in slot 2, Baloo in slot 0.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Mary&quot;</span><span class="p">,</span> <span class="s">&quot;iris&quot;</span><span class="p">,</span> <span class="s">&quot;Baloo&quot;</span><span class="p">]</span>
-    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;person&quot;</span><span class="p">,</span> <span class="s">&quot;flower&quot;</span><span class="p">,</span> <span class="s">&quot;bear&quot;</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)):</span>
-        <span class="n">put</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">keys</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-57'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-57'>#</a>
-      </div>
-      <p>Try to get each value back.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)):</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">keys</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">]:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">&quot;get(&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">keys</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="s">&quot;) is&quot;</span><span class="p">,</span>
-                  <span class="n">result</span><span class="p">,</span> <span class="s">&quot;instead of&quot;</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-58'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-58'>#</a>
-      </div>
-      <p>The table is full, so another addition has to fail.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">put</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="s">&quot;Nemo&quot;</span><span class="p">,</span> <span class="s">&quot;fish&quot;</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Adding another item to&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="s">&quot;should have failed.&quot;</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-59'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-59'>#</a>
-      </div>
-      <p>Removing iris from slot 2 should still allow to find Baloo in slot 0.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="n">delete</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="s">&quot;iris&quot;</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">keys</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&quot;get(&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">keys</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&quot;) is&quot;</span><span class="p">,</span>
-              <span class="n">result</span><span class="p">,</span> <span class="s">&quot;instead of&quot;</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-60'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-60'>#</a>
-      </div>
-      <p>Retry adding Nemo.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">if</span> <span class="ow">not</span> <span class="n">put</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="s">&quot;Nemo&quot;</span><span class="p">,</span> <span class="s">&quot;fish&quot;</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Adding Nemo to&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="s">&quot;should have succeeded.&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">get</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="s">&quot;Nemo&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&quot;fish&quot;</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Can&#39;t find Nemo in&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-61'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-61'>#</a>
-      </div>
-      <p>Deleting an item and adding it back should keep it in the same slot.</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="n">item</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">the_key</span> <span class="o">=</span> <span class="n">key</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-    <span class="n">the_value</span> <span class="o">=</span> <span class="n">value</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-    <span class="n">delete</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">the_key</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">get</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">the_key</span><span class="p">)</span> <span class="o">==</span> <span class="n">the_value</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;wasn&#39;t deleted from&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">put</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="n">the_value</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Adding&quot;</span><span class="p">,</span> <span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;to&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="s">&quot;should have succeeded.&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">key</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">!=</span> <span class="n">the_key</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">the_key</span><span class="p">,</span> <span class="s">&quot;should be in slot 0 of&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-62'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-62'>#</a>
-      </div>
-      <h2>Exercise</h2>
+      <h2>Exercises</h2>
 <ul>
-<li>If quadratic probing is used,
-  after putting Mary and iris in the empty table,
-  putting Baloo will fail. Why?</li>
-<li>Implement quadratic probing and modify the tests.</li>
-<li>Write a function that calculates the load factor of a table.</li>
+<li>Change the implementation to use quadratic probing.</li>
+<li>Write a method that calculates the load factor of a table.</li>
 </ul>
     </div>
     <div class='code'>

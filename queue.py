@@ -4,6 +4,7 @@
 
 # The following constants make the code more readable.
 # pylint: disable=invalid-name
+
 _ITEM = 0
 _NEXT = 1
 

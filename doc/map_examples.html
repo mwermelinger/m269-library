@@ -17,10 +17,11 @@
       <div class='octowrap'>
         <a class='octothorpe' href='#section-0'>#</a>
       </div>
-      <p>Examples of using a binary search tree.</p>
+      <p>Examples of using a Map, i.e. a collection that maps keys to values.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">bst</span> <span class="kn">import</span> <span class="n">BinarySearchTree</span></pre></div>
+      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">bst</span> <span class="kn">import</span> <span class="n">BinarySearchTree</span>
+<span class="kn">from</span> <span class="nn">hash_table</span> <span class="kn">import</span> <span class="n">HashTable</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -29,7 +30,7 @@
       <div class='octowrap'>
         <a class='octothorpe' href='#section-1'>#</a>
       </div>
-      <p>A simple reverse lookup phone directory can be implemented as a BST:
+      <p>A simple reverse lookup phone directory can be implemented as a Map:
 the keys are the unique phone numbers, the values are the names of people.
 The phone numbers are represented as strings to include leading zeros.</p>
     </div>
@@ -112,7 +113,7 @@ The phone numbers are represented as strings to include leading zeros.</p>
         <a class='octothorpe' href='#section-7'>#</a>
       </div>
       <p>If it does, do nothing, otherwise print an error message.
-Assume both traversals are lists of keys.</p>
+Assume both orders are lists of keys.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>    <span class="k">if</span> <span class="n">actual_order</span> <span class="o">!=</span> <span class="n">expected_order</span><span class="p">:</span>
@@ -140,7 +141,8 @@ Assume both traversals are lists of keys.</p>
       </div>
       <p>Add and remove entries from the_directory and search the directory,
 to confirm the operations work as expected.
-If they don't, print error messages.</p>
+If they don't, print error messages.
+Do specific tests depending on the_directory being a tree or a hash table.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>    <span class="n">phone1</span> <span class="o">=</span> <span class="s">&#39;00441908123456&#39;</span>
@@ -188,9 +190,10 @@ If they don't, print error messages.</p>
       <p>Test entries are sorted</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="n">test_traversal</span><span class="p">(</span><span class="s">&#39;inorder&#39;</span><span class="p">,</span>
-                   <span class="n">the_directory</span><span class="o">.</span><span class="n">in_order</span><span class="p">(),</span>
-                   <span class="p">[</span><span class="n">phone2</span><span class="p">,</span> <span class="n">phone1</span><span class="p">,</span> <span class="n">phone3</span><span class="p">])</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">the_directory</span><span class="p">,</span> <span class="n">BinarySearchTree</span><span class="p">):</span>
+        <span class="n">test_traversal</span><span class="p">(</span><span class="s">&#39;inorder&#39;</span><span class="p">,</span>
+                       <span class="n">the_directory</span><span class="o">.</span><span class="n">in_order</span><span class="p">(),</span>
+                       <span class="p">[</span><span class="n">phone2</span><span class="p">,</span> <span class="n">phone1</span><span class="p">,</span> <span class="n">phone3</span><span class="p">])</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -216,9 +219,10 @@ If they don't, print error messages.</p>
       <p>Test entries are still sorted</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="n">test_traversal</span><span class="p">(</span><span class="s">&#39;inorder&#39;</span><span class="p">,</span>
-                   <span class="n">the_directory</span><span class="o">.</span><span class="n">in_order</span><span class="p">(),</span>
-                   <span class="p">[</span><span class="n">phone2</span><span class="p">,</span> <span class="n">phone1</span><span class="p">,</span> <span class="n">phone3</span><span class="p">])</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">the_directory</span><span class="p">,</span> <span class="n">BinarySearchTree</span><span class="p">):</span>
+        <span class="n">test_traversal</span><span class="p">(</span><span class="s">&#39;inorder&#39;</span><span class="p">,</span>
+                       <span class="n">the_directory</span><span class="o">.</span><span class="n">in_order</span><span class="p">(),</span>
+                       <span class="p">[</span><span class="n">phone2</span><span class="p">,</span> <span class="n">phone1</span><span class="p">,</span> <span class="n">phone3</span><span class="p">])</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -256,13 +260,29 @@ If they don't, print error messages.</p>
       <p>and are sorted</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="n">test_traversal</span><span class="p">(</span><span class="s">&#39;inorder&#39;</span><span class="p">,</span>
-                   <span class="n">the_directory</span><span class="o">.</span><span class="n">in_order</span><span class="p">(),</span>
-                   <span class="p">[</span><span class="n">phone2</span><span class="p">,</span> <span class="n">phone3</span><span class="p">])</span>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">the_directory</span><span class="p">,</span> <span class="n">BinarySearchTree</span><span class="p">):</span>
+        <span class="n">test_traversal</span><span class="p">(</span><span class="s">&#39;inorder&#39;</span><span class="p">,</span>
+                       <span class="n">the_directory</span><span class="o">.</span><span class="n">in_order</span><span class="p">(),</span>
+                       <span class="p">[</span><span class="n">phone2</span><span class="p">,</span> <span class="n">phone3</span><span class="p">])</span>
 
 
-<span class="n">directory</span> <span class="o">=</span> <span class="n">BinarySearchTree</span><span class="p">()</span>
-<span class="n">test_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+<span class="n">bst_directory</span> <span class="o">=</span> <span class="n">BinarySearchTree</span><span class="p">()</span>
+<span class="n">test_directory</span><span class="p">(</span><span class="n">bst_directory</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-18'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-18'>#</a>
+      </div>
+      <p>For 3 phone numbers we need at least 3 buckets</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">hash_directory</span> <span class="o">=</span> <span class="n">HashTable</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">test_directory</span><span class="p">(</span><span class="n">hash_directory</span><span class="p">)</span>
+<span class="n">hash_directory</span> <span class="o">=</span> <span class="n">HashTable</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">test_directory</span><span class="p">(</span><span class="n">hash_directory</span><span class="p">)</span>
 
 </pre></div>
     </div>

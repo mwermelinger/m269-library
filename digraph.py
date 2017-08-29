@@ -1,7 +1,6 @@
-"""An implementation of weighted directed graphs.
+"""An implementation of weighted directed graphs."""
 
-This file is part of the M269 Library (http://tiny.cc/m269-library).
-"""
+# This file is part of the [M269 Library](http://tiny.cc/m269-library).
 
 from queue import Queue  # for the breadth-first search
 from stack import Stack  # for the depth-first search

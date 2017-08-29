@@ -9,7 +9,7 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>bst_examples</strong></big></big></font></td
 ><td align=right valign=bottom
 ></td></tr></table>
-    <p><tt>Examples&nbsp;of&nbsp;using&nbsp;a&nbsp;binary&nbsp;search&nbsp;tree.</tt></p>
+    <p><tt>Examples&nbsp;of&nbsp;using&nbsp;a&nbsp;Map,&nbsp;i.e.&nbsp;a&nbsp;collection&nbsp;that&nbsp;maps&nbsp;keys&nbsp;to&nbsp;values.</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#eeaa77">
@@ -24,14 +24,15 @@ If&nbsp;it&nbsp;does,&nbsp;print&nbsp;an&nbsp;error&nbsp;message,&nbsp;otherwise
 &nbsp;<br>
 Add&nbsp;and&nbsp;remove&nbsp;entries&nbsp;from&nbsp;the_directory&nbsp;and&nbsp;search&nbsp;the&nbsp;directory,<br>
 to&nbsp;confirm&nbsp;the&nbsp;operations&nbsp;work&nbsp;as&nbsp;expected.<br>
-If&nbsp;they&nbsp;don't,&nbsp;print&nbsp;error&nbsp;messages.</tt></dd></dl>
+If&nbsp;they&nbsp;don't,&nbsp;print&nbsp;error&nbsp;messages.<br>
+Do&nbsp;specific&nbsp;tests&nbsp;depending&nbsp;on&nbsp;the_directory&nbsp;being&nbsp;a&nbsp;tree&nbsp;or&nbsp;a&nbsp;hash&nbsp;table.</tt></dd></dl>
  <dl><dt><a name="-test_presence"><strong>test_presence</strong></a>(the_directory, the_phone, the_owner)</dt><dd><tt>Test&nbsp;that&nbsp;the_owner&nbsp;is&nbsp;associated&nbsp;to&nbsp;the_phone&nbsp;in&nbsp;the_directory.<br>
 &nbsp;<br>
 If&nbsp;it&nbsp;is,&nbsp;do&nbsp;nothing,&nbsp;otherwise&nbsp;print&nbsp;an&nbsp;error&nbsp;message.</tt></dd></dl>
  <dl><dt><a name="-test_traversal"><strong>test_traversal</strong></a>(traversal, actual_order, expected_order)</dt><dd><tt>Test&nbsp;if&nbsp;the&nbsp;actual_order&nbsp;matches&nbsp;the&nbsp;expected_order.<br>
 &nbsp;<br>
 If&nbsp;it&nbsp;does,&nbsp;do&nbsp;nothing,&nbsp;otherwise&nbsp;print&nbsp;an&nbsp;error&nbsp;message.<br>
-Assume&nbsp;both&nbsp;traversals&nbsp;are&nbsp;lists&nbsp;of&nbsp;keys.</tt></dd></dl>
+Assume&nbsp;both&nbsp;orders&nbsp;are&nbsp;lists&nbsp;of&nbsp;keys.</tt></dd></dl>
 </td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#55aa55">
@@ -39,5 +40,6 @@ Assume&nbsp;both&nbsp;traversals&nbsp;are&nbsp;lists&nbsp;of&nbsp;keys.</tt></dd
 <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>directory</strong> = &lt;bst.BinarySearchTree object&gt;</td></tr></table>
+<td width="100%"><strong>bst_directory</strong> = &lt;bst.BinarySearchTree object&gt;<br>
+<strong>hash_directory</strong> = &lt;hash_table.HashTable object&gt;</td></tr></table>
 </body></html>

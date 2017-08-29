@@ -1,8 +1,9 @@
-"""Examples of using a binary search tree."""
+"""Examples of using a Map, i.e. a collection that maps keys to values."""
 
 from bst import BinarySearchTree
+from hash_table import HashTable
 
-# A simple reverse lookup phone directory can be implemented as a BST:
+# A simple reverse lookup phone directory can be implemented as a Map:
 # the keys are the unique phone numbers, the values are the names of people.
 # The phone numbers are represented as strings to include leading zeros.
 
@@ -35,7 +36,7 @@ def test_traversal(traversal, actual_order, expected_order):
     """Test if the actual_order matches the expected_order.
 
     If it does, do nothing, otherwise print an error message.
-    Assume both traversals are lists of keys.
+    Assume both orders are lists of keys.
     """
     if actual_order != expected_order:
         print()
@@ -48,6 +49,7 @@ def test_directory(the_directory):
     Add and remove entries from the_directory and search the directory,
     to confirm the operations work as expected.
     If they don't, print error messages.
+    Do specific tests depending on the_directory being a tree or a hash table.
     """
     phone1 = '00441908123456'
     owner1 = 'John Smith'
@@ -64,17 +66,19 @@ def test_directory(the_directory):
     # Test a similar but non-existent key
     test_absence(the_directory, '09786543210')
     # Test entries are sorted
-    test_traversal('inorder',
-                   the_directory.in_order(),
-                   [phone2, phone1, phone3])
+    if isinstance(the_directory, BinarySearchTree):
+        test_traversal('inorder',
+                       the_directory.in_order(),
+                       [phone2, phone1, phone3])
     # Reassign a phone number
     owner2 = 'Wonka Industries'
     the_directory.add(phone2, owner2)
     test_presence(the_directory, phone2, owner2)
     # Test entries are still sorted
-    test_traversal('inorder',
-                   the_directory.in_order(),
-                   [phone2, phone1, phone3])
+    if isinstance(the_directory, BinarySearchTree):
+        test_traversal('inorder',
+                       the_directory.in_order(),
+                       [phone2, phone1, phone3])
     # Remove an entry
     the_directory.remove(phone1)
     test_absence(the_directory, phone1)
@@ -82,10 +86,16 @@ def test_directory(the_directory):
     test_presence(the_directory, phone2, owner2)
     test_presence(the_directory, phone3, owner1)
     # and are sorted
-    test_traversal('inorder',
-                   the_directory.in_order(),
-                   [phone2, phone3])
+    if isinstance(the_directory, BinarySearchTree):
+        test_traversal('inorder',
+                       the_directory.in_order(),
+                       [phone2, phone3])
 
 
-directory = BinarySearchTree()
-test_directory(directory)
+bst_directory = BinarySearchTree()
+test_directory(bst_directory)
+# For 3 phone numbers we need at least 3 buckets
+hash_directory = HashTable(3)
+test_directory(hash_directory)
+hash_directory = HashTable(50)
+test_directory(hash_directory)
