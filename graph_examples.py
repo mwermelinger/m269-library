@@ -40,6 +40,7 @@ print('DFS from u:', example.visited_dfs('u'))
 print('DFS from z:', example.visited_dfs('z'))
 print('BFS from u:', example.visited_bfs('u'))
 print('BFS from z:', example.visited_bfs('z'))
+print('from u to z:', example.unweighted_distance('u', 'z'), 'hops')
 
 example.remove_node('v')
 print('Removed node v')
@@ -48,6 +49,11 @@ print('DFS from u:', example.visited_dfs('u'))
 print('DFS from z:', example.visited_dfs('z'))
 print('BFS from u:', example.visited_bfs('u'))
 print('BFS from z:', example.visited_bfs('z'))
+
+example.remove_node('w')
+print('Removed node w')
+print('from u to z:', example.unweighted_distance('u', 'z'), 'hops')
+print('from u to w:', example.unweighted_distance('u', 'w'), 'hops')
 
 # Graph from Python activity 5.1 from Unit 5 of M269
 

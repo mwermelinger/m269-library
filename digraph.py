@@ -140,6 +140,35 @@ class DirectedGraph:
                     self._nodes[neighbour]['seen'] = True
         return visited
 
+    # Breadth-first search can be used to find the smallest number
+    # of 'hops' to go from one node to another, because it first
+    # visits all nodes 1 hop away, then those 2 hops away, etc.
+
+    def unweighted_distance(self, start, end):
+        """Return the smallest number of edges to go from `start` to `end`.
+
+        Return infinity if there is no path from `start` to `end`.
+        Assume the graph has the start node.
+        """
+        # Like breadth-first search but keep each node's distance from `start`.
+        assert self.has_node(start)
+        infinity = float('infinity')
+        to_visit = Queue()
+        to_visit.enqueue(start)
+        for node in self._nodes:
+            self._nodes[node]['distance'] = infinity
+        self._nodes[start]['distance'] = 0
+        while not to_visit.is_empty():
+            next_node = to_visit.dequeue()
+            distance = self._nodes[next_node]['distance']
+            if next_node == end:
+                return distance
+            for neighbour in self.neighbours(next_node):
+                if self._nodes[neighbour]['distance'] == infinity:
+                    to_visit.enqueue(neighbour)
+                    self._nodes[neighbour]['distance'] = distance + 1
+        return infinity
+
     # Depth-first search
     # ------------------
 

@@ -452,7 +452,9 @@ and mark them as explored.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-32'>#</a>
       </div>
-      <h2>Depth-first search</h2>
+      <p>Breadth-first search can be used to find the smallest number
+of 'hops' to go from one node to another, because it first
+visits all nodes 1 hop away, then those 2 hops away, etc.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre></pre></div>
@@ -464,10 +466,10 @@ and mark them as explored.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-33'>#</a>
       </div>
-      <p>Do a depth-first search of the graph, from the start node.</p>
+      <p>Return the smallest number of edges to go from <code>start</code> to <code>end</code>.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">visited_dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">unweighted_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -475,6 +477,60 @@ and mark them as explored.</p>
     <div class='docs'>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-34'>#</a>
+      </div>
+      <p>Return infinity if there is no path from <code>start</code> to <code>end</code>.
+Assume the graph has the start node.</p>
+<p>Like breadth-first search but keep each node's distance from <code>start</code>.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="n">infinity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span>
+        <span class="n">to_visit</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+        <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="n">next_node</span> <span class="o">=</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+            <span class="n">distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">next_node</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">next_node</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">distance</span>
+            <span class="k">for</span> <span class="n">neighbour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbours</span><span class="p">(</span><span class="n">next_node</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">infinity</span><span class="p">:</span>
+                    <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">neighbour</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">infinity</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-35'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-35'>#</a>
+      </div>
+      <h2>Depth-first search</h2>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-36'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-36'>#</a>
+      </div>
+      <p>Do a depth-first search of the graph, from the start node.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">visited_dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-37'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-37'>#</a>
       </div>
       <p>Return a list of nodes in visited order, the first being start.
 Assume the start node exists.</p>
@@ -484,10 +540,10 @@ Assume the start node exists.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-35'>
+  <div class='section' id='section-38'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-35'>#</a>
+        <a class='octothorpe' href='#section-38'>#</a>
       </div>
       <p>Use the same algorithm, but keep nodes to visit in a stack.</p>
     </div>
@@ -509,10 +565,10 @@ Assume the start node exists.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-36'>
+  <div class='section' id='section-39'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-36'>#</a>
+        <a class='octothorpe' href='#section-39'>#</a>
       </div>
       <h2>Modifiers</h2>
     </div>
@@ -521,10 +577,10 @@ Assume the start node exists.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-37'>
+  <div class='section' id='section-40'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-37'>#</a>
+        <a class='octothorpe' href='#section-40'>#</a>
       </div>
       <p>Add the node to the graph.</p>
     </div>
@@ -533,10 +589,10 @@ Assume the start node exists.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-38'>
+  <div class='section' id='section-41'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-38'>#</a>
+        <a class='octothorpe' href='#section-41'>#</a>
       </div>
       <p>Do nothing if the graph already has the node.
 Assume the node is of a hashable type.</p>
@@ -548,10 +604,10 @@ Assume the node is of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-39'>
+  <div class='section' id='section-42'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-39'>#</a>
+        <a class='octothorpe' href='#section-42'>#</a>
       </div>
       <p>Add a directed edge from source to target with the given weight.</p>
     </div>
@@ -560,10 +616,10 @@ Assume the node is of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-40'>
+  <div class='section' id='section-43'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-40'>#</a>
+        <a class='octothorpe' href='#section-43'>#</a>
       </div>
       <p>Replace the weight value if the edge already exists.
 Add any node that doesn't exist.
@@ -580,10 +636,10 @@ Assume the nodes are of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-41'>
+  <div class='section' id='section-44'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-41'>#</a>
+        <a class='octothorpe' href='#section-44'>#</a>
       </div>
       <p>Remove the edge from source to target from the graph.</p>
     </div>
@@ -592,10 +648,10 @@ Assume the nodes are of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-42'>
+  <div class='section' id='section-45'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-42'>#</a>
+        <a class='octothorpe' href='#section-45'>#</a>
       </div>
       <p>Do nothing if the edge doesn't exist.</p>
     </div>
@@ -605,10 +661,10 @@ Assume the nodes are of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-43'>
+  <div class='section' id='section-46'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-43'>#</a>
+        <a class='octothorpe' href='#section-46'>#</a>
       </div>
       <p>Remove the node and its edges from the graph.</p>
     </div>
@@ -617,10 +673,10 @@ Assume the nodes are of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-44'>
+  <div class='section' id='section-47'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-44'>#</a>
+        <a class='octothorpe' href='#section-47'>#</a>
       </div>
       <p>Do nothing if the node doesn't exist.</p>
     </div>
@@ -634,10 +690,10 @@ Assume the nodes are of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-45'>
+  <div class='section' id='section-48'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-45'>#</a>
+        <a class='octothorpe' href='#section-48'>#</a>
       </div>
       <h2>Exercises</h2>
 <ul>

@@ -51,3 +51,8 @@ bf1 = ['mouse', 'fox']
 test('bfs from mouse', food_web.visited_bfs('mouse'), [bf1])
 # or from 'fox'.
 test('bfs from fox', food_web.visited_bfs('fox'), [['fox']])
+
+test('from fox to fox', food_web.unweighted_distance('fox', 'fox'), [0])
+test('from grass to fox', food_web.unweighted_distance('grass', 'fox'), [2])
+test('from fox to grass', food_web.unweighted_distance('fox', 'grass'),
+     [float('infinity')])
