@@ -3,6 +3,7 @@
 This file is part of the M269 Library (http://tiny.cc/m269-library).
 """
 
+from queue import Queue  # for the breadth-first search
 from stack import Stack  # for the depth-first search
 
 
@@ -120,22 +121,23 @@ class DirectedGraph:
         visited = []
         # Keep the nodes yet to visit in another list, used as a queue.
         # Initially, only the start node is to be visited.
-        to_visit = [start]
+        to_visit = Queue()
+        to_visit.enqueue(start)
         # Mark all nodes except the start node as unexplored.
         for node in self._nodes:
             self._nodes[node]['seen'] = False
         self._nodes[start]['seen'] = True
         # While there are nodes to be visited:
-        while to_visit:
+        while not to_visit.is_empty():
             # Visit the next node at the front of the queue.
-            next_node = to_visit.pop(0)
+            next_node = to_visit.dequeue()
             visited.append(next_node)
             # Look at its neighbours.
             for neighbour in self.neighbours(next_node):
                 # Put unexplored nodes at the back of the queue
                 # and mark them as explored.
                 if not self._nodes[neighbour]['seen']:
-                    to_visit.append(neighbour)
+                    to_visit.enqueue(neighbour)
                     self._nodes[neighbour]['seen'] = True
         return visited
 

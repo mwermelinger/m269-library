@@ -21,7 +21,8 @@
 <p>This file is part of the M269 Library (http://tiny.cc/m269-library).</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">stack</span> <span class="kn">import</span> <span class="n">Stack</span>  <span class="c"># for the depth-first search</span></pre></div>
+      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>  <span class="c"># for the breadth-first search</span>
+<span class="kn">from</span> <span class="nn">stack</span> <span class="kn">import</span> <span class="n">Stack</span>  <span class="c"># for the depth-first search</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -363,7 +364,8 @@ Assume the start node exists.</p>
 Initially, only the start node is to be visited.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="n">to_visit</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span></pre></div>
+      <div class="highlight"><pre>        <span class="n">to_visit</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+        <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">start</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -401,7 +403,7 @@ Initially, only the start node is to be visited.</p>
       <p>Visit the next node at the front of the queue.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>            <span class="n">next_node</span> <span class="o">=</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+      <div class="highlight"><pre>            <span class="n">next_node</span> <span class="o">=</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
             <span class="n">visited</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_node</span><span class="p">)</span></pre></div>
     </div>
   </div>
@@ -428,7 +430,7 @@ and mark them as explored.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;seen&#39;</span><span class="p">]:</span>
-                    <span class="n">to_visit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbour</span><span class="p">)</span>
+                    <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">neighbour</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">return</span> <span class="n">visited</span></pre></div>
     </div>

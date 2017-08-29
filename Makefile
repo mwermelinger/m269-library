@@ -1,7 +1,9 @@
 all: doc/*.html
 
 doc/%.html: %.py
-# Compile the file and run included tests
+# Fix any spacing issues
+	autopep8 --in-place $<
+# Compile the file to check for syntax errors and run any tests
 	python $<					
 # Check the code with various tools
 	pylint -rn --const-rgx='[a-z_][a-z0-9_]{2,30}' $<
