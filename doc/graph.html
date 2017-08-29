@@ -17,11 +17,12 @@
       <div class='octowrap'>
         <a class='octothorpe' href='#section-0'>#</a>
       </div>
-      
+      <p>An implementation of weighted undirected graphs.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">digraph</span> <span class="kn">import</span> <span class="n">DirectedGraph</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>  <span class="c"># needed for best_tour</span></pre></div>
+      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>  <span class="c"># needed for best_tour</span>
+
+<span class="kn">from</span> <span class="nn">digraph</span> <span class="kn">import</span> <span class="n">DirectedGraph</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -33,7 +34,7 @@
       <p>Implements an undirected graph.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">class</span> <span class="nc">Graph</span> <span class="p">(</span><span class="n">DirectedGraph</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">Graph</span><span class="p">(</span><span class="n">DirectedGraph</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -113,12 +114,10 @@ Check if there's an edge between the two nodes.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-7'>#</a>
       </div>
-      <p>Return True if there is, otherwise False.
-Assume both nodes exist.</p>
+      <p>Return False if the edge or either node don't exist, otherwise True.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">node1</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">node2</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">node2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_info</span><span class="p">[</span><span class="n">node1</span><span class="p">]</span></pre></div>
+      <div class="highlight"><pre>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">node1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">node2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">node1</span><span class="p">]</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -146,9 +145,9 @@ The returned set doesn't duplicate edges, i.e. only one of
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="n">the_edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_info</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_info</span><span class="p">[</span><span class="n">source</span><span class="p">]:</span>
-                <span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">([</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source</span><span class="p">]:</span>
+                <span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source</span><span class="p">][</span><span class="n">target</span><span class="p">]</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">the_edges</span><span class="p">:</span>
                     <span class="n">the_edges</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">weight</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">the_edges</span></pre></div>
@@ -178,8 +177,8 @@ The returned set doesn't duplicate edges, i.e. only one of
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="n">the_edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_info</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_info</span><span class="p">[</span><span class="n">source</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source</span><span class="p">]:</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">source</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">the_edges</span><span class="p">:</span>
                     <span class="n">the_edges</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">the_edges</span></pre></div>
@@ -228,7 +227,8 @@ A tour is a list with all the graph's nodes, in the order visited,
 and the first and last nodes are the same.
 A best tour has the lowest total weight.
 Use a brute-force algorithm (only works for very small graphs).</p>
-<p>Mark that no tour has been found yet.</p>
+<p>pylint: disable=redefined-variable-type
+Mark that no tour has been found yet.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="n">tour_found</span> <span class="o">=</span> <span class="bp">None</span>
@@ -317,8 +317,8 @@ Assume the weight is a positive number.</p>
         <span class="k">assert</span> <span class="n">weight</span> <span class="o">&gt;</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">this_node</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">that_node</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">edge_info</span><span class="p">[</span><span class="n">this_node</span><span class="p">][</span><span class="n">that_node</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">edge_info</span><span class="p">[</span><span class="n">that_node</span><span class="p">][</span><span class="n">this_node</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span></pre></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">this_node</span><span class="p">][</span><span class="n">that_node</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">that_node</span><span class="p">][</span><span class="n">this_node</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -339,15 +339,12 @@ Assume the weight is a positive number.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-22'>#</a>
       </div>
-      <p>Do nothing if the edge doesn't exist.
-Assume the graph has both nodes.</p>
+      <p>Do nothing if the edge doesn't exist.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">node1</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">node2</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="n">node1</span><span class="p">,</span> <span class="n">node2</span><span class="p">):</span>
-            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_info</span><span class="p">[</span><span class="n">node1</span><span class="p">][</span><span class="n">node2</span><span class="p">]</span>
-            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_info</span><span class="p">[</span><span class="n">node2</span><span class="p">][</span><span class="n">node1</span><span class="p">]</span></pre></div>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="n">node1</span><span class="p">,</span> <span class="n">node2</span><span class="p">):</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">node1</span><span class="p">][</span><span class="n">node2</span><span class="p">]</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">node2</span><span class="p">][</span><span class="n">node1</span><span class="p">]</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>

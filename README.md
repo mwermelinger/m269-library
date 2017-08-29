@@ -16,8 +16,10 @@ the same algorithms and data structures.
 The code aims to follow the official Python coding style,
 defined in [PEP8](https://www.python.org/dev/peps/pep-0008/)
 and [PEP257](https://www.python.org/dev/peps/pep-0257/).
-The code was checked with [pycodestyle](https://pycodestyle.readthedocs.io/en/latest/)
-which only covers some of the guidelines.
+The code was checked with
+[pylint](http://pylint.org) 1.6.4,
+[flake8]() 3.3.0 and
+[pydocstyle](http://www.pydocstyle.org/en/latest/) 2.0.0.
 In addition, the code only uses full English words in identifiers, 
 i.e. no abbreviations or single letters.
 

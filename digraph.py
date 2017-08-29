@@ -1,5 +1,11 @@
+"""An implementation of weighted directed graphs.
+
+This file is part of the M269 Library (http://tiny.cc/m269-library).
+"""
+
+
 class DirectedGraph:
-    """Implements a directed graph (digraph).
+    """Implement a directed graph (digraph).
 
     Each node must be a hashable value:
     a number, string, tuple of hashable values, etc.
@@ -12,41 +18,38 @@ class DirectedGraph:
     # Representation
     # --------------
     # The digraph is stored as two dictionaries-of-dictionaries.
-    # In the `node_info` dictionary, keys are nodes, and values are
+    # In the `_nodes` dictionary, keys are nodes, and values are
     # dictionaries where the algorithms store information about the nodes,
     # e.g. which nodes have been visited.
-    # In the `edge_info` dictionary, keys are nodes, and values are
+    # In the `_edges` dictionary, keys are nodes, and values are
     # dictionaries where the keys are nodes and the values are weights.
     #
     # For example, a digraph with two nodes `start` and `end` and
-    # a single edge between them of weight 3, is initially represented as
-    # `node_info = {'start': {}, 'end': {}}`
+    # a single edge between them of weight 3 is represented as
+    # `_nodes = {'start': {}, 'end': {}}`
     # and
-    # `edge_info = {'start': {'end': 3}}`.
-    # After running an algorithm to visit the nodes, the `node_info` will be
+    # `_edges = {'start': {'end': 3}}`.
+    # After running an algorithm to visit the nodes, `_nodes` may be
     # {'start': {'seen': True}, 'end': {'seen': True}}`.
 
     def __init__(self):
         """Initialise the empty digraph."""
-        self.node_info = dict()
-        self.edge_info = dict()
+        self._nodes = dict()
+        self._edges = dict()
 
     # Inspectors
     # ----------
 
     def has_node(self, node):
         """Return True if the graph contains the node, otherwise False."""
-        return node in self.node_info
+        return node in self._nodes
 
     def has_edge(self, source, target):
         """Check if the graph has a directed edge from source to target.
 
-        Return True if it has, otherwise False.
-        Assume source and target are nodes in the graph.
+        Return False if the edge or either node don't exist, otherwise True.
         """
-        assert self.has_node(source)
-        assert self.has_node(target)
-        return target in self.edge_info[source]
+        return self.has_node(source) and target in self._edges[source]
 
     def weight(self, path):
         """Return the total weight of the path.
@@ -61,12 +64,12 @@ class DirectedGraph:
             this_node = path[current]
             next_node = path[current + 1]
             assert self.has_edge(this_node, next_node)
-            total = total + self.edge_info[this_node][next_node]
+            total = total + self._edges[this_node][next_node]
         return total
 
     def nodes(self):
         """Return the set of all nodes in the graph."""
-        return set(self.node_info.keys())
+        return set(self._nodes.keys())
 
     def unweighted_edges(self):
         """Return the set of all edges in the graph, without weights.
@@ -74,8 +77,8 @@ class DirectedGraph:
         An edge is a tuple (source, target).
         """
         the_edges = set()
-        for source in self.edge_info:
-            for target in self.edge_info[source]:
+        for source in self._edges:
+            for target in self._edges[source]:
                 the_edges.add((source, target))
         return the_edges
 
@@ -85,19 +88,19 @@ class DirectedGraph:
         An edge is a tuple (source, target, weight).
         """
         the_edges = set()
-        for source in self.edge_info:
-            for target in self.edge_info[source]:
-                edge = (source, target, self.weight([source, target]))
-                the_edges.add(edge)
+        for source in self._edges:
+            for target in self._edges[source]:
+                weight = self._edges[source][target]
+                the_edges.add((source, target, weight))
         return the_edges
 
     def neighbours(self, node):
         """Return the set of neighbours of node.
 
-        Assume the graph has node.
+        Assume the graph has the node.
         """
         assert self.has_node(node)
-        return set(self.edge_info[node].keys())
+        return set(self._edges[node].keys())
 
     # Breadth-first search
     # --------------------
@@ -108,19 +111,20 @@ class DirectedGraph:
         """Do a breadth-first search of the graph, from the start node.
 
         Return a list of nodes in visited order, the first being start.
-        Assume the graph has the start node.
+        Assume the start node exists.
         """
+        assert self.has_node(start)
         # Initialise the list to be returned.
         visited = []
         # Keep the nodes yet to visit in another list, used as a queue.
         # Initially, only the start node is to be visited.
         to_visit = [start]
         # Mark all nodes except the start node as unexplored.
-        for node in self.node_info:
-            self.node_info[node]['seen'] = False
-        self.node_info[start]['seen'] = True
+        for node in self._nodes:
+            self._nodes[node]['seen'] = False
+        self._nodes[start]['seen'] = True
         # While there are nodes to be visited:
-        while to_visit != []:
+        while to_visit:
             # Visit the next node at the front of the queue.
             next_node = to_visit.pop(0)
             visited.append(next_node)
@@ -128,9 +132,9 @@ class DirectedGraph:
             for neighbour in self.neighbours(next_node):
                 # Put unexplored nodes at the back of the queue
                 # and mark them as explored.
-                if not self.node_info[neighbour]['seen']:
+                if not self._nodes[neighbour]['seen']:
                     to_visit.append(neighbour)
-                    self.node_info[neighbour]['seen'] = True
+                    self._nodes[neighbour]['seen'] = True
         return visited
 
     # Depth-first search
@@ -145,30 +149,30 @@ class DirectedGraph:
         assert self.has_node(start)
         visited = []
         to_visit = [start]
-        for node in self.node_info:
-            self.node_info[node]['seen'] = False
-        self.node_info[start]['seen'] = True
-        while to_visit != []:
+        for node in self._nodes:
+            self._nodes[node]['seen'] = False
+        self._nodes[start]['seen'] = True
+        while to_visit:
             next_node = to_visit.pop()
             visited.append(next_node)
             for neighbour in self.neighbours(next_node):
-                if not self.node_info[neighbour]['seen']:
+                if not self._nodes[neighbour]['seen']:
                     to_visit.append(neighbour)
-                    self.node_info[neighbour]['seen'] = True
+                    self._nodes[neighbour]['seen'] = True
         return visited
 
     # Modifiers
     # ---------
 
     def add_node(self, node):
-        """Add node to the graph.
+        """Add the node to the graph.
 
-        Do nothing if the graph already has node.
+        Do nothing if the graph already has the node.
         Assume the node is of a hashable type.
         """
         if not self.has_node(node):
-            self.edge_info[node] = dict()
-            self.node_info[node] = dict()
+            self._edges[node] = dict()
+            self._nodes[node] = dict()
 
     def add_edge(self, source, target, weight=1):
         """Add a directed edge from source to target with the given weight.
@@ -183,37 +187,33 @@ class DirectedGraph:
         assert weight > 0
         self.add_node(source)
         self.add_node(target)
-        self.edge_info[source][target] = weight
+        self._edges[source][target] = weight
 
     def remove_edge(self, source, target):
         """Remove the edge from source to target from the graph.
 
         Do nothing if the edge doesn't exist.
-        Assume the graph has both nodes.
         """
-        assert self.has_node(source)
-        assert self.has_node(target)
-        if target in self.edge_info[source]:
-            del self.edge_info[source][target]
+        if self.has_edge(source, target):
+            del self._edges[source][target]
 
     def remove_node(self, node):
-        """Remove the node and its incident edges from the graph.
+        """Remove the node and its edges from the graph.
 
-        Assume the node exists.
+        Do nothing if the node doesn't exist.
         """
-        assert self.has_node(node)
+        if not self.has_node(node):
+            return
         for source in self.nodes():
             self.remove_edge(source, node)
-        for target in self.neighbours(node):
-            self.remove_edge(node, target)
-        del self.edge_info[node]
-        del self.node_info[node]
+        del self._edges[node]
+        del self._nodes[node]
 
 
 # Exercises
 # ---------
 # - Add a method to:
-#   - compute the **size** of a graph, i.e. the number edges.
+#   - compute the **size** of a graph, i.e. the number of edges.
 #   - compute the **order** of a graph, i.e. the number of nodes.
 #   - check if a given list of nodes is a path in the graph.
 #   - check if a graph is unweighted.

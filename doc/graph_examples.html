@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>graph_examples.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id="background"></div>
+<div id='container'>
+  <div class='section'>
+    <div class='docs'><h1>graph_examples.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Examples of undirected graphs.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">graph</span> <span class="kn">import</span> <span class="n">Graph</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Print the number of nodes and edges, and each edge.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">print_graph</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">nodes</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">weighted_edges</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&#39;A graph with&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">),</span> <span class="s">&#39;nodes and&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">edges</span><span class="p">),</span> <span class="s">&#39;edges&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Edge from&#39;</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="s">&#39;to&#39;</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="s">&#39;with weight&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Check that the actual result is one of the expected.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">actual</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">actual</span> <span class="ow">in</span> <span class="n">expected</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;OK:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s">&#39;=&#39;</span><span class="p">,</span> <span class="n">actual</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;FAILED:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s">&#39;=&#39;</span><span class="p">,</span> <span class="n">actual</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Graph from Section 7.20 of Miller &amp; Ranum's
+<a href="http://interactivepython.org/runestone/static/pythonds/index.html">book</a>
+<em>Problem Solving with Algorithms and Data Structures using Python</em></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">example</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+<span class="n">example</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;v&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">example</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">example</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">example</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">example</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">example</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">example</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">example</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;w&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">example</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;w&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">example</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">print_graph</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;DFS from u:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_dfs</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;DFS from z:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_dfs</span><span class="p">(</span><span class="s">&#39;z&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;BFS from u:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_bfs</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;BFS from z:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_bfs</span><span class="p">(</span><span class="s">&#39;z&#39;</span><span class="p">))</span>
+
+<span class="n">example</span><span class="o">.</span><span class="n">remove_node</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;Removed node v&#39;</span><span class="p">)</span>
+<span class="n">print_graph</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;DFS from u:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_dfs</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;DFS from z:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_dfs</span><span class="p">(</span><span class="s">&#39;z&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;BFS from u:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_bfs</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;BFS from z:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_bfs</span><span class="p">(</span><span class="s">&#39;z&#39;</span><span class="p">))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Graph from Python activity 5.1 from Unit 5 of M269</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">cities</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Scunthorpe&#39;</span><span class="p">,</span> <span class="s">&#39;Bridlington&#39;</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Scunthorpe&#39;</span><span class="p">,</span> <span class="s">&#39;Wick&#39;</span><span class="p">,</span> <span class="mi">514</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Scunthorpe&#39;</span><span class="p">,</span> <span class="s">&#39;Bognor&#39;</span><span class="p">,</span> <span class="mi">252</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Scunthorpe&#39;</span><span class="p">,</span> <span class="s">&#39;Nuneaton&#39;</span><span class="p">,</span> <span class="mi">111</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Scunthorpe&#39;</span><span class="p">,</span> <span class="s">&#39;Luton&#39;</span><span class="p">,</span> <span class="mi">117</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Scunthorpe&#39;</span><span class="p">,</span> <span class="s">&#39;Wrexham&#39;</span><span class="p">,</span> <span class="mi">142</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Scunthorpe&#39;</span><span class="p">,</span> <span class="s">&#39;Penzance&#39;</span><span class="p">,</span> <span class="mi">318</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Bridlington&#39;</span><span class="p">,</span> <span class="s">&#39;Luton&#39;</span><span class="p">,</span> <span class="mi">142</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Bridlington&#39;</span><span class="p">,</span> <span class="s">&#39;Nuneaton&#39;</span><span class="p">,</span> <span class="mi">115</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Bridlington&#39;</span><span class="p">,</span> <span class="s">&#39;Bognor&#39;</span><span class="p">,</span> <span class="mi">209</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Bridlington&#39;</span><span class="p">,</span> <span class="s">&#39;Penzance&#39;</span><span class="p">,</span> <span class="mi">426</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Bridlington&#39;</span><span class="p">,</span> <span class="s">&#39;Wrexham&#39;</span><span class="p">,</span> <span class="mi">162</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Bridlington&#39;</span><span class="p">,</span> <span class="s">&#39;Wick&#39;</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Luton&#39;</span><span class="p">,</span> <span class="s">&#39;Wick&#39;</span><span class="p">,</span> <span class="mi">627</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Luton&#39;</span><span class="p">,</span> <span class="s">&#39;Bognor&#39;</span><span class="p">,</span> <span class="mi">112</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Luton&#39;</span><span class="p">,</span> <span class="s">&#39;Wrexham&#39;</span><span class="p">,</span> <span class="mi">151</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Luton&#39;</span><span class="p">,</span> <span class="s">&#39;Nuneaton&#39;</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Luton&#39;</span><span class="p">,</span> <span class="s">&#39;Penzance&#39;</span><span class="p">,</span> <span class="mi">320</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Nuneaton&#39;</span><span class="p">,</span> <span class="s">&#39;Wick&#39;</span><span class="p">,</span> <span class="mi">566</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Nuneaton&#39;</span><span class="p">,</span> <span class="s">&#39;Bognor&#39;</span><span class="p">,</span> <span class="mi">161</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Nuneaton&#39;</span><span class="p">,</span> <span class="s">&#39;Wrexham&#39;</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Nuneaton&#39;</span><span class="p">,</span> <span class="s">&#39;Penzance&#39;</span><span class="p">,</span> <span class="mi">219</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Bognor&#39;</span><span class="p">,</span> <span class="s">&#39;Wick&#39;</span><span class="p">,</span> <span class="mi">720</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Bognor&#39;</span><span class="p">,</span> <span class="s">&#39;Wrexham&#39;</span><span class="p">,</span> <span class="mi">243</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Bognor&#39;</span><span class="p">,</span> <span class="s">&#39;Penzance&#39;</span><span class="p">,</span> <span class="mi">258</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Penzance&#39;</span><span class="p">,</span> <span class="s">&#39;Wick&#39;</span><span class="p">,</span> <span class="mi">809</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Penzance&#39;</span><span class="p">,</span> <span class="s">&#39;Wrexham&#39;</span><span class="p">,</span> <span class="mi">333</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">&#39;Wick&#39;</span><span class="p">,</span> <span class="s">&#39;Wrexham&#39;</span><span class="p">,</span> <span class="mi">508</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;DFS from Wick:&#39;</span><span class="p">,</span> <span class="n">cities</span><span class="o">.</span><span class="n">visited_dfs</span><span class="p">(</span><span class="s">&#39;Wick&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;BFS from Wick:&#39;</span><span class="p">,</span> <span class="n">cities</span><span class="o">.</span><span class="n">visited_bfs</span><span class="p">(</span><span class="s">&#39;Wick&#39;</span><span class="p">))</span>
+<span class="n">tour</span> <span class="o">=</span> <span class="n">cities</span><span class="o">.</span><span class="n">best_tour</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tour</span><span class="p">,</span> <span class="s">&#39;is a shortest tour of length&#39;</span><span class="p">,</span> <span class="n">cities</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">tour</span><span class="p">))</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

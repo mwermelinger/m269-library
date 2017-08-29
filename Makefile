@@ -3,8 +3,10 @@ all: doc/*.html
 doc/%.html: %.py
 # Compile the file and run included tests
 	python $<					
-# Check the code against PEP8
-	pycodestyle $<				
+# Check the code with various tools
+	pylint -rn --const-rgx='[a-z_][a-z0-9_]{2,30}' $<
+	flake8 $<
+	pydocstyle $<				
 # Generate the help page
 	pydoc -w $(basename $<)		
 	sed 's|<font.*mw.*/font>||' $(basename $<).html > help/$(basename $<).html

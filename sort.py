@@ -1,4 +1,4 @@
-"""Pedagogical implementations of some sorting algorithms."""
+"""Implementations of some sorting algorithms."""
 
 # Bubblesort
 # ----------
@@ -117,9 +117,7 @@ def merge_sort(unsorted):
 
 
 def quicksort(unsorted):
-    """
-    Return a list of all items in list unsorted, in ascending order.
-    """
+    """Return a list of all items in list unsorted, in ascending order."""
     # Base case: the empty list is already sorted.
     if unsorted == []:
         return unsorted
@@ -165,27 +163,28 @@ def sort_tests():
     ]
 
 
-def test_sort(sort, unsorted, expected):
-    """
-    Print an error message if sort(unsorted) is not the same as expected,
+def test_sort(algorithm, unsorted, expected):
+    """Apply algorithm to unsorted.
+
+    Print an error message if the result is not as expected,
     otherwise do nothing.
     """
-    if sort == quicksort or sort == merge_sort:
-        result = sort(unsorted)
+    if algorithm == quicksort or algorithm == merge_sort:
+        result = algorithm(unsorted)
     else:
         # Make a copy of the input before sorting it in-place.
         result = unsorted[:]
-        sort(result)
+        algorithm(result)
     if result != expected:
-        if sort == bubble_sort:
+        if algorithm == bubble_sort:
             name = "Bubble sort"
-        elif sort == selection_sort:
+        elif algorithm == selection_sort:
             name = "Selection sort"
-        elif sort == insertion_sort:
+        elif algorithm == insertion_sort:
             name = "Insertion sort"
-        elif sort == merge_sort:
+        elif algorithm == merge_sort:
             name = "Merge sort"
-        elif sort == quicksort:
+        elif algorithm == quicksort:
             name = "Quicksort"
         print(name, "of", unsorted, "is", result, "instead of", expected)
 

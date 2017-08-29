@@ -17,7 +17,7 @@
       <div class='octowrap'>
         <a class='octothorpe' href='#section-0'>#</a>
       </div>
-      <p>Pedagogical implementations of some sorting algorithms.</p>
+      <p>Implementations of some sorting algorithms.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre></pre></div>
@@ -572,11 +572,10 @@ All sorting algorithms do the same, so a single set of tests can be used.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-41'>#</a>
       </div>
-      <p>Print an error message if sort(unsorted) is not the same as expected,
-otherwise do nothing.</p>
+      <p>Apply algorithm to unsorted.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_sort</span><span class="p">(</span><span class="n">sort</span><span class="p">,</span> <span class="n">unsorted</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_sort</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">unsorted</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -585,11 +584,12 @@ otherwise do nothing.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-42'>#</a>
       </div>
-      
+      <p>Print an error message if the result is not as expected,
+otherwise do nothing.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">quicksort</span> <span class="ow">or</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">merge_sort</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">unsorted</span><span class="p">)</span>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="n">quicksort</span> <span class="ow">or</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="n">merge_sort</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">algorithm</span><span class="p">(</span><span class="n">unsorted</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span></pre></div>
     </div>
   </div>
@@ -603,17 +603,17 @@ otherwise do nothing.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="n">result</span> <span class="o">=</span> <span class="n">unsorted</span><span class="p">[:]</span>
-        <span class="n">sort</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="n">algorithm</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="n">expected</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">bubble_sort</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="n">bubble_sort</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Bubble sort&quot;</span>
-        <span class="k">elif</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">selection_sort</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="n">selection_sort</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Selection sort&quot;</span>
-        <span class="k">elif</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">insertion_sort</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="n">insertion_sort</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Insertion sort&quot;</span>
-        <span class="k">elif</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">merge_sort</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="n">merge_sort</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Merge sort&quot;</span>
-        <span class="k">elif</span> <span class="n">sort</span> <span class="o">==</span> <span class="n">quicksort</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="n">quicksort</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Quicksort&quot;</span>
         <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&quot;of&quot;</span><span class="p">,</span> <span class="n">unsorted</span><span class="p">,</span> <span class="s">&quot;is&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="s">&quot;instead of&quot;</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span></pre></div>
     </div>

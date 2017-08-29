@@ -1,4 +1,4 @@
-"""Examples of undirected graphs"""
+"""Examples of undirected graphs."""
 
 from graph import Graph
 
@@ -20,34 +20,34 @@ def test(name, actual, expected):
         print('FAILED:', name, '=', actual)
 
 
-# Graph from [Section 7.20](http://www.interactivepython.org/courselib/static/pythonds/Graphs/DijkstrasAlgorithm.html)
-# of Miller & Ranum's book
+# Graph from Section 7.20 of Miller and Ranum's
+# [book](http://interactivepython.org/runestone/static/pythonds/index.html)
 # _Problem Solving with Algorithms and Data Structures using Python_
 
-graph = Graph()
-graph.add_edge('u', 'v', 2)
-graph.add_edge('u', 'x', 1)
-graph.add_edge('u', 'w', 5)
-graph.add_edge('v', 'x', 2)
-graph.add_edge('v', 'w', 3)
-graph.add_edge('x', 'w', 3)
-graph.add_edge('x', 'y', 1)
-graph.add_edge('w', 'y', 1)
-graph.add_edge('w', 'z', 5)
-graph.add_edge('y', 'z', 1)
-print_graph(graph)
-print('DFS from u:', graph.visited_dfs('u'))
-print('DFS from z:', graph.visited_dfs('z'))
-print('BFS from u:', graph.visited_bfs('u'))
-print('BFS from z:', graph.visited_bfs('z'))
+example = Graph()
+example.add_edge('u', 'v', 2)
+example.add_edge('u', 'x', 1)
+example.add_edge('u', 'w', 5)
+example.add_edge('v', 'x', 2)
+example.add_edge('v', 'w', 3)
+example.add_edge('x', 'w', 3)
+example.add_edge('x', 'y', 1)
+example.add_edge('w', 'y', 1)
+example.add_edge('w', 'z', 5)
+example.add_edge('y', 'z', 1)
+print_graph(example)
+print('DFS from u:', example.visited_dfs('u'))
+print('DFS from z:', example.visited_dfs('z'))
+print('BFS from u:', example.visited_bfs('u'))
+print('BFS from z:', example.visited_bfs('z'))
 
-graph.remove_node('v')
+example.remove_node('v')
 print('Removed node v')
-print_graph(graph)
-print('DFS from u:', graph.visited_dfs('u'))
-print('DFS from z:', graph.visited_dfs('z'))
-print('BFS from u:', graph.visited_bfs('u'))
-print('BFS from z:', graph.visited_bfs('z'))
+print_graph(example)
+print('DFS from u:', example.visited_dfs('u'))
+print('DFS from z:', example.visited_dfs('z'))
+print('BFS from u:', example.visited_bfs('u'))
+print('BFS from z:', example.visited_bfs('z'))
 
 # Graph from Python activity 5.1 from Unit 5 of M269
 

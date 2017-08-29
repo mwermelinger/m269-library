@@ -33,7 +33,7 @@ def test_brackets(the_text, expected):
     if brackets_match(the_text) != expected:
         print('FAILED:', the_text)
     else:
-        print('PASSED:', the_text)
+        print('OK:', the_text)
 
 
 test_brackets('No brackets is OK.', True)

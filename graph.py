@@ -1,8 +1,11 @@
-from digraph import DirectedGraph
+"""An implementation of weighted undirected graphs."""
+
 from itertools import permutations  # needed for best_tour
 
+from digraph import DirectedGraph
 
-class Graph (DirectedGraph):
+
+class Graph(DirectedGraph):
     """Implements an undirected graph.
 
     Each node must be a hashable value:
@@ -31,11 +34,9 @@ class Graph (DirectedGraph):
     def has_edge(self, node1, node2):
         """Check if there's an edge between the two nodes.
 
-        Return True if there is, otherwise False.
-        Assume both nodes exist.
+        Return False if the edge or either node don't exist, otherwise True.
         """
-        assert self.has_node(node1) and self.has_node(node2)
-        return node2 in self.edge_info[node1]
+        return self.has_node(node1) and node2 in self._edges[node1]
 
     # The following were changed to not generate duplicate edges.
     def weighted_edges(self):
@@ -46,9 +47,9 @@ class Graph (DirectedGraph):
         (node1, node2, weight) and (node2, node1, weight) is included.
         """
         the_edges = set()
-        for source in self.edge_info:
-            for target in self.edge_info[source]:
-                weight = self.weight([source, target])
+        for source in self._edges:
+            for target in self._edges[source]:
+                weight = self._edges[source][target]
                 if (target, source, weight) not in the_edges:
                     the_edges.add((source, target, weight))
         return the_edges
@@ -61,8 +62,8 @@ class Graph (DirectedGraph):
         (node1, node2) and (node2, node1) is included.
         """
         the_edges = set()
-        for source in self.edge_info:
-            for target in self.edge_info[source]:
+        for source in self._edges:
+            for target in self._edges[source]:
                 if (target, source) not in the_edges:
                     the_edges.add((source, target))
         return the_edges
@@ -87,6 +88,7 @@ class Graph (DirectedGraph):
         A best tour has the lowest total weight.
         Use a brute-force algorithm (only works for very small graphs).
         """
+        # pylint: disable=redefined-variable-type
         # Mark that no tour has been found yet.
         tour_found = None
         lowest_total = float('infinity')
@@ -118,20 +120,17 @@ class Graph (DirectedGraph):
         assert weight > 0
         self.add_node(this_node)
         self.add_node(that_node)
-        self.edge_info[this_node][that_node] = weight
-        self.edge_info[that_node][this_node] = weight
+        self._edges[this_node][that_node] = weight
+        self._edges[that_node][this_node] = weight
 
     def remove_edge(self, node1, node2):
         """Remove the edge between the nodes from the graph.
 
         Do nothing if the edge doesn't exist.
-        Assume the graph has both nodes.
         """
-        assert self.has_node(node1)
-        assert self.has_node(node2)
         if self.has_edge(node1, node2):
-            del self.edge_info[node1][node2]
-            del self.edge_info[node2][node1]
+            del self._edges[node1][node2]
+            del self._edges[node2][node1]
 
 # Exercises
 # ---------
