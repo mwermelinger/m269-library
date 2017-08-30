@@ -4,6 +4,7 @@
 
 from queue import Queue  # for the breadth-first search
 from stack import Stack  # for the depth-first search
+from priority_queue import PriorityQueue  # for Dijkstra's & Prim's algorithms
 
 
 class DirectedGraph:
@@ -26,13 +27,13 @@ class DirectedGraph:
     # In the `_edges` dictionary, keys are nodes, and values are
     # dictionaries where the keys are nodes and the values are weights.
     #
-    # For example, a digraph with two nodes `start` and `end` and
+    # For example, a digraph with two nodes `'start'` and `'end'` and
     # a single edge between them of weight 3 is represented as
     # `_nodes = {'start': {}, 'end': {}}`
     # and
     # `_edges = {'start': {'end': 3}}`.
     # After running an algorithm to visit the nodes, `_nodes` may be
-    # {'start': {'seen': True}, 'end': {'seen': True}}`.
+    # `{'start': {'seen': True}, 'end': {'seen': True}}`.
 
     def __init__(self):
         """Initialise the empty digraph."""
@@ -56,16 +57,19 @@ class DirectedGraph:
     def weight(self, path):
         """Return the total weight of the path.
 
-        A path is a list of at least two nodes of the graph [n1, n2, ...]
+        A path is a list of nodes of the graph [n1, n2, ...]
         such that n1-n2, n2-n3, etc. are edges in the graph.
-        Assume the path is valid.
+        Return 0 if the path has a single node.
+        Return infinity if the path is empty or invalid.
         """
-        assert len(path) > 1
+        if not path:
+            return float('infinity')
         total = 0
         for current in range(0, len(path) - 1):
             this_node = path[current]
             next_node = path[current + 1]
-            assert self.has_edge(this_node, next_node)
+            if not self.has_edge(this_node, next_node):
+                return float('infinity')
             total = total + self._edges[this_node][next_node]
         return total
 
@@ -156,17 +160,17 @@ class DirectedGraph:
         to_visit = Queue()
         to_visit.enqueue(start)
         for node in self._nodes:
-            self._nodes[node]['distance'] = infinity
-        self._nodes[start]['distance'] = 0
+            self._nodes[node]['hops'] = infinity
+        self._nodes[start]['hops'] = 0
         while not to_visit.is_empty():
             next_node = to_visit.dequeue()
-            distance = self._nodes[next_node]['distance']
+            hops = self._nodes[next_node]['hops']
             if next_node == end:
-                return distance
+                return hops
             for neighbour in self.neighbours(next_node):
-                if self._nodes[neighbour]['distance'] == infinity:
+                if self._nodes[neighbour]['hops'] == infinity:
                     to_visit.enqueue(neighbour)
-                    self._nodes[neighbour]['distance'] = distance + 1
+                    self._nodes[neighbour]['hops'] = hops + 1
         return infinity
 
     # Depth-first search
@@ -179,7 +183,7 @@ class DirectedGraph:
         Assume the start node exists.
         """
         assert self.has_node(start)
-        # Use the same algorithm, but keep nodes to visit in a stack.
+        # Use the BFS algorithm, but keep nodes to visit in a stack.
         visited = []
         to_visit = Stack()
         to_visit.push(start)
@@ -226,6 +230,82 @@ class DirectedGraph:
                 if self._nodes[neighbour]['incoming'] == 0:
                     to_visit.add(neighbour)
         return sort
+
+    # Dijkstra's algorithm
+    # --------------------
+    # This algorithm computes all single-source shortest paths
+    # (i.e. shortest paths from a given start node to the other nodes)
+    # A shortest path has minimal total weight.
+    # The algorithm works for any graph with non-negative weights.
+    # The graph may be undirected, directed, cyclic, or disconnected.
+    # There may be several shortest paths to a node, but only one is computed.
+    #
+    # The main method is internal and used by the following methods.
+
+    def _shortest_paths(self, start):
+        # Compute a shortest path from start to each other node, if it exists.
+        assert self.has_node(start)
+        infinity = float('infinity')
+        # Keep the nodes ordered by distance from the start node.
+        to_visit = PriorityQueue()
+        # All nodes are initially unreachable from the start node.
+        for node in self.nodes():
+            self._nodes[node]['distance'] = infinity
+            self._nodes[node]['from'] = None
+            to_visit.enqueue(node, infinity)
+        # Correct the distance of the start node.
+        self._nodes[start]['distance'] = 0
+        to_visit.set_priority(start, 0)
+        while not to_visit.is_empty():
+            node = to_visit.dequeue()
+            node_distance = self._nodes[node]['distance']
+            for neighbour in self.neighbours(node):
+                neighbour_distance = self._nodes[neighbour]['distance']
+                # Compute the new distance to neighbour, going through node.
+                edge_distance = self._edges[node][neighbour]
+                new_distance = node_distance + edge_distance
+                # If it's shorter going this way, update the distance and path.
+                if new_distance < neighbour_distance:
+                    self._nodes[neighbour]['distance'] = new_distance
+                    self._nodes[neighbour]['from'] = node
+                    to_visit.set_priority(neighbour, new_distance)
+
+    def shortest_path(self, start, end):
+        """Compute a shortest path from the start to the end node.
+
+        A shortest path is a path of minimal total weight.
+        Return a list of nodes forming a path from start to end.
+        Return the empty list if there is no path.
+        Assume the graph has the start node.
+        """
+        assert self.has_node(start)
+        if not self.has_node(end):
+            return []
+        self._shortest_paths(start)
+        if self._nodes[end]['distance'] == float('infinity'):
+            return []
+        # Construct the path backwards and then reverse it.
+        path = []
+        current = end
+        while current != start:
+            path.append(current)
+            current = self._nodes[current]['from']
+        path.append(start)
+        path.reverse()
+        return path
+
+    def weighted_distance(self, start, end):
+        """Return the minimal total weight to go from start to end.
+
+        Return infinity if there is no path.
+        Assume the graph has start node.
+        """
+        assert self.has_node(start)
+        self._shortest_paths(start)
+        if self.has_node(end):
+            return self._nodes[end]['distance']
+        else:
+            return float('infinity')
 
     # Modifiers
     # ---------
@@ -283,3 +363,14 @@ class DirectedGraph:
 #   - compute the **order** of a graph, i.e. the number of nodes.
 #   - check if a given list of nodes is a path in the graph.
 #   - check if a graph is unweighted.
+# - Every call to `shortest_path` and `weighted_distance` runs Dijkstra's
+#   algorithm. Change the code of several methods, so that a sequence of
+#   method calls like for example
+#   ```
+#   print(graph.shortest_path(2, 5))
+#   print(graph.visited_bfs())
+#   print(graph.shortest_path(2, 3))
+#   print(graph.unweighted_distance(3, 5))
+#   print(graph.weighted_distance(2, 1))
+#   ```
+#   will only execute Dijkstra's method once.

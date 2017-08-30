@@ -84,6 +84,36 @@
       <div class='octowrap'>
         <a class='octothorpe' href='#section-5'>#</a>
       </div>
+      <p>Check that the shortest distance, computed twice, is the same.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_shortest</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">path</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+    <span class="n">distance1</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">distance2</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">weighted_distance</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Shortest path&#39;</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="s">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="s">&#39;of length&#39;</span><span class="p">,</span> <span class="n">distance1</span><span class="p">,</span> <span class="s">&#39;:&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">distance1</span> <span class="o">!=</span> <span class="n">distance2</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;FAILED: different weighted_distance&#39;</span><span class="p">,</span> <span class="n">distance2</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
       <p>Graph from Section 7.20 of Miller and Ranum's
 <a href="http://interactivepython.org/runestone/static/pythonds/index.html">book</a>
 <em>Problem Solving with Algorithms and Data Structures using Python</em></p>
@@ -107,6 +137,9 @@
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;BFS from z:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_bfs</span><span class="p">(</span><span class="s">&#39;z&#39;</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;from u to z:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">unweighted_distance</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">),</span> <span class="s">&#39;hops&#39;</span><span class="p">)</span>
 
+<span class="n">test</span><span class="p">(</span><span class="s">&#39;distance u to w&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">weighted_distance</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">),</span> <span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">test</span><span class="p">(</span><span class="s">&#39;path u to w&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">),</span> <span class="p">[[</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">]])</span>
+
 <span class="n">example</span><span class="o">.</span><span class="n">remove_node</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;Removed node v&#39;</span><span class="p">)</span>
 <span class="n">print_graph</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
@@ -124,10 +157,10 @@
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-6'>
+  <div class='section' id='section-8'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-6'>#</a>
+        <a class='octothorpe' href='#section-8'>#</a>
       </div>
       <p>Graph from Python activity 5.1 from Unit 5 of M269</p>
     </div>
@@ -165,6 +198,11 @@
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;BFS from Wick:&#39;</span><span class="p">,</span> <span class="n">cities</span><span class="o">.</span><span class="n">visited_bfs</span><span class="p">(</span><span class="s">&#39;Wick&#39;</span><span class="p">))</span>
 <span class="n">tour</span> <span class="o">=</span> <span class="n">cities</span><span class="o">.</span><span class="n">best_tour</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">tour</span><span class="p">,</span> <span class="s">&#39;is a shortest tour of length&#39;</span><span class="p">,</span> <span class="n">cities</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">tour</span><span class="p">))</span>
+
+<span class="n">test_shortest</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="s">&#39;Wick&#39;</span><span class="p">,</span> <span class="s">&#39;Luton&#39;</span><span class="p">)</span>
+<span class="n">test_shortest</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="s">&#39;Bridlington&#39;</span><span class="p">,</span> <span class="s">&#39;Penzance&#39;</span><span class="p">)</span>
+<span class="n">test_shortest</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="s">&#39;Bridlington&#39;</span><span class="p">,</span> <span class="s">&#39;Penance&#39;</span><span class="p">)</span>
+<span class="n">test_shortest</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="s">&#39;Wick&#39;</span><span class="p">,</span> <span class="s">&#39;Wick&#39;</span><span class="p">)</span>
 
 </pre></div>
     </div>

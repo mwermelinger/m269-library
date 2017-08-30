@@ -77,6 +77,13 @@ Do&nbsp;nothing&nbsp;if&nbsp;the&nbsp;edge&nbsp;doesn't&nbsp;exist.</tt></dd></d
 &nbsp;<br>
 Do&nbsp;nothing&nbsp;if&nbsp;the&nbsp;node&nbsp;doesn't&nbsp;exist.</tt></dd></dl>
 
+<dl><dt><a name="DirectedGraph-shortest_path"><strong>shortest_path</strong></a>(self, start, end)</dt><dd><tt>Compute&nbsp;a&nbsp;shortest&nbsp;path&nbsp;from&nbsp;the&nbsp;start&nbsp;to&nbsp;the&nbsp;end&nbsp;node.<br>
+&nbsp;<br>
+A&nbsp;shortest&nbsp;path&nbsp;is&nbsp;a&nbsp;path&nbsp;of&nbsp;minimal&nbsp;total&nbsp;weight.<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;nodes&nbsp;forming&nbsp;a&nbsp;path&nbsp;from&nbsp;start&nbsp;to&nbsp;end.<br>
+Return&nbsp;the&nbsp;empty&nbsp;list&nbsp;if&nbsp;there&nbsp;is&nbsp;no&nbsp;path.<br>
+Assume&nbsp;the&nbsp;graph&nbsp;has&nbsp;the&nbsp;start&nbsp;node.</tt></dd></dl>
+
 <dl><dt><a name="DirectedGraph-topological_sort"><strong>topological_sort</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;nodes,&nbsp;in&nbsp;topological&nbsp;order.<br>
 &nbsp;<br>
 Return&nbsp;the&nbsp;empty&nbsp;list&nbsp;if&nbsp;the&nbsp;graph&nbsp;is&nbsp;cyclic.</tt></dd></dl>
@@ -102,9 +109,15 @@ Assume&nbsp;the&nbsp;start&nbsp;node&nbsp;exists.</tt></dd></dl>
 
 <dl><dt><a name="DirectedGraph-weight"><strong>weight</strong></a>(self, path)</dt><dd><tt>Return&nbsp;the&nbsp;total&nbsp;weight&nbsp;of&nbsp;the&nbsp;path.<br>
 &nbsp;<br>
-A&nbsp;path&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;at&nbsp;least&nbsp;two&nbsp;nodes&nbsp;of&nbsp;the&nbsp;graph&nbsp;[n1,&nbsp;n2,&nbsp;...]<br>
+A&nbsp;path&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;nodes&nbsp;of&nbsp;the&nbsp;graph&nbsp;[n1,&nbsp;n2,&nbsp;...]<br>
 such&nbsp;that&nbsp;n1-n2,&nbsp;n2-n3,&nbsp;etc.&nbsp;are&nbsp;edges&nbsp;in&nbsp;the&nbsp;graph.<br>
-Assume&nbsp;the&nbsp;path&nbsp;is&nbsp;valid.</tt></dd></dl>
+Return&nbsp;0&nbsp;if&nbsp;the&nbsp;path&nbsp;has&nbsp;a&nbsp;single&nbsp;node.<br>
+Return&nbsp;infinity&nbsp;if&nbsp;the&nbsp;path&nbsp;is&nbsp;empty&nbsp;or&nbsp;invalid.</tt></dd></dl>
+
+<dl><dt><a name="DirectedGraph-weighted_distance"><strong>weighted_distance</strong></a>(self, start, end)</dt><dd><tt>Return&nbsp;the&nbsp;minimal&nbsp;total&nbsp;weight&nbsp;to&nbsp;go&nbsp;from&nbsp;start&nbsp;to&nbsp;end.<br>
+&nbsp;<br>
+Return&nbsp;infinity&nbsp;if&nbsp;there&nbsp;is&nbsp;no&nbsp;path.<br>
+Assume&nbsp;the&nbsp;graph&nbsp;has&nbsp;start&nbsp;node.</tt></dd></dl>
 
 <dl><dt><a name="DirectedGraph-weighted_edges"><strong>weighted_edges</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;set&nbsp;of&nbsp;all&nbsp;edges&nbsp;in&nbsp;the&nbsp;graph,&nbsp;with&nbsp;weights.<br>
 &nbsp;<br>

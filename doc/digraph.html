@@ -33,7 +33,8 @@
     </div>
     <div class='code'>
       <div class="highlight"><pre><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>  <span class="c"># for the breadth-first search</span>
-<span class="kn">from</span> <span class="nn">stack</span> <span class="kn">import</span> <span class="n">Stack</span>  <span class="c"># for the depth-first search</span></pre></div>
+<span class="kn">from</span> <span class="nn">stack</span> <span class="kn">import</span> <span class="n">Stack</span>  <span class="c"># for the depth-first search</span>
+<span class="kn">from</span> <span class="nn">priority_queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>  <span class="c"># for Dijkstra&#39;s &amp; Prim&#39;s algorithms</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -78,13 +79,13 @@ dictionaries where the algorithms store information about the nodes,
 e.g. which nodes have been visited.
 In the <code>_edges</code> dictionary, keys are nodes, and values are
 dictionaries where the keys are nodes and the values are weights.</p>
-<p>For example, a digraph with two nodes <code>start</code> and <code>end</code> and
+<p>For example, a digraph with two nodes <code>'start'</code> and <code>'end'</code> and
 a single edge between them of weight 3 is represented as
 <code>_nodes = {'start': {}, 'end': {}}</code>
 and
 <code>_edges = {'start': {'end': 3}}</code>.
 After running an algorithm to visit the nodes, <code>_nodes</code> may be
-{'start': {'seen': True}, 'end': {'seen': True}}`.</p>
+<code>{'start': {'seen': True}, 'end': {'seen': True}}</code>.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre></pre></div>
@@ -193,17 +194,20 @@ After running an algorithm to visit the nodes, <code>_nodes</code> may be
       <div class='octowrap'>
         <a class='octothorpe' href='#section-13'>#</a>
       </div>
-      <p>A path is a list of at least two nodes of the graph [n1, n2, ...]
+      <p>A path is a list of nodes of the graph [n1, n2, ...]
 such that n1-n2, n2-n3, etc. are edges in the graph.
-Assume the path is valid.</p>
+Return 0 if the path has a single node.
+Return infinity if the path is empty or invalid.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span>
         <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">current</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">this_node</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="n">current</span><span class="p">]</span>
             <span class="n">next_node</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="n">current</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
-            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="n">this_node</span><span class="p">,</span> <span class="n">next_node</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="n">this_node</span><span class="p">,</span> <span class="n">next_node</span><span class="p">):</span>
+                <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span>
             <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">this_node</span><span class="p">][</span><span class="n">next_node</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">total</span></pre></div>
     </div>
@@ -488,17 +492,17 @@ Assume the graph has the start node.</p>
         <span class="n">to_visit</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
         <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;hops&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s">&#39;hops&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
             <span class="n">next_node</span> <span class="o">=</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
-            <span class="n">distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">next_node</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span>
+            <span class="n">hops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">next_node</span><span class="p">][</span><span class="s">&#39;hops&#39;</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">next_node</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">distance</span>
+                <span class="k">return</span> <span class="n">hops</span>
             <span class="k">for</span> <span class="n">neighbour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbours</span><span class="p">(</span><span class="n">next_node</span><span class="p">):</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">infinity</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;hops&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">infinity</span><span class="p">:</span>
                     <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">neighbour</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;hops&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hops</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">infinity</span></pre></div>
     </div>
   </div>
@@ -545,7 +549,7 @@ Assume the start node exists.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-38'>#</a>
       </div>
-      <p>Use the same algorithm, but keep nodes to visit in a stack.</p>
+      <p>Use the BFS algorithm, but keep nodes to visit in a stack.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="n">visited</span> <span class="o">=</span> <span class="p">[]</span>
@@ -679,7 +683,14 @@ hence it can be visited.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-47'>#</a>
       </div>
-      <h2>Modifiers</h2>
+      <h2>Dijkstra's algorithm</h2>
+<p>This algorithm computes all single-source shortest paths
+(i.e. shortest paths from a given start node to the other nodes)
+A shortest path has minimal total weight.
+The algorithm works for any graph with non-negative weights.
+The graph may be undirected, directed, cyclic, or disconnected.
+There may be several shortest paths to a node, but only one is computed.</p>
+<p>The main method is internal and used by the following methods.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre></pre></div>
@@ -691,10 +702,10 @@ hence it can be visited.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-48'>#</a>
       </div>
-      <p>Add the node to the graph.</p>
+      
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_shortest_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -702,6 +713,197 @@ hence it can be visited.</p>
     <div class='docs'>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-49'>#</a>
+      </div>
+      <p>Compute a shortest path from start to each other node, if it exists.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="n">infinity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-50'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-50'>#</a>
+      </div>
+      <p>Keep the nodes ordered by distance from the start node.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">to_visit</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-51'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-51'>#</a>
+      </div>
+      <p>All nodes are initially unreachable from the start node.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">infinity</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-52'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-52'>#</a>
+      </div>
+      <p>Correct the distance of the start node.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">to_visit</span><span class="o">.</span><span class="n">set_priority</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+            <span class="n">node_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">neighbour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbours</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+                <span class="n">neighbour_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-53'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-53'>#</a>
+      </div>
+      <p>Compute the new distance to neighbour, going through node.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>                <span class="n">edge_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">neighbour</span><span class="p">]</span>
+                <span class="n">new_distance</span> <span class="o">=</span> <span class="n">node_distance</span> <span class="o">+</span> <span class="n">edge_distance</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-54'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-54'>#</a>
+      </div>
+      <p>If it's shorter going this way, update the distance and path.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>                <span class="k">if</span> <span class="n">new_distance</span> <span class="o">&lt;</span> <span class="n">neighbour_distance</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_distance</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+                    <span class="n">to_visit</span><span class="o">.</span><span class="n">set_priority</span><span class="p">(</span><span class="n">neighbour</span><span class="p">,</span> <span class="n">new_distance</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-55'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-55'>#</a>
+      </div>
+      <p>Compute a shortest path from the start to the end node.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-56'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-56'>#</a>
+      </div>
+      <p>A shortest path is a path of minimal total weight.
+Return a list of nodes forming a path from start to end.
+Return the empty list if there is no path.
+Assume the graph has the start node.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">end</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shortest_paths</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">end</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-57'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-57'>#</a>
+      </div>
+      <p>Construct the path backwards and then reverse it.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">end</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="n">start</span><span class="p">:</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">current</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">path</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-58'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-58'>#</a>
+      </div>
+      <p>Return the minimal total weight to go from start to end.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">weighted_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-59'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-59'>#</a>
+      </div>
+      <p>Return infinity if there is no path.
+Assume the graph has start node.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shortest_paths</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">end</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">end</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-60'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-60'>#</a>
+      </div>
+      <h2>Modifiers</h2>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-61'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-61'>#</a>
+      </div>
+      <p>Add the node to the graph.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-62'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-62'>#</a>
       </div>
       <p>Do nothing if the graph already has the node.
 Assume the node is of a hashable type.</p>
@@ -713,10 +915,10 @@ Assume the node is of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-50'>
+  <div class='section' id='section-63'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-50'>#</a>
+        <a class='octothorpe' href='#section-63'>#</a>
       </div>
       <p>Add a directed edge from source to target with the given weight.</p>
     </div>
@@ -725,10 +927,10 @@ Assume the node is of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-51'>
+  <div class='section' id='section-64'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-51'>#</a>
+        <a class='octothorpe' href='#section-64'>#</a>
       </div>
       <p>Replace the weight value if the edge already exists.
 Add any node that doesn't exist.
@@ -745,10 +947,10 @@ Assume the nodes are of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-52'>
+  <div class='section' id='section-65'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-52'>#</a>
+        <a class='octothorpe' href='#section-65'>#</a>
       </div>
       <p>Remove the edge from source to target from the graph.</p>
     </div>
@@ -757,10 +959,10 @@ Assume the nodes are of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-53'>
+  <div class='section' id='section-66'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-53'>#</a>
+        <a class='octothorpe' href='#section-66'>#</a>
       </div>
       <p>Do nothing if the edge doesn't exist.</p>
     </div>
@@ -770,10 +972,10 @@ Assume the nodes are of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-54'>
+  <div class='section' id='section-67'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-54'>#</a>
+        <a class='octothorpe' href='#section-67'>#</a>
       </div>
       <p>Remove the node and its edges from the graph.</p>
     </div>
@@ -782,10 +984,10 @@ Assume the nodes are of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-55'>
+  <div class='section' id='section-68'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-55'>#</a>
+        <a class='octothorpe' href='#section-68'>#</a>
       </div>
       <p>Do nothing if the node doesn't exist.</p>
     </div>
@@ -799,10 +1001,10 @@ Assume the nodes are of a hashable type.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-56'>
+  <div class='section' id='section-69'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-56'>#</a>
+        <a class='octothorpe' href='#section-69'>#</a>
       </div>
       <h2>Exercises</h2>
 <ul>
@@ -811,6 +1013,15 @@ Assume the nodes are of a hashable type.</p>
 <li>compute the <strong>order</strong> of a graph, i.e. the number of nodes.</li>
 <li>check if a given list of nodes is a path in the graph.</li>
 <li>check if a graph is unweighted.</li>
+<li>Every call to <code>shortest_path</code> and <code>weighted_distance</code> runs Dijkstra's
+  algorithm. Change the code of several methods, so that a sequence of
+  method calls like for example
+  <code>print(graph.shortest_path(2, 5))
+  print(graph.visited_bfs())
+  print(graph.shortest_path(2, 3))
+  print(graph.unweighted_distance(3, 5))
+  print(graph.weighted_distance(2, 1))</code>
+  will only execute Dijkstra's method once.</li>
 </ul>
     </div>
     <div class='code'>
