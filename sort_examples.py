@@ -1,7 +1,7 @@
 """Examples of sorting lists."""
 
 from sort import bubble_sort, selection_sort, insertion_sort
-from sort import merge_sorted, quick_sorted
+from sort import merge_sorted, quick_sorted, heap_sorted
 
 # In Python, functions can take other functions as arguments.
 # Here we pass a sorting function to the test functions.
@@ -38,6 +38,7 @@ examples = (
 for example in examples:
     test_new_list(quick_sorted, 'Quick sort', example)
     test_new_list(merge_sorted, 'Merge sort', example)
+    test_new_list(heap_sorted, 'Heap sort', example)
     # Make a copy of the example before sorting in-place
     test_in_place(bubble_sort, 'Bubble sort', example[:])
     test_in_place(selection_sort, 'Selection sort', example[:])

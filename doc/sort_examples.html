@@ -21,7 +21,7 @@
     </div>
     <div class='code'>
       <div class="highlight"><pre><span class="kn">from</span> <span class="nn">sort</span> <span class="kn">import</span> <span class="n">bubble_sort</span><span class="p">,</span> <span class="n">selection_sort</span><span class="p">,</span> <span class="n">insertion_sort</span>
-<span class="kn">from</span> <span class="nn">sort</span> <span class="kn">import</span> <span class="n">merge_sorted</span><span class="p">,</span> <span class="n">quick_sorted</span></pre></div>
+<span class="kn">from</span> <span class="nn">sort</span> <span class="kn">import</span> <span class="n">merge_sorted</span><span class="p">,</span> <span class="n">quick_sorted</span><span class="p">,</span> <span class="n">heap_sorted</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -134,7 +134,8 @@ Here we pass a sorting function to the test functions.</p>
 
 <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">:</span>
     <span class="n">test_new_list</span><span class="p">(</span><span class="n">quick_sorted</span><span class="p">,</span> <span class="s">&#39;Quick sort&#39;</span><span class="p">,</span> <span class="n">example</span><span class="p">)</span>
-    <span class="n">test_new_list</span><span class="p">(</span><span class="n">merge_sorted</span><span class="p">,</span> <span class="s">&#39;Merge sort&#39;</span><span class="p">,</span> <span class="n">example</span><span class="p">)</span></pre></div>
+    <span class="n">test_new_list</span><span class="p">(</span><span class="n">merge_sorted</span><span class="p">,</span> <span class="s">&#39;Merge sort&#39;</span><span class="p">,</span> <span class="n">example</span><span class="p">)</span>
+    <span class="n">test_new_list</span><span class="p">(</span><span class="n">heap_sorted</span><span class="p">,</span> <span class="s">&#39;Heap sort&#39;</span><span class="p">,</span> <span class="n">example</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>

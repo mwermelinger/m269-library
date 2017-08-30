@@ -8,6 +8,9 @@ This matches the Python built-in functions:
 `items.sort()` sorts the list in-place, `sorted(items)` returns a new list.
 """
 
+from priority_queue import PriorityQueue  # needed for heapsort
+
+
 # Bubblesort
 # ----------
 # The key insight is to swap adjacent items that are in the wrong order,
@@ -175,6 +178,22 @@ def quick_sorted(items):
     # in the correct order.
     return left_sorted + [pivot] + right_sorted
 
+# Heapsort
+# --------
+# This algorithm transforms the list of items into a min binary heap
+# and then keeps taking the smallest item from the heap.
+
+
+def heap_sorted(items):
+    """Return a list of all items, in non-decreasing order."""
+    result = []
+    queue = PriorityQueue()
+    for item in items:
+        # Items are ordered by priority, so each item is its own priority.
+        queue.enqueue(item, item)
+    while not queue.is_empty():
+        result.append(queue.dequeue())
+    return result
 
 # Exercises
 # ---------

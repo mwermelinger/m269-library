@@ -2,7 +2,7 @@ all: doc/*.html clean
 
 doc/%.html: %.py
 # Fix any spacing issues
-	autopep8 --in-place $<
+	autopep8 --in-place --aggressive $<
 # Compile the file to check for syntax errors and run any tests
 	python $<					
 # Check the code with various tools
