@@ -9,7 +9,14 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>sort</strong></big></big></font></td
 ><td align=right valign=bottom
 ></td></tr></table>
-    <p><tt>Implementations&nbsp;of&nbsp;some&nbsp;sorting&nbsp;algorithms.</tt></p>
+    <p><tt>Implementations&nbsp;of&nbsp;some&nbsp;sorting&nbsp;algorithms.<br>
+&nbsp;<br>
+Each&nbsp;algorithm&nbsp;sorts&nbsp;a&nbsp;list&nbsp;of&nbsp;comparable&nbsp;items.<br>
+Functions&nbsp;ending&nbsp;in&nbsp;`_sort`&nbsp;change&nbsp;the&nbsp;list&nbsp;in&nbsp;place.<br>
+Functions&nbsp;ending&nbsp;in&nbsp;`_sorted`&nbsp;don't&nbsp;change&nbsp;the&nbsp;unsorted&nbsp;list,<br>
+and&nbsp;return&nbsp;a&nbsp;new&nbsp;list.<br>
+This&nbsp;matches&nbsp;the&nbsp;Python&nbsp;built-in&nbsp;functions:<br>
+`items.sort()`&nbsp;sorts&nbsp;the&nbsp;list&nbsp;in-place,&nbsp;`sorted(items)`&nbsp;returns&nbsp;a&nbsp;new&nbsp;list.</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#eeaa77">
@@ -17,15 +24,18 @@
 <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
     
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-bubble_sort"><strong>bubble_sort</strong></a>(items)</dt><dd><tt>Sort&nbsp;the&nbsp;list&nbsp;of&nbsp;items&nbsp;in&nbsp;place,&nbsp;in&nbsp;ascending&nbsp;order.</tt></dd></dl>
- <dl><dt><a name="-insertion_sort"><strong>insertion_sort</strong></a>(items)</dt><dd><tt>Sort&nbsp;the&nbsp;list&nbsp;of&nbsp;items&nbsp;in&nbsp;place,&nbsp;in&nbsp;ascending&nbsp;order.</tt></dd></dl>
- <dl><dt><a name="-merge_sort"><strong>merge_sort</strong></a>(unsorted)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;items&nbsp;in&nbsp;list&nbsp;unsorted,&nbsp;in&nbsp;ascending&nbsp;order.</tt></dd></dl>
- <dl><dt><a name="-quicksort"><strong>quicksort</strong></a>(unsorted)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;items&nbsp;in&nbsp;list&nbsp;unsorted,&nbsp;in&nbsp;ascending&nbsp;order.</tt></dd></dl>
- <dl><dt><a name="-selection_sort"><strong>selection_sort</strong></a>(items)</dt><dd><tt>Sort&nbsp;the&nbsp;list&nbsp;of&nbsp;items&nbsp;in&nbsp;place,&nbsp;in&nbsp;ascending&nbsp;order.</tt></dd></dl>
- <dl><dt><a name="-sort_tests"><strong>sort_tests</strong></a>()</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;unsorted-sorted&nbsp;pairs&nbsp;to&nbsp;test&nbsp;a&nbsp;sorting&nbsp;algorithm.</tt></dd></dl>
- <dl><dt><a name="-test_sort"><strong>test_sort</strong></a>(algorithm, unsorted, expected)</dt><dd><tt>Apply&nbsp;algorithm&nbsp;to&nbsp;unsorted.<br>
+<td width="100%"><dl><dt><a name="-bubble_sort"><strong>bubble_sort</strong></a>(items)</dt><dd><tt>Sort&nbsp;the&nbsp;list&nbsp;of&nbsp;items&nbsp;in&nbsp;place,&nbsp;in&nbsp;non-decreasing&nbsp;order.<br>
 &nbsp;<br>
-Print&nbsp;an&nbsp;error&nbsp;message&nbsp;if&nbsp;the&nbsp;result&nbsp;is&nbsp;not&nbsp;as&nbsp;expected,<br>
-otherwise&nbsp;do&nbsp;nothing.</tt></dd></dl>
+Use&nbsp;the&nbsp;bubble&nbsp;sort&nbsp;algorithm.</tt></dd></dl>
+ <dl><dt><a name="-insertion_sort"><strong>insertion_sort</strong></a>(items)</dt><dd><tt>Sort&nbsp;the&nbsp;list&nbsp;of&nbsp;items&nbsp;in&nbsp;place,&nbsp;in&nbsp;non-decreasing&nbsp;order.<br>
+&nbsp;<br>
+Use&nbsp;the&nbsp;insertion&nbsp;sort&nbsp;algorithm.</tt></dd></dl>
+ <dl><dt><a name="-merge_sorted"><strong>merge_sorted</strong></a>(items)</dt><dd><tt>Return&nbsp;a&nbsp;new&nbsp;list&nbsp;of&nbsp;all&nbsp;items,&nbsp;in&nbsp;non-decreasing&nbsp;order.<br>
+&nbsp;<br>
+Use&nbsp;the&nbsp;merge&nbsp;sort&nbsp;algorithm.</tt></dd></dl>
+ <dl><dt><a name="-quick_sorted"><strong>quick_sorted</strong></a>(items)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;items,&nbsp;in&nbsp;non-decreasing&nbsp;order.</tt></dd></dl>
+ <dl><dt><a name="-selection_sort"><strong>selection_sort</strong></a>(items)</dt><dd><tt>Sort&nbsp;the&nbsp;list&nbsp;of&nbsp;items&nbsp;in&nbsp;place,&nbsp;in&nbsp;non-decreasing&nbsp;order.<br>
+&nbsp;<br>
+Use&nbsp;the&nbsp;selection&nbsp;sort&nbsp;algorithm.</tt></dd></dl>
 </td></tr></table>
 </body></html>

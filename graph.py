@@ -68,6 +68,7 @@ class Graph(DirectedGraph):
                     the_edges.add((source, target))
         return the_edges
 
+    # The following was changed because it can't be inherited as-is.
     def topological_sort(self):
         """Return the empty list.
 
@@ -83,8 +84,8 @@ class Graph(DirectedGraph):
     # A tour is a path that starts and ends in the same node
     # and goes through all the other nodes.
     # The best tours (there may be several) have the lowest total weight.
-    # Weights usually represent distances or costs,
-    # so the best tours are the shortest or cheapest ones.
+    # Weights usually represent distances, times or costs,
+    # so the best tours are the shortest, fastest or cheapest ones.
 
     def best_tour(self):
         """Return a best tour of the graph.

@@ -1,45 +1,71 @@
-"""Implementations of some sorting algorithms."""
+"""Implementations of some sorting algorithms.
+
+Each algorithm sorts a list of comparable items.
+Functions ending in `_sort` change the list in place.
+Functions ending in `_sorted` don't change the unsorted list,
+and return a new list.
+This matches the Python built-in functions:
+`items.sort()` sorts the list in-place, `sorted(items)` returns a new list.
+"""
 
 # Bubblesort
 # ----------
 # The key insight is to swap adjacent items that are in the wrong order,
 # until no swaps are possible: at that point the items are sorted.
-# The following implementation uses a while-loop because
-# Python has no repeat-until loop.
+#
+# The algorithm divides a list of items into
+# a left part (initially all items) of still unsorted items,
+# and a right part (initially empty) of already sorted items.
+# In each iteration, the algorithm goes through the unsorted part and
+# swaps adjacent items that are in the wrong order.
+# This 'bubbles' the largest item up to the sorted part.
 
 
 def bubble_sort(items):
-    """Sort the list of items in place, in ascending order."""
-    swapped = True
-    # Keep going while at least one swap was done.
-    while swapped:
-        # Go through the whole list.
+    """Sort the list of items in place, in non-decreasing order.
+
+    Use the bubble sort algorithm.
+    """
+    # To sort n items at most n-1 iterations are needed.
+    for iteration in range(1, len(items)):
         swapped = False
-        for current in range(0, len(items) - 1):
+        # Each iteration shrinks the unsorted part by one.
+        # Go through the unsorted part.
+        for current in range(0, len(items) - iteration):
             # Swap current and next item if they're in the wrong order.
-            if items[current] > items[current + 1]:
-                temporary = items[current]
-                items[current] = items[current + 1]
-                items[current + 1] = temporary
+            this_item = items[current]
+            next_item = items[current + 1]
+            if this_item > next_item:
+                items[current] = next_item
+                items[current + 1] = this_item
                 swapped = True
+        # If no swaps were necessary, the items are sorted.
+        if not swapped:
+            return
 
 
 # Selection sort
 # --------------
-# The key insight is to see the list has having two parts,
-# those already sorted in the left part (initially empty)
-# and those still unsorted in the right part (initially the whole list).
-# In each pass, select the smallest item of the unsorted part
-# and put it at then end of the sorted part.
+# This algorithm divides the items the other way round:
+# a left part (initially empty) of already sorted items, and
+# a right part (initially all items) of still unsorted items.
+# In each iteration, it selects the smallest item in the unsorted part
+# and adds it to the end of the sorted part.
 
 
 def selection_sort(items):
-    """Sort the list of items in place, in ascending order."""
-    # The border between the sorted and unsorted part moves up in each pass.
+    """Sort the list of items in place, in non-decreasing order.
+
+    Use the selection sort algorithm.
+    """
+    # Initially the sorted part is empty.
+    # So, the border between the sorted and unsorted parts
+    # starts at 0. In each iteration, the border goes up,
+    # as the sorted part grows and the unsorted one shrinks.
     for border in range(0, len(items) - 1):
         # Find the position of the smallest item from the border onwards.
         minimum = border
-        for current in range(border, len(items)):
+        for current in range(border + 1, len(items)):
             if items[current] < items[minimum]:
                 minimum = current
         # Swap that item with the one at the border.
@@ -50,15 +76,21 @@ def selection_sort(items):
 
 # Insertion sort
 # --------------
-# Like selection sort, the list has a sorted part that grows
-# and an unsorted part that shrinks in each pass.
-# In each pass, the next unsorted item is inserted into its correct
+# Like selection sort, the list has a left sorted part that grows
+# and a right unsorted part that shrinks.
+# In each iteration, the next unsorted item is inserted into its correct
 # position in the sorted part.
 
 
 def insertion_sort(items):
-    """Sort the list of items in place, in ascending order."""
-    # The sorted part starts with the item that is in the first position.
+    """Sort the list of items in place, in non-decreasing order.
+
+    Use the insertion sort algorithm.
+    """
+    # Initially the sorted sublist has the first item (in position 0).
+    # So, the border between the sorted and unsorted sublists
+    # starts at 1. In each iteration, the border goes up,
+    # as the sorted part grows and the unsorted one shrinks.
     for border in range(1, len(items)):
         # The item at the border is the next item to sort.
         to_sort = items[border]
@@ -72,6 +104,7 @@ def insertion_sort(items):
         # Put the item to sort at the found position.
         items[position] = to_sort
 
+
 # Merge sort
 # ----------
 # The key insight is to split the unsorted list in two halves, sort each one,
@@ -79,23 +112,26 @@ def insertion_sort(items):
 # item of both halves.
 
 
-def merge_sort(unsorted):
-    """Return a list of all items in list unsorted, in ascending order."""
+def merge_sorted(items):
+    """Return a new list of all items, in non-decreasing order.
+
+    Use the merge sort algorithm.
+    """
     # Base cases: lists with zero or one items are already sorted.
-    if len(unsorted) < 2:
-        return unsorted
+    if len(items) < 2:
+        return items[:]  # return a copy to keep the original untouched
     # Reduction step: split the list in two halves
-    middle = len(unsorted) // 2
-    left_unsorted = unsorted[:middle]
-    right_unsorted = unsorted[middle:]
+    middle = len(items) // 2
+    left_unsorted = items[:middle]
+    right_unsorted = items[middle:]
     # Recursive step: sort each half.
-    left_sorted = merge_sort(left_unsorted)
-    right_sorted = merge_sort(right_unsorted)
+    left_sorted = merge_sorted(left_unsorted)
+    right_sorted = merge_sorted(right_unsorted)
     # Inductive step: merge the sorted halves.
     merged = []
     # While neither half is empty, move the smallest item
     # from its half to the merged list.
-    while left_sorted != [] and right_sorted != []:
+    while left_sorted and right_sorted:
         if left_sorted[0] <= right_sorted[0]:
             merged.append(left_sorted[0])
             left_sorted = left_sorted[1:]
@@ -116,85 +152,28 @@ def merge_sort(unsorted):
 # that are smaller or equal than the item and those that are larger.
 
 
-def quicksort(unsorted):
-    """Return a list of all items in list unsorted, in ascending order."""
+def quick_sorted(items):
+    """Return a list of all items, in non-decreasing order."""
     # Base case: the empty list is already sorted.
-    if unsorted == []:
-        return unsorted
+    if items == []:
+        return []
     # Reduction step: take the first item (call it the pivot)
     # and put the remaining items in two partitions,
     # those smaller or equal than the pivot, and those greater.
-    pivot = unsorted[0]
+    pivot = items[0]
     left_unsorted = []
     right_unsorted = []
-    for item in unsorted[1:]:
-        if item <= pivot:
-            left_unsorted.append(item)
+    for index in range(1, len(items)):
+        if items[index] <= pivot:
+            left_unsorted.append(items[index])
         else:
-            right_unsorted.append(item)
+            right_unsorted.append(items[index])
     # Recursive step: sort each of the partitions.
-    left_sorted = quicksort(left_unsorted)
-    right_sorted = quicksort(right_unsorted)
+    left_sorted = quick_sorted(left_unsorted)
+    right_sorted = quick_sorted(right_unsorted)
     # Inductive step: put the sorted partitions and the pivot
     # in the correct order.
     return left_sorted + [pivot] + right_sorted
-
-# Tests
-# -----
-# A test is a pair made of an input and the corresponding expected output.
-# Running a test is checking whether the actual and expected outputs match.
-# All sorting algorithms do the same, so a single set of tests can be used.
-
-
-def sort_tests():
-    """Return a list of unsorted-sorted pairs to test a sorting algorithm."""
-    return [
-        # Test the base cases.
-        [[], []],
-        [[5], [5]],
-        # Test an already sorted list.
-        [[0, 1, 2, 3], [0, 1, 2, 3]],
-        # Test a reversed list.
-        [[3, 2, 1, 0], [0, 1, 2, 3]],
-        # Test a list with duplicates.
-        [[1, 2, 0, 2, 0], [0, 0, 1, 2, 2]],
-        # Test a list with another type of items.
-        [["hi", "Bob"], ["Bob", "hi"]]
-    ]
-
-
-def test_sort(algorithm, unsorted, expected):
-    """Apply algorithm to unsorted.
-
-    Print an error message if the result is not as expected,
-    otherwise do nothing.
-    """
-    if algorithm == quicksort or algorithm == merge_sort:
-        result = algorithm(unsorted)
-    else:
-        # Make a copy of the input before sorting it in-place.
-        result = unsorted[:]
-        algorithm(result)
-    if result != expected:
-        if algorithm == bubble_sort:
-            name = "Bubble sort"
-        elif algorithm == selection_sort:
-            name = "Selection sort"
-        elif algorithm == insertion_sort:
-            name = "Insertion sort"
-        elif algorithm == merge_sort:
-            name = "Merge sort"
-        elif algorithm == quicksort:
-            name = "Quicksort"
-        print(name, "of", unsorted, "is", result, "instead of", expected)
-
-
-# Run tests if this file is executed, instead of imported.
-if __name__ == "__main__":
-    for sort in [bubble_sort, selection_sort, insertion_sort,
-                 merge_sort, quicksort]:
-        for test in sort_tests():
-            test_sort(sort, unsorted=test[0], expected=test[1])
 
 
 # Exercises
