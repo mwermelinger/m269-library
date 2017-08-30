@@ -139,6 +139,8 @@
 
 <span class="n">test</span><span class="p">(</span><span class="s">&#39;distance u to w&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">weighted_distance</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">),</span> <span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 <span class="n">test</span><span class="p">(</span><span class="s">&#39;path u to w&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">),</span> <span class="p">[[</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">]])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;MST from u:&#39;</span><span class="p">)</span>
+<span class="n">print_graph</span><span class="p">(</span><span class="n">example</span><span class="o">.</span><span class="n">minimum_spanning_tree</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">))</span>
 
 <span class="n">example</span><span class="o">.</span><span class="n">remove_node</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;Removed node v&#39;</span><span class="p">)</span>
@@ -147,6 +149,8 @@
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;DFS from z:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_dfs</span><span class="p">(</span><span class="s">&#39;z&#39;</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;BFS from u:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_bfs</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;BFS from z:&#39;</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">visited_bfs</span><span class="p">(</span><span class="s">&#39;z&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;MST from u:&#39;</span><span class="p">)</span>
+<span class="n">print_graph</span><span class="p">(</span><span class="n">example</span><span class="o">.</span><span class="n">minimum_spanning_tree</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">))</span>
 
 <span class="n">example</span><span class="o">.</span><span class="n">remove_node</span><span class="p">(</span><span class="s">&#39;w&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;Removed node w&#39;</span><span class="p">)</span>
@@ -203,6 +207,8 @@
 <span class="n">test_shortest</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="s">&#39;Bridlington&#39;</span><span class="p">,</span> <span class="s">&#39;Penzance&#39;</span><span class="p">)</span>
 <span class="n">test_shortest</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="s">&#39;Bridlington&#39;</span><span class="p">,</span> <span class="s">&#39;Penance&#39;</span><span class="p">)</span>
 <span class="n">test_shortest</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="s">&#39;Wick&#39;</span><span class="p">,</span> <span class="s">&#39;Wick&#39;</span><span class="p">)</span>
+
+<span class="n">print_graph</span><span class="p">(</span><span class="n">cities</span><span class="o">.</span><span class="n">minimum_spanning_tree</span><span class="p">(</span><span class="s">&#39;Luton&#39;</span><span class="p">))</span>
 
 </pre></div>
     </div>

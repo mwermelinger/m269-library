@@ -55,6 +55,8 @@ print('from u to z:', example.unweighted_distance('u', 'z'), 'hops')
 
 test('distance u to w', example.weighted_distance('u', 'w'), [3])
 test('path u to w', example.shortest_path('u', 'w'), [['u', 'x', 'y', 'w']])
+print('MST from u:')
+print_graph(example.minimum_spanning_tree('u'))
 
 example.remove_node('v')
 print('Removed node v')
@@ -63,6 +65,8 @@ print('DFS from u:', example.visited_dfs('u'))
 print('DFS from z:', example.visited_dfs('z'))
 print('BFS from u:', example.visited_bfs('u'))
 print('BFS from z:', example.visited_bfs('z'))
+print('MST from u:')
+print_graph(example.minimum_spanning_tree('u'))
 
 example.remove_node('w')
 print('Removed node w')
@@ -111,3 +115,5 @@ test_shortest(cities, 'Wick', 'Luton')
 test_shortest(cities, 'Bridlington', 'Penzance')
 test_shortest(cities, 'Bridlington', 'Penance')
 test_shortest(cities, 'Wick', 'Wick')
+
+print_graph(cities.minimum_spanning_tree('Luton'))

@@ -59,7 +59,7 @@ test('from fox to grass', food_web.unweighted_distance('fox', 'grass'),
 
 # Recipe
 # ------
-# Graph from Section 7.20 of Miller and Ranum's
+# Graph from Section 7.17 of Miller and Ranum's
 # [book](http://interactivepython.org/runestone/static/pythonds/index.html)
 # _Problem Solving with Algorithms and Data Structures using Python_
 

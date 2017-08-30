@@ -3,6 +3,7 @@
 from itertools import permutations  # needed for best_tour
 
 from digraph import DirectedGraph
+from priority_queue import PriorityQueue  # for Prim's algorithm
 
 
 class Graph(DirectedGraph):
@@ -75,6 +76,53 @@ class Graph(DirectedGraph):
         Undirected graphs don't have a topological sort.
         """
         return []
+
+    # Prim's algorithm
+    # ----------------
+    # A greedy algorithm very similar to Dijkstra's.
+
+    def minimum_spanning_tree(self, start):
+        """Compute a spanning tree of minimal total weight rooted at start.
+
+        Return a digraph.
+        Assume the input graph has the start node and is connected.
+        """
+        assert self.has_node(start)
+        infinity = float('infinity')
+        # Keep the nodes ordered by distance from the closest node in the tree.
+        to_visit = PriorityQueue()
+        # Initially there is no tree, so all nodes are unreachable.
+        tree = DirectedGraph()
+        for node in self.nodes():
+            self._nodes[node]['distance'] = infinity
+            self._nodes[node]['from'] = None
+            to_visit.enqueue(node, infinity)
+        # Correct the distance of the start node.
+        self._nodes[start]['distance'] = 0
+        to_visit.set_priority(start, 0)
+        while not to_visit.is_empty():
+            # Visit the next node and add it to the tree.
+            # If it's not the start node,
+            # connect it to the tree node it's closest to.
+            node = to_visit.dequeue()
+            if node != start:
+                source = self._nodes[node]['from']
+                weight = self._edges[source][node]
+                tree.add_edge(source, node, weight)
+            else:
+                tree.add_node(start)
+            # For each neighbour that is not yet in the tree,
+            for neighbour in self.neighbours(node):
+                if not tree.has_node(neighbour):
+                    neighbour_distance = self._nodes[neighbour]['distance']
+                    edge_distance = self._edges[node][neighbour]
+                    # if it's closer to this node than to other tree nodes,
+                    if edge_distance < neighbour_distance:
+                        # update its distance and edge.
+                        self._nodes[neighbour]['distance'] = edge_distance
+                        self._nodes[neighbour]['from'] = node
+                        to_visit.set_priority(neighbour, edge_distance)
+        return tree
 
     # The Travelling Salesman Problem
     # -------------------------------

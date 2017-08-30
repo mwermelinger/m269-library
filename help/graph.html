@@ -65,6 +65,11 @@ Use&nbsp;a&nbsp;brute-force&nbsp;algorithm&nbsp;(only&nbsp;works&nbsp;for&nbsp;v
 &nbsp;<br>
 Return&nbsp;False&nbsp;if&nbsp;the&nbsp;edge&nbsp;or&nbsp;either&nbsp;node&nbsp;don't&nbsp;exist,&nbsp;otherwise&nbsp;True.</tt></dd></dl>
 
+<dl><dt><a name="Graph-minimum_spanning_tree"><strong>minimum_spanning_tree</strong></a>(self, start)</dt><dd><tt>Compute&nbsp;a&nbsp;spanning&nbsp;tree&nbsp;of&nbsp;minimal&nbsp;total&nbsp;weight&nbsp;rooted&nbsp;at&nbsp;start.<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;digraph.<br>
+Assume&nbsp;the&nbsp;input&nbsp;graph&nbsp;has&nbsp;the&nbsp;start&nbsp;node&nbsp;and&nbsp;is&nbsp;connected.</tt></dd></dl>
+
 <dl><dt><a name="Graph-remove_edge"><strong>remove_edge</strong></a>(self, node1, node2)</dt><dd><tt>Remove&nbsp;the&nbsp;edge&nbsp;between&nbsp;the&nbsp;nodes&nbsp;from&nbsp;the&nbsp;graph.<br>
 &nbsp;<br>
 Do&nbsp;nothing&nbsp;if&nbsp;the&nbsp;edge&nbsp;doesn't&nbsp;exist.</tt></dd></dl>
@@ -106,6 +111,13 @@ Assume&nbsp;the&nbsp;graph&nbsp;has&nbsp;the&nbsp;node.</tt></dd></dl>
 &nbsp;<br>
 Do&nbsp;nothing&nbsp;if&nbsp;the&nbsp;node&nbsp;doesn't&nbsp;exist.</tt></dd></dl>
 
+<dl><dt><a name="Graph-shortest_path"><strong>shortest_path</strong></a>(self, start, end)</dt><dd><tt>Compute&nbsp;a&nbsp;shortest&nbsp;path&nbsp;from&nbsp;the&nbsp;start&nbsp;to&nbsp;the&nbsp;end&nbsp;node.<br>
+&nbsp;<br>
+A&nbsp;shortest&nbsp;path&nbsp;is&nbsp;a&nbsp;path&nbsp;of&nbsp;minimal&nbsp;total&nbsp;weight.<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;nodes&nbsp;forming&nbsp;a&nbsp;path&nbsp;from&nbsp;start&nbsp;to&nbsp;end.<br>
+Return&nbsp;the&nbsp;empty&nbsp;list&nbsp;if&nbsp;there&nbsp;is&nbsp;no&nbsp;path.<br>
+Assume&nbsp;the&nbsp;graph&nbsp;has&nbsp;the&nbsp;start&nbsp;node.</tt></dd></dl>
+
 <dl><dt><a name="Graph-unweighted_distance"><strong>unweighted_distance</strong></a>(self, start, end)</dt><dd><tt>Return&nbsp;the&nbsp;smallest&nbsp;number&nbsp;of&nbsp;edges&nbsp;to&nbsp;go&nbsp;from&nbsp;`start`&nbsp;to&nbsp;`end`.<br>
 &nbsp;<br>
 Return&nbsp;infinity&nbsp;if&nbsp;there&nbsp;is&nbsp;no&nbsp;path&nbsp;from&nbsp;`start`&nbsp;to&nbsp;`end`.<br>
@@ -123,9 +135,15 @@ Assume&nbsp;the&nbsp;start&nbsp;node&nbsp;exists.</tt></dd></dl>
 
 <dl><dt><a name="Graph-weight"><strong>weight</strong></a>(self, path)</dt><dd><tt>Return&nbsp;the&nbsp;total&nbsp;weight&nbsp;of&nbsp;the&nbsp;path.<br>
 &nbsp;<br>
-A&nbsp;path&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;at&nbsp;least&nbsp;two&nbsp;nodes&nbsp;of&nbsp;the&nbsp;graph&nbsp;[n1,&nbsp;n2,&nbsp;...]<br>
+A&nbsp;path&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;nodes&nbsp;of&nbsp;the&nbsp;graph&nbsp;[n1,&nbsp;n2,&nbsp;...]<br>
 such&nbsp;that&nbsp;n1-n2,&nbsp;n2-n3,&nbsp;etc.&nbsp;are&nbsp;edges&nbsp;in&nbsp;the&nbsp;graph.<br>
-Assume&nbsp;the&nbsp;path&nbsp;is&nbsp;valid.</tt></dd></dl>
+Return&nbsp;0&nbsp;if&nbsp;the&nbsp;path&nbsp;has&nbsp;a&nbsp;single&nbsp;node.<br>
+Return&nbsp;infinity&nbsp;if&nbsp;the&nbsp;path&nbsp;is&nbsp;empty&nbsp;or&nbsp;invalid.</tt></dd></dl>
+
+<dl><dt><a name="Graph-weighted_distance"><strong>weighted_distance</strong></a>(self, start, end)</dt><dd><tt>Return&nbsp;the&nbsp;minimal&nbsp;total&nbsp;weight&nbsp;to&nbsp;go&nbsp;from&nbsp;start&nbsp;to&nbsp;end.<br>
+&nbsp;<br>
+Return&nbsp;infinity&nbsp;if&nbsp;there&nbsp;is&nbsp;no&nbsp;path.<br>
+Assume&nbsp;the&nbsp;graph&nbsp;has&nbsp;start&nbsp;node.</tt></dd></dl>
 
 <hr>
 Data descriptors inherited from <a href="digraph.html#DirectedGraph">digraph.DirectedGraph</a>:<br>

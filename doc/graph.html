@@ -22,7 +22,8 @@
     <div class='code'>
       <div class="highlight"><pre><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>  <span class="c"># needed for best_tour</span>
 
-<span class="kn">from</span> <span class="nn">digraph</span> <span class="kn">import</span> <span class="n">DirectedGraph</span></pre></div>
+<span class="kn">from</span> <span class="nn">digraph</span> <span class="kn">import</span> <span class="n">DirectedGraph</span>
+<span class="kn">from</span> <span class="nn">priority_queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>  <span class="c"># for Prim&#39;s algorithm</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -215,6 +216,149 @@ Return the empty list.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-14'>#</a>
       </div>
+      <h2>Prim's algorithm</h2>
+<p>A greedy algorithm very similar to Dijkstra's.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      <p>Compute a spanning tree of minimal total weight rooted at start.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">minimum_spanning_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      <p>Return a digraph.
+Assume the input graph has the start node and is connected.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="n">infinity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-17'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-17'>#</a>
+      </div>
+      <p>Keep the nodes ordered by distance from the closest node in the tree.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">to_visit</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-18'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-18'>#</a>
+      </div>
+      <p>Initially there is no tree, so all nodes are unreachable.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">tree</span> <span class="o">=</span> <span class="n">DirectedGraph</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">infinity</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-19'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-19'>#</a>
+      </div>
+      <p>Correct the distance of the start node.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">to_visit</span><span class="o">.</span><span class="n">set_priority</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-20'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-20'>#</a>
+      </div>
+      <p>Visit the next node and add it to the tree.
+If it's not the start node,
+connect it to the tree node it's closest to.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="n">node</span> <span class="o">=</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">node</span> <span class="o">!=</span> <span class="n">start</span><span class="p">:</span>
+                <span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span>
+                <span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source</span><span class="p">][</span><span class="n">node</span><span class="p">]</span>
+                <span class="n">tree</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tree</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">start</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-21'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-21'>#</a>
+      </div>
+      <p>For each neighbour that is not yet in the tree,</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="k">for</span> <span class="n">neighbour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbours</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">tree</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">neighbour</span><span class="p">):</span>
+                    <span class="n">neighbour_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span>
+                    <span class="n">edge_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">neighbour</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-22'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-22'>#</a>
+      </div>
+      <p>if it's closer to this node than to other tree nodes,</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>                    <span class="k">if</span> <span class="n">edge_distance</span> <span class="o">&lt;</span> <span class="n">neighbour_distance</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-23'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-23'>#</a>
+      </div>
+      <p>update its distance and edge.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>                        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_distance</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+                        <span class="n">to_visit</span><span class="o">.</span><span class="n">set_priority</span><span class="p">(</span><span class="n">neighbour</span><span class="p">,</span> <span class="n">edge_distance</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tree</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-24'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-24'>#</a>
+      </div>
       <h2>The Travelling Salesman Problem</h2>
 <p>The problem consists in finding a best tour in
 a complete weighted undirected graph.
@@ -230,10 +374,10 @@ so the best tours are the shortest, fastest or cheapest ones.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-15'>
+  <div class='section' id='section-25'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-15'>#</a>
+        <a class='octothorpe' href='#section-25'>#</a>
       </div>
       <p>Return a best tour of the graph.</p>
     </div>
@@ -242,10 +386,10 @@ so the best tours are the shortest, fastest or cheapest ones.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-16'>
+  <div class='section' id='section-26'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-16'>#</a>
+        <a class='octothorpe' href='#section-26'>#</a>
       </div>
       <p>Assume the graph is complete.
 A tour is a list with all the graph's nodes, in the order visited,
@@ -261,10 +405,10 @@ Mark that no tour has been found yet.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-17'>
+  <div class='section' id='section-27'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-17'>#</a>
+        <a class='octothorpe' href='#section-27'>#</a>
       </div>
       <p>Go through all possible orderings of the nodes.</p>
     </div>
@@ -273,10 +417,10 @@ Mark that no tour has been found yet.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-18'>
+  <div class='section' id='section-28'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-18'>#</a>
+        <a class='octothorpe' href='#section-28'>#</a>
       </div>
       <p>A tour is a permutation with the start node at the end.
 First convert the permutation from a tuple to a list.</p>
@@ -287,10 +431,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-19'>
+  <div class='section' id='section-29'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-19'>#</a>
+        <a class='octothorpe' href='#section-29'>#</a>
       </div>
       <p>Compute the tour's weight. Update the best found, if the case.</p>
     </div>
@@ -303,10 +447,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-20'>
+  <div class='section' id='section-30'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-20'>#</a>
+        <a class='octothorpe' href='#section-30'>#</a>
       </div>
       <h2>Modifiers</h2>
 <p><code>add_node</code> and <code>remove_node</code> inherited from <code>Digraph</code>.</p>
@@ -316,10 +460,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-21'>
+  <div class='section' id='section-31'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-21'>#</a>
+        <a class='octothorpe' href='#section-31'>#</a>
       </div>
       <p>Add an edge between the two nodes with the given weight.</p>
     </div>
@@ -328,10 +472,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-22'>
+  <div class='section' id='section-32'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-22'>#</a>
+        <a class='octothorpe' href='#section-32'>#</a>
       </div>
       <p>Replace the weight value if the edge already exists.
 Assume the nodes are of a hashable type and different.
@@ -347,10 +491,10 @@ Assume the weight is a positive number.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-23'>
+  <div class='section' id='section-33'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-23'>#</a>
+        <a class='octothorpe' href='#section-33'>#</a>
       </div>
       <p>Remove the edge between the nodes from the graph.</p>
     </div>
@@ -359,10 +503,10 @@ Assume the weight is a positive number.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-24'>
+  <div class='section' id='section-34'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-24'>#</a>
+        <a class='octothorpe' href='#section-34'>#</a>
       </div>
       <p>Do nothing if the edge doesn't exist.</p>
     </div>
@@ -373,10 +517,10 @@ Assume the weight is a positive number.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-25'>
+  <div class='section' id='section-35'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-25'>#</a>
+        <a class='octothorpe' href='#section-35'>#</a>
       </div>
       <h2>Exercises</h2>
 <ul>
