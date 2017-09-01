@@ -13,7 +13,7 @@ disable = import-error
 
 # Good variable names which should always be accepted, separated by a comma.
 # redefined because pylint by default accepts i, j, k, and others
-good-names =
+good-names = n, x, y, z
 
 # Regular expression matching correct constant names.
 # redefined because pylint thinks all global variables must be constants

@@ -1,6 +1,6 @@
-"""Implementations of some sorting algorithms.
+"""Implementations of some algorithms related to sorting.
 
-Each algorithm sorts a list of comparable items.
+Each algorithm assumes a list of comparable items.
 Functions ending in `_sort` change the list in place.
 Functions ending in `_sorted` don't change the unsorted list,
 and return a new sorted list.
@@ -195,9 +195,52 @@ def heap_sorted(items):
         result.append(queue.dequeue())
     return result
 
+# Quickselect
+# -----------
+
+
+def nth_smallest(items, n):
+    """Return the n-th smallest of the items.
+
+    For example, return the minimum if n is 1
+    and the maximum if n is len(items).
+    Don't change the order of the items.
+    Assume n is an integer from 1 to len(items).
+    """
+    assert 1 <= n <= len(items)
+    # Reduction step: take the first item (call it the pivot)
+    # and put the remaining items in two partitions,
+    # those smaller or equal than the pivot, and those greater.
+    pivot = items[0]
+    left_unsorted = []
+    right_unsorted = []
+    for index in range(1, len(items)):
+        item = items[index]
+        if item <= pivot:
+            left_unsorted.append(item)
+        else:
+            right_unsorted.append(item)
+    smaller_equal = len(left_unsorted)
+    # Base case: the pivot is the n-th smallest number
+    # if there are exactly n-1 items smaller or equal than the pivot.
+    if smaller_equal == n - 1:
+        return pivot
+    # Recursive step:
+    # If there are n or more items smaller or equal than the pivot,
+    # the n-th smallest must be among them.
+    if smaller_equal >= n:
+        return nth_smallest(left_unsorted, n)
+    # Recursive step:
+    # Otherwise it's among the numbers larger than the pivot.
+    # Discount the numbers up to and including the pivot.
+    return nth_smallest(right_unsorted, n - (smaller_equal + 1))
+    # Inductive step: none.
+
 # Exercises
 # ---------
 # - Why must a list of length 1 also be a base case for merge sort?
 # - In quicksort, could the items equal to the pivot be added
 #   to the right instead of the left partition?
 # - What needs to change in each function to sort in descending order?
+# - Why doesn't the quickselect algorithm check for the typical base cases
+#   (list with 0 or 1 item)?

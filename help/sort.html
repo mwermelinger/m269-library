@@ -9,9 +9,9 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="lib.html"><font color="#ffffff">lib</font></a>.sort</strong></big></big></font></td
 ><td align=right valign=bottom
 ></td></tr></table>
-    <p><tt>Implementations&nbsp;of&nbsp;some&nbsp;sorting&nbsp;algorithms.<br>
+    <p><tt>Implementations&nbsp;of&nbsp;some&nbsp;algorithms&nbsp;related&nbsp;to&nbsp;sorting.<br>
 &nbsp;<br>
-Each&nbsp;algorithm&nbsp;sorts&nbsp;a&nbsp;list&nbsp;of&nbsp;comparable&nbsp;items.<br>
+Each&nbsp;algorithm&nbsp;assumes&nbsp;a&nbsp;list&nbsp;of&nbsp;comparable&nbsp;items.<br>
 Functions&nbsp;ending&nbsp;in&nbsp;`_sort`&nbsp;change&nbsp;the&nbsp;list&nbsp;in&nbsp;place.<br>
 Functions&nbsp;ending&nbsp;in&nbsp;`_sorted`&nbsp;don't&nbsp;change&nbsp;the&nbsp;unsorted&nbsp;list,<br>
 and&nbsp;return&nbsp;a&nbsp;new&nbsp;sorted&nbsp;list.<br>
@@ -34,6 +34,12 @@ Use&nbsp;the&nbsp;insertion&nbsp;sort&nbsp;algorithm.</tt></dd></dl>
  <dl><dt><a name="-merge_sorted"><strong>merge_sorted</strong></a>(items)</dt><dd><tt>Return&nbsp;a&nbsp;new&nbsp;list&nbsp;of&nbsp;all&nbsp;items,&nbsp;in&nbsp;non-decreasing&nbsp;order.<br>
 &nbsp;<br>
 Use&nbsp;the&nbsp;merge&nbsp;sort&nbsp;algorithm.</tt></dd></dl>
+ <dl><dt><a name="-nth_smallest"><strong>nth_smallest</strong></a>(items, n)</dt><dd><tt>Return&nbsp;the&nbsp;n-th&nbsp;smallest&nbsp;of&nbsp;the&nbsp;items.<br>
+&nbsp;<br>
+For&nbsp;example,&nbsp;return&nbsp;the&nbsp;minimum&nbsp;if&nbsp;n&nbsp;is&nbsp;1<br>
+and&nbsp;the&nbsp;maximum&nbsp;if&nbsp;n&nbsp;is&nbsp;len(items).<br>
+Don't&nbsp;change&nbsp;the&nbsp;order&nbsp;of&nbsp;the&nbsp;items.<br>
+Assume&nbsp;n&nbsp;is&nbsp;an&nbsp;integer&nbsp;from&nbsp;1&nbsp;to&nbsp;len(items).</tt></dd></dl>
  <dl><dt><a name="-quick_sorted"><strong>quick_sorted</strong></a>(items)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;items,&nbsp;in&nbsp;non-decreasing&nbsp;order.</tt></dd></dl>
  <dl><dt><a name="-selection_sort"><strong>selection_sort</strong></a>(items)</dt><dd><tt>Sort&nbsp;the&nbsp;list&nbsp;of&nbsp;items&nbsp;in&nbsp;place,&nbsp;in&nbsp;non-decreasing&nbsp;order.<br>
 &nbsp;<br>

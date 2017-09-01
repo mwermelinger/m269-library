@@ -17,8 +17,8 @@
       <div class='octowrap'>
         <a class='octothorpe' href='#section-0'>#</a>
       </div>
-      <p>Implementations of some sorting algorithms.</p>
-<p>Each algorithm sorts a list of comparable items.
+      <p>Implementations of some algorithms related to sorting.</p>
+<p>Each algorithm assumes a list of comparable items.
 Functions ending in <code>_sort</code> change the list in place.
 Functions ending in <code>_sorted</code> don't change the unsorted list,
 and return a new sorted list.
@@ -549,12 +549,131 @@ and then keeps taking the smallest item from the heap.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-37'>#</a>
       </div>
+      <h2>Quickselect</h2>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-38'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-38'>#</a>
+      </div>
+      <p>Return the n-th smallest of the items.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">nth_smallest</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-39'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-39'>#</a>
+      </div>
+      <p>For example, return the minimum if n is 1
+and the maximum if n is len(items).
+Don't change the order of the items.
+Assume n is an integer from 1 to len(items).</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">assert</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-40'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-40'>#</a>
+      </div>
+      <p>Reduction step: take the first item (call it the pivot)
+and put the remaining items in two partitions,
+those smaller or equal than the pivot, and those greater.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">pivot</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">left_unsorted</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">right_unsorted</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">&lt;=</span> <span class="n">pivot</span><span class="p">:</span>
+            <span class="n">left_unsorted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right_unsorted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">smaller_equal</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">left_unsorted</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-41'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-41'>#</a>
+      </div>
+      <p>Base case: the pivot is the n-th smallest number
+if there are exactly n-1 items smaller or equal than the pivot.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">smaller_equal</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pivot</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-42'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-42'>#</a>
+      </div>
+      <p>Recursive step:
+If there are n or more items smaller or equal than the pivot,
+the n-th smallest must be among them.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">smaller_equal</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">nth_smallest</span><span class="p">(</span><span class="n">left_unsorted</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-43'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-43'>#</a>
+      </div>
+      <p>Recursive step:
+Otherwise it's among the numbers larger than the pivot.
+Discount the numbers up to and including the pivot.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">nth_smallest</span><span class="p">(</span><span class="n">right_unsorted</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="p">(</span><span class="n">smaller_equal</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-44'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-44'>#</a>
+      </div>
+      <p>Inductive step: none.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-45'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-45'>#</a>
+      </div>
       <h2>Exercises</h2>
 <ul>
 <li>Why must a list of length 1 also be a base case for merge sort?</li>
 <li>In quicksort, could the items equal to the pivot be added
   to the right instead of the left partition?</li>
 <li>What needs to change in each function to sort in descending order?</li>
+<li>Why doesn't the quickselect algorithm check for the typical base cases
+  (list with 0 or 1 item)?</li>
 </ul>
     </div>
     <div class='code'>

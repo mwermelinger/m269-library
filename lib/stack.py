@@ -31,20 +31,22 @@ class Stack:
 
         Assume the stack is not empty.
         """
+        assert not self.is_empty()
         return self._items[-1]
 
     # Modifiers
     # ---------
 
-    def push(self, the_item):
-        """Add the_item to the top of the stack. Return nothing."""
-        self._items.append(the_item)
+    def push(self, item):
+        """Add the item to the top of the stack. Return nothing."""
+        self._items.append(item)
 
     def pop(self):
         """Remove and return the item on top of the stack.
 
         Assume the stack is not empty.
         """
+        assert not self.is_empty()
         return self._items.pop()
 
 
