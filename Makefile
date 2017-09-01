@@ -1,10 +1,18 @@
+.SILENT:
+	
 all: doc/*.html clean
 
+usage:
+	echo "make clean	remove unnecessary files"
+	echo "make test		run all unit tests in ./tests"
+	echo "make new		process new source files in ./lib"
+	echo "make -n		show what commands would be executed"
+		
 doc/%.html: lib/%.py
 # Check for syntax errors. Compile as module to add this directory to path.
 	python -m lib.$*
-# Run the corresponding tests.
-	python -m tests.$*
+# Run the corresponding tests if they exist.
+	if [ -f tests/$*.py ]; then python -m tests.$*; fi
 # Fix any spacing issues.
 	autopep8 --in-place --aggressive $<
 # Check the code.
@@ -19,10 +27,14 @@ doc/%.html: lib/%.py
 	mv lib.$*.html help/$*.html
 # Generate the side-by-side view of code and comments.
 	pycco -d doc $< 				
-	
-rebuild: 
+
+test:
+# Discover and run all unit tests in the tests folder.
+# Unclear why the tests package has to be specified explicitly.
+	python -m unittest discover tests
+
+new:
 	for f in lib/*py; do make doc/`basename $$f .py`.html; done
-	
+		
 clean:
 	rm -r lib/__pycache__ tests/__pycache__
-

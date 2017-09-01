@@ -1,1 +1,0 @@
-# PriorityQueue is used in sort and digraph. No extra tests.

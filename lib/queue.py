@@ -45,14 +45,17 @@ class Queue:
         """Return True if the queue is empty, otherwise False."""
         return self._first is None
 
-    def size(self):
-        """Return the number of items in the queue."""
-        items = 0
+    def __len__(self):
+        """Implement the `len` function for queues.
+
+        Return the number of items in the queue.
+        """
+        length = 0
         node = self._first
         while node is not None:
-            items = items + 1
+            length = length + 1
             node = node[_NEXT]
-        return items
+        return length
 
     def front(self):
         """Return the item at the front of the queue.
@@ -62,12 +65,22 @@ class Queue:
         assert not self.is_empty()
         return self._first[_ITEM]
 
+    def __contains__(self, item):
+        """Implement the `in` operator for queues.
+
+        Return True if the queue has the item, otherwise False.
+        """
+        node = self._first
+        while node is not None and node[_ITEM] != item:
+            node = node[_NEXT]
+        return node is not None
+
     # Modifiers
     # ---------
 
-    def enqueue(self, the_item):
-        """Add the_item to the back of the queue. Return nothing."""
-        node = [the_item, None]
+    def enqueue(self, item):
+        """Add item to the back of the queue. Return nothing."""
+        node = [item, None]
         if self.is_empty():
             self._first = node
             self._last = node
@@ -86,3 +99,6 @@ class Queue:
         if self._first is None:
             self._last = None
         return item
+
+# - Why is there a method `is_empty`? Client code could easily just call
+#   `len(items) == 0` instead.
