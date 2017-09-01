@@ -22,8 +22,8 @@
     <div class='code'>
       <div class="highlight"><pre><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>  <span class="c"># needed for best_tour</span>
 
-<span class="kn">from</span> <span class="nn">digraph</span> <span class="kn">import</span> <span class="n">DirectedGraph</span>
-<span class="kn">from</span> <span class="nn">priority_queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>  <span class="c"># for Prim&#39;s algorithm</span></pre></div>
+<span class="kn">from</span> <span class="nn">.digraph</span> <span class="kn">import</span> <span class="n">DirectedGraph</span>
+<span class="kn">from</span> <span class="nn">.priority_queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>  <span class="c"># for Prim&#39;s algorithm</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -205,6 +205,7 @@ Return the empty list.</p>
         <a class='octothorpe' href='#section-13'>#</a>
       </div>
       <p>Undirected graphs don't have a topological sort.</p>
+<p>pylint: disable=no-self-use</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="k">return</span> <span class="p">[]</span></pre></div>

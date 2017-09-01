@@ -1,21 +1,28 @@
 all: doc/*.html clean
 
-doc/%.html: %.py
-# Fix any spacing issues
+doc/%.html: lib/%.py
+# Check for syntax errors. Compile as module to add this directory to path.
+	python -m lib.$*
+# Run the corresponding tests.
+	python -m tests.$*
+# Fix any spacing issues.
 	autopep8 --in-place --aggressive $<
-# Compile the file to check for syntax errors and run any tests
-	python $<					
-# Check the code with various tools
-	pylint -rn --const-rgx='[a-z_][a-z0-9_]{2,30}' $<
+# Check the code.
+	pylint $<
 	flake8 $<
+# Check the docstrings.
 	pydocstyle $<				
-# Generate the help page
-	pydoc -w $(basename $<)		
-	sed 's|<font.*mw.*/font>||' $(basename $<).html > help/$(basename $<).html
-# Generate the side-by-side view of code and its documentation
+# Write the help text to an HTML file in this directory.
+	pydoc -w lib.$*
+# Edit the file in place without doing a backup.
+	sed -e 's|<font.*mw.*/font>||' -i '' lib.$*.html
+	mv lib.$*.html help/$*.html
+# Generate the side-by-side view of code and comments.
 	pycco -d doc $< 				
 	
-clean:
-	rm -r *html __pycache__
+rebuild: 
+	for f in lib/*py; do make doc/`basename $$f .py`.html; done
 	
+clean:
+	rm -r lib/__pycache__ tests/__pycache__
 

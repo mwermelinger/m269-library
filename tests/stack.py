@@ -1,6 +1,6 @@
 """Use a stack to check if brackets match correctly in a string."""
 
-from stack import Stack
+from lib.stack import Stack
 
 
 def brackets_match(the_text):

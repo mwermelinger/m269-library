@@ -1,6 +1,6 @@
 """Examples of directed graphs."""
 
-from digraph import DirectedGraph
+from lib.digraph import DirectedGraph
 
 
 def print_graph(graph):

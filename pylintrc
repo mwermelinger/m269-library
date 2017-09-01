@@ -1,0 +1,20 @@
+[REPORTS]
+
+# Tells whether to display a full report or only the messages.
+reports = no
+
+[MESSAGES CONTROL]
+
+# Disable the message, report, category or checker with the given id(s).
+# redefined because pylint isn't able to handle relative imports
+disable = import-error
+
+[BASIC]
+
+# Good variable names which should always be accepted, separated by a comma.
+# redefined because pylint by default accepts i, j, k, and others
+good-names =
+
+# Regular expression matching correct constant names.
+# redefined because pylint thinks all global variables must be constants
+const-rgx = [a-z_][a-z0-9_]{2,30}$

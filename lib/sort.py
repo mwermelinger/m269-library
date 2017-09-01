@@ -3,12 +3,12 @@
 Each algorithm sorts a list of comparable items.
 Functions ending in `_sort` change the list in place.
 Functions ending in `_sorted` don't change the unsorted list,
-and return a new list.
+and return a new sorted list.
 This matches the Python built-in functions:
 `items.sort()` sorts the list in-place, `sorted(items)` returns a new list.
 """
 
-from priority_queue import PriorityQueue  # needed for heapsort
+from .priority_queue import PriorityQueue  # needed for heapsort
 
 
 # Bubblesort

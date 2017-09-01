@@ -2,9 +2,9 @@
 
 # This file is part of the [M269 Library](http://tiny.cc/m269-library).
 
-from queue import Queue  # for the breadth-first search
-from stack import Stack  # for the depth-first search
-from priority_queue import PriorityQueue  # for Dijkstra's & Prim's algorithms
+from .queue import Queue  # for the breadth-first search
+from .stack import Stack  # for the depth-first search
+from .priority_queue import PriorityQueue  # for Dijkstra's algorithm
 
 
 class DirectedGraph:

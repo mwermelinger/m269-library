@@ -2,8 +2,8 @@
 
 from itertools import permutations  # needed for best_tour
 
-from digraph import DirectedGraph
-from priority_queue import PriorityQueue  # for Prim's algorithm
+from .digraph import DirectedGraph
+from .priority_queue import PriorityQueue  # for Prim's algorithm
 
 
 class Graph(DirectedGraph):
@@ -75,6 +75,7 @@ class Graph(DirectedGraph):
 
         Undirected graphs don't have a topological sort.
         """
+        # pylint: disable=no-self-use
         return []
 
     # Prim's algorithm

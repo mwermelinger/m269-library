@@ -1,6 +1,6 @@
 """Examples of undirected graphs."""
 
-from graph import Graph
+from lib.graph import Graph
 
 
 def print_graph(graph):
