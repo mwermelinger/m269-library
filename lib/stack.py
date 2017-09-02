@@ -22,8 +22,11 @@ class Stack:
         """Return True if the stack is empty, otherwise False."""
         return self._items == []
 
-    def size(self):
-        """Return the number of items in the stack."""
+    def __len__(self):
+        """Implement the `len` function for stacks.
+
+        Return the number of items in the stack.
+        """
         return len(self._items)
 
     def top(self):
@@ -33,6 +36,13 @@ class Stack:
         """
         assert not self.is_empty()
         return self._items[-1]
+
+    def __contains__(self, item):
+        """Implement the `in` operator for stacks.
+
+        Return True if the stack has the item, otherwise False.
+        """
+        return item in self._items
 
     # Modifiers
     # ---------
