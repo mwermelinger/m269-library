@@ -5,7 +5,7 @@ import unittest
 from lib.stack import Stack
 
 
-class TestQueue(unittest.TestCase):
+class TestStack(unittest.TestCase):
 
     def setUp(self):
         # Create stacks for the tests to use
