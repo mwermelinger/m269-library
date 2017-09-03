@@ -35,6 +35,96 @@ This matches the Python built-in functions:
       <div class='octowrap'>
         <a class='octothorpe' href='#section-1'>#</a>
       </div>
+      <p>Return True if items includes the item, otherwise False.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Assume the items are in non-decreasing order.
+Assume item and items are all of the same type.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">first</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">last</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">first</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Base case: the item is in the middle.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">first</span> <span class="o">+</span> <span class="n">last</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">items</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Reduction step: find the half where the item should be.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">elif</span> <span class="n">items</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">item</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>The item must be above the middle position.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="n">first</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>The item must be below the middle position.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="n">last</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">-</span> <span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>Base case: the search space is empty.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="bp">False</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
       <h2>Bubblesort</h2>
 <p>The key insight is to swap adjacent items that are in the wrong order,
 until no swaps are possible: at that point the items are sorted.</p>
@@ -50,10 +140,10 @@ This 'bubbles' the largest item up to the sorted part.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-2'>
+  <div class='section' id='section-9'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-2'>#</a>
+        <a class='octothorpe' href='#section-9'>#</a>
       </div>
       <p>Sort the list of items in place, in non-decreasing order.</p>
     </div>
@@ -62,10 +152,10 @@ This 'bubbles' the largest item up to the sorted part.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-3'>
+  <div class='section' id='section-10'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-3'>#</a>
+        <a class='octothorpe' href='#section-10'>#</a>
       </div>
       <p>Use the bubble sort algorithm.</p>
 <p>To sort n items at most n-1 iterations are needed.</p>
@@ -76,10 +166,10 @@ This 'bubbles' the largest item up to the sorted part.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-4'>
+  <div class='section' id='section-11'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-4'>#</a>
+        <a class='octothorpe' href='#section-11'>#</a>
       </div>
       <p>Each iteration shrinks the unsorted part by one.
 Go through the unsorted part.</p>
@@ -89,10 +179,10 @@ Go through the unsorted part.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-5'>
+  <div class='section' id='section-12'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-5'>#</a>
+        <a class='octothorpe' href='#section-12'>#</a>
       </div>
       <p>Swap current and next item if they're in the wrong order.</p>
     </div>
@@ -106,10 +196,10 @@ Go through the unsorted part.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-6'>
+  <div class='section' id='section-13'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-6'>#</a>
+        <a class='octothorpe' href='#section-13'>#</a>
       </div>
       <p>If no swaps were necessary, the items are sorted.</p>
     </div>
@@ -119,10 +209,10 @@ Go through the unsorted part.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-7'>
+  <div class='section' id='section-14'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-7'>#</a>
+        <a class='octothorpe' href='#section-14'>#</a>
       </div>
       <h2>Selection sort</h2>
 <p>This algorithm divides the items the other way round:
@@ -136,10 +226,10 @@ and adds it to the end of the sorted part.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-8'>
+  <div class='section' id='section-15'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-8'>#</a>
+        <a class='octothorpe' href='#section-15'>#</a>
       </div>
       <p>Sort the list of items in place, in non-decreasing order.</p>
     </div>
@@ -148,10 +238,10 @@ and adds it to the end of the sorted part.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-9'>
+  <div class='section' id='section-16'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-9'>#</a>
+        <a class='octothorpe' href='#section-16'>#</a>
       </div>
       <p>Use the selection sort algorithm.</p>
 <p>Initially the sorted part is empty.
@@ -164,10 +254,10 @@ as the sorted part grows and the unsorted one shrinks.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-10'>
+  <div class='section' id='section-17'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-10'>#</a>
+        <a class='octothorpe' href='#section-17'>#</a>
       </div>
       <p>Find the position of the smallest item from the border onwards.</p>
     </div>
@@ -179,10 +269,10 @@ as the sorted part grows and the unsorted one shrinks.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-11'>
+  <div class='section' id='section-18'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-11'>#</a>
+        <a class='octothorpe' href='#section-18'>#</a>
       </div>
       <p>Swap that item with the one at the border.</p>
     </div>
@@ -193,10 +283,10 @@ as the sorted part grows and the unsorted one shrinks.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-12'>
+  <div class='section' id='section-19'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-12'>#</a>
+        <a class='octothorpe' href='#section-19'>#</a>
       </div>
       <h2>Insertion sort</h2>
 <p>Like selection sort, the list has a left sorted part that grows
@@ -209,10 +299,10 @@ position in the sorted part.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-13'>
+  <div class='section' id='section-20'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-13'>#</a>
+        <a class='octothorpe' href='#section-20'>#</a>
       </div>
       <p>Sort the list of items in place, in non-decreasing order.</p>
     </div>
@@ -221,10 +311,10 @@ position in the sorted part.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-14'>
+  <div class='section' id='section-21'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-14'>#</a>
+        <a class='octothorpe' href='#section-21'>#</a>
       </div>
       <p>Use the insertion sort algorithm.</p>
 <p>Initially the sorted sublist has the first item (in position 0).
@@ -237,10 +327,10 @@ as the sorted part grows and the unsorted one shrinks.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-15'>
+  <div class='section' id='section-22'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-15'>#</a>
+        <a class='octothorpe' href='#section-22'>#</a>
       </div>
       <p>The item at the border is the next item to sort.</p>
     </div>
@@ -249,10 +339,10 @@ as the sorted part grows and the unsorted one shrinks.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-16'>
+  <div class='section' id='section-23'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-16'>#</a>
+        <a class='octothorpe' href='#section-23'>#</a>
       </div>
       <p>Find the position where to insert it.
 If it is larger than all sorted items, it will stay at the border.</p>
@@ -262,10 +352,10 @@ If it is larger than all sorted items, it will stay at the border.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-17'>
+  <div class='section' id='section-24'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-17'>#</a>
+        <a class='octothorpe' href='#section-24'>#</a>
       </div>
       <p>Shift to the right all sorted items larger than the one to sort.</p>
     </div>
@@ -276,10 +366,10 @@ If it is larger than all sorted items, it will stay at the border.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-18'>
+  <div class='section' id='section-25'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-18'>#</a>
+        <a class='octothorpe' href='#section-25'>#</a>
       </div>
       <p>Put the item to sort at the found position.</p>
     </div>
@@ -288,10 +378,10 @@ If it is larger than all sorted items, it will stay at the border.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-19'>
+  <div class='section' id='section-26'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-19'>#</a>
+        <a class='octothorpe' href='#section-26'>#</a>
       </div>
       <h2>Merge sort</h2>
 <p>The key insight is to split the unsorted list in two halves, sort each one,
@@ -303,10 +393,10 @@ item of both halves.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-20'>
+  <div class='section' id='section-27'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-20'>#</a>
+        <a class='octothorpe' href='#section-27'>#</a>
       </div>
       <p>Return a new list of all items, in non-decreasing order.</p>
     </div>
@@ -315,10 +405,10 @@ item of both halves.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-21'>
+  <div class='section' id='section-28'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-21'>#</a>
+        <a class='octothorpe' href='#section-28'>#</a>
       </div>
       <p>Use the merge sort algorithm.</p>
 <p>Base cases: lists with zero or one items are already sorted.</p>
@@ -329,10 +419,10 @@ item of both halves.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-22'>
+  <div class='section' id='section-29'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-22'>#</a>
+        <a class='octothorpe' href='#section-29'>#</a>
       </div>
       <p>Reduction step: split the list in two halves</p>
     </div>
@@ -343,10 +433,10 @@ item of both halves.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-23'>
+  <div class='section' id='section-30'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-23'>#</a>
+        <a class='octothorpe' href='#section-30'>#</a>
       </div>
       <p>Recursive step: sort each half.</p>
     </div>
@@ -356,10 +446,10 @@ item of both halves.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-24'>
+  <div class='section' id='section-31'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-24'>#</a>
+        <a class='octothorpe' href='#section-31'>#</a>
       </div>
       <p>Inductive step: merge the sorted halves.</p>
     </div>
@@ -368,10 +458,10 @@ item of both halves.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-25'>
+  <div class='section' id='section-32'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-25'>#</a>
+        <a class='octothorpe' href='#section-32'>#</a>
       </div>
       <p>While neither half is empty, move the smallest item
 from its half to the merged list.</p>
@@ -387,10 +477,10 @@ from its half to the merged list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-26'>
+  <div class='section' id='section-33'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-26'>#</a>
+        <a class='octothorpe' href='#section-33'>#</a>
       </div>
       <p>One or both halves are now empty. Add any remaining items.</p>
     </div>
@@ -399,10 +489,10 @@ from its half to the merged list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-27'>
+  <div class='section' id='section-34'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-27'>#</a>
+        <a class='octothorpe' href='#section-34'>#</a>
       </div>
       <h2>Quicksort</h2>
 <p>This approach also splits the list in two, sorts each part,
@@ -417,10 +507,10 @@ that are smaller or equal than the item and those that are larger.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-28'>
+  <div class='section' id='section-35'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-28'>#</a>
+        <a class='octothorpe' href='#section-35'>#</a>
       </div>
       <p>Return a list of all items, in non-decreasing order.</p>
     </div>
@@ -429,10 +519,10 @@ that are smaller or equal than the item and those that are larger.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-29'>
+  <div class='section' id='section-36'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-29'>#</a>
+        <a class='octothorpe' href='#section-36'>#</a>
       </div>
       <p>Base case: the empty list is already sorted.</p>
     </div>
@@ -442,10 +532,10 @@ that are smaller or equal than the item and those that are larger.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-30'>
+  <div class='section' id='section-37'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-30'>#</a>
+        <a class='octothorpe' href='#section-37'>#</a>
       </div>
       <p>Reduction step: take the first item (call it the pivot)
 and put the remaining items in two partitions,
@@ -463,10 +553,10 @@ those smaller or equal than the pivot, and those greater.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-31'>
+  <div class='section' id='section-38'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-31'>#</a>
+        <a class='octothorpe' href='#section-38'>#</a>
       </div>
       <p>Recursive step: sort each of the partitions.</p>
     </div>
@@ -476,10 +566,10 @@ those smaller or equal than the pivot, and those greater.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-32'>
+  <div class='section' id='section-39'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-32'>#</a>
+        <a class='octothorpe' href='#section-39'>#</a>
       </div>
       <p>Inductive step: put the sorted partitions and the pivot
 in the correct order.</p>
@@ -489,10 +579,10 @@ in the correct order.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-33'>
+  <div class='section' id='section-40'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-33'>#</a>
+        <a class='octothorpe' href='#section-40'>#</a>
       </div>
       <h2>Heapsort</h2>
 <p>This algorithm transforms the list of items into a min binary heap
@@ -503,10 +593,10 @@ and then keeps taking the smallest item from the heap.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-34'>
+  <div class='section' id='section-41'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-34'>#</a>
+        <a class='octothorpe' href='#section-41'>#</a>
       </div>
       <p>Return a list of all items, in non-decreasing order.</p>
     </div>
@@ -515,10 +605,10 @@ and then keeps taking the smallest item from the heap.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-35'>
+  <div class='section' id='section-42'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-35'>#</a>
+        <a class='octothorpe' href='#section-42'>#</a>
       </div>
       
     </div>
@@ -529,10 +619,10 @@ and then keeps taking the smallest item from the heap.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-36'>
+  <div class='section' id='section-43'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-36'>#</a>
+        <a class='octothorpe' href='#section-43'>#</a>
       </div>
       <p>Items are ordered by priority, so each item is its own priority.</p>
     </div>
@@ -544,10 +634,10 @@ and then keeps taking the smallest item from the heap.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-37'>
+  <div class='section' id='section-44'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-37'>#</a>
+        <a class='octothorpe' href='#section-44'>#</a>
       </div>
       <h2>Quickselect</h2>
     </div>
@@ -556,10 +646,10 @@ and then keeps taking the smallest item from the heap.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-38'>
+  <div class='section' id='section-45'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-38'>#</a>
+        <a class='octothorpe' href='#section-45'>#</a>
       </div>
       <p>Return the n-th smallest of the items.</p>
     </div>
@@ -568,10 +658,10 @@ and then keeps taking the smallest item from the heap.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-39'>
+  <div class='section' id='section-46'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-39'>#</a>
+        <a class='octothorpe' href='#section-46'>#</a>
       </div>
       <p>For example, return the minimum if n is 1
 and the maximum if n is len(items).
@@ -583,10 +673,10 @@ Assume n is an integer from 1 to len(items).</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-40'>
+  <div class='section' id='section-47'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-40'>#</a>
+        <a class='octothorpe' href='#section-47'>#</a>
       </div>
       <p>Reduction step: take the first item (call it the pivot)
 and put the remaining items in two partitions,
@@ -606,10 +696,10 @@ those smaller or equal than the pivot, and those greater.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-41'>
+  <div class='section' id='section-48'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-41'>#</a>
+        <a class='octothorpe' href='#section-48'>#</a>
       </div>
       <p>Base case: the pivot is the n-th smallest number
 if there are exactly n-1 items smaller or equal than the pivot.</p>
@@ -620,10 +710,10 @@ if there are exactly n-1 items smaller or equal than the pivot.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-42'>
+  <div class='section' id='section-49'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-42'>#</a>
+        <a class='octothorpe' href='#section-49'>#</a>
       </div>
       <p>Recursive step:
 If there are n or more items smaller or equal than the pivot,
@@ -635,10 +725,10 @@ the n-th smallest must be among them.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-43'>
+  <div class='section' id='section-50'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-43'>#</a>
+        <a class='octothorpe' href='#section-50'>#</a>
       </div>
       <p>Recursive step:
 Otherwise it's among the numbers larger than the pivot.
@@ -649,10 +739,10 @@ Discount the numbers up to and including the pivot.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-44'>
+  <div class='section' id='section-51'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-44'>#</a>
+        <a class='octothorpe' href='#section-51'>#</a>
       </div>
       <p>Inductive step: none.</p>
     </div>
@@ -661,10 +751,10 @@ Discount the numbers up to and including the pivot.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-45'>
+  <div class='section' id='section-52'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-45'>#</a>
+        <a class='octothorpe' href='#section-52'>#</a>
       </div>
       <h2>Exercises</h2>
 <ul>

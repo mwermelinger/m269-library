@@ -11,6 +11,29 @@ This matches the Python built-in functions:
 from .priority_queue import PriorityQueue  # needed for heapsort
 
 
+def binary_search(items, item):
+    """Return True if items includes the item, otherwise False.
+
+    Assume the items are in non-decreasing order.
+    Assume item and items are all of the same type.
+    """
+    first = 0
+    last = len(items) - 1
+    while first <= last:
+        # Base case: the item is in the middle.
+        middle = (first + last) // 2
+        if items[middle] == item:
+            return True
+        # Reduction step: find the half where the item should be.
+        elif items[middle] < item:
+            # The item must be above the middle position.
+            first = middle + 1
+        else:
+            # The item must be below the middle position.
+            last = middle - 1
+    # Base case: the search space is empty.
+    return False
+
 # Bubblesort
 # ----------
 # The key insight is to swap adjacent items that are in the wrong order,

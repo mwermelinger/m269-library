@@ -4,27 +4,30 @@ import unittest
 
 from lib.sort import bubble_sort, selection_sort, insertion_sort
 from lib.sort import merge_sorted, quick_sorted, heap_sorted
-from lib.sort import nth_smallest
+from lib.sort import nth_smallest, binary_search
 
 class TestSort(unittest.TestCase):
 
     def setUp(self):
-        # Create lists for the tests to use
+        # Create lists for the tests to use.
         # Each list has different values so that if a test fails,
         # it is clear from unittest's output which example failed.
-        self.examples = (
+        self.integers = (
             # base cases
             [],
             [3],
             # already in ascending or descending order
             [-1, 1, 4],
             [7, 2, 0],
-            # sorting strings
-            ['hi', 'Jane'],
             # duplicate values
-            ['ho', 'ho', 'ho'],
             [30, 20, 10, 10, 20, 30]
         )
+        self.strings = (
+            ['hi'],
+            ['hi', 'Jane'],
+            ['ho', 'ho', 'ho']
+        )
+        self.examples = self.integers + self.strings
 
     def test_sorted(self):
         for example in self.examples:
@@ -65,6 +68,18 @@ class TestSort(unittest.TestCase):
                 middle = n // 2
                 expected = sorted(example)[middle - 1]
                 self.assertEqual(nth_smallest(example, middle), expected)
+
+    def test_binary_search(self):
+        for example in self.integers:
+            # Make sure it's in ascending order.
+            example = sorted(example)
+            # Look for first, middle and last values.
+            for item in (3, -1, 1, 4, 10, 20, 30):
+                self.assertEqual(binary_search(example, item), item in example)
+        for example in self.strings:
+            example = sorted(example)
+            for item in ('hi', 'Jane', 'ho'):
+                self.assertEqual(binary_search(example, item), item in example)
  
 # Exercises
 # ---------
@@ -72,3 +87,4 @@ class TestSort(unittest.TestCase):
 #   Why is the code not simply `self.assertEqual(example, sorted(example))`?
 # - Explain what the quickselect test is doing and why. For example,
 #   why is it comparing n against 0 and 1, and why `middle-1` and not `middle`?
+# - Does `test_binary_search` check that non-existing items result in `False`?
