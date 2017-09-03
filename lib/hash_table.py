@@ -58,8 +58,11 @@ class HashTable:
             if index == start_index:
                 return None
 
-    def has(self, the_key):
-        """Return True if the table has the_key, otherwise False."""
+    def __contains__(self, the_key):
+        """Implement the `in` operator for hash tables.
+
+        Return True if the table has the_key, otherwise False.
+        """
         return self.value(the_key) is not None
 
     # Modifiers

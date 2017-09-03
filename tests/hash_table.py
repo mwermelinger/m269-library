@@ -26,7 +26,7 @@ def test_absence(the_directory, the_phone):
 
     If it does, print an error message, otherwise do nothing.
     """
-    if the_directory.has(the_phone):
+    if the_phone in the_directory:
         print()
         print('Directory should not have', the_phone)
 

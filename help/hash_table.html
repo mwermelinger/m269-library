@@ -39,6 +39,10 @@ Use&nbsp;linear&nbsp;probing&nbsp;for&nbsp;collision&nbsp;resolution.<br>
 Use&nbsp;the&nbsp;built-in&nbsp;hashing&nbsp;function.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
+<dl><dt><a name="HashTable-__contains__"><strong>__contains__</strong></a>(self, the_key)</dt><dd><tt>Implement&nbsp;the&nbsp;`in`&nbsp;operator&nbsp;for&nbsp;hash&nbsp;tables.<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;the&nbsp;table&nbsp;has&nbsp;the_key,&nbsp;otherwise&nbsp;False.</tt></dd></dl>
+
 <dl><dt><a name="HashTable-__init__"><strong>__init__</strong></a>(self, number_of_buckets)</dt><dd><tt>Initialise&nbsp;the&nbsp;table&nbsp;with&nbsp;the&nbsp;given&nbsp;number_of_buckets.<br>
 &nbsp;<br>
 Assume&nbsp;that&nbsp;the&nbsp;number_of_buckets&nbsp;is&nbsp;positive.</tt></dd></dl>
@@ -49,8 +53,6 @@ If&nbsp;there&nbsp;is&nbsp;an&nbsp;item&nbsp;with&nbsp;the_key,&nbsp;replace&nbs
 otherwise&nbsp;try&nbsp;to&nbsp;add&nbsp;a&nbsp;new&nbsp;item&nbsp;with&nbsp;the_key&nbsp;and&nbsp;the_value.<br>
 Return&nbsp;True&nbsp;if&nbsp;the&nbsp;item&nbsp;was&nbsp;added.<br>
 Return&nbsp;False&nbsp;if&nbsp;the_value&nbsp;is&nbsp;None&nbsp;or&nbsp;the&nbsp;table&nbsp;is&nbsp;full.</tt></dd></dl>
-
-<dl><dt><a name="HashTable-has"><strong>has</strong></a>(self, the_key)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;table&nbsp;has&nbsp;the_key,&nbsp;otherwise&nbsp;False.</tt></dd></dl>
 
 <dl><dt><a name="HashTable-remove"><strong>remove</strong></a>(self, the_key)</dt><dd><tt>Remove&nbsp;the&nbsp;item&nbsp;with&nbsp;the_key&nbsp;from&nbsp;the&nbsp;table.&nbsp;Return&nbsp;nothing.<br>
 &nbsp;<br>
