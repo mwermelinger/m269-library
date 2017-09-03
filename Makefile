@@ -1,6 +1,6 @@
 .SILENT:
 	
-all: doc/*.html clean
+all: doc/*.html examples/*.py test clean
 
 usage:
 	echo "make clean	remove unnecessary files"
@@ -34,6 +34,20 @@ test:
 # Don't generate binaries.
 # Unclear why the tests package has to be specified explicitly.
 	python -B -m unittest discover tests
+
+examples/%.py: FORCE
+# Check the example compiles and works.
+	export PYTHONPATH=.
+	python -B $@
+# Test the example using the docstring.
+	python -B -m doctest $@
+# Check the coding and commenting style.
+	autopep8 --in-place --aggressive $@
+	pylint $@
+	flake8 $@
+	pydocstyle $@
+
+FORCE:
 
 new:
 	for f in lib/*py; do make doc/`basename $$f .py`.html; done

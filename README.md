@@ -30,10 +30,10 @@ Create a new empty working folder and extract the zip file there.
 This will create these subfolders:
 
 - `lib` contains the M269 Library
+- `examples` contains simple 'apps' that use the library
 - `help` contains the documentation in HTML format
 - `doc` shows the code side by side with the comments
 - `tests` contains the test code.
-
 
 ## Usage
 
@@ -73,6 +73,10 @@ Python's built-in
 automatically runs each test method of each test class. 
 The `setUp` method is run before _each_ test method,
 so that each test can change the inputs without influencing other tests.
+
+For the example apps, tests are written in the docstrings 
+and checked with Python's built-in 
+[doctest](https://docs.python.org/3/library/doctest.html) framework.
 
 The files in the `help` folder were generated with 
 Python's built-in documentation generator
