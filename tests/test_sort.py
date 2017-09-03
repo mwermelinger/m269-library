@@ -28,12 +28,15 @@ class TestSort(unittest.TestCase):
 
     def test_sorted(self):
         for example in self.examples:
-            # check each algorithm against the built-in sort
+            # Check each algorithm against the built-in sort.
             expected = sorted(example)
             self.assertEqual(merge_sorted(example), expected)
             self.assertEqual(quick_sorted(example), expected)
             self.assertEqual(heap_sorted(example), expected)
 
+    # The examples are set up anew before each test. Hence each algorithm
+    # can modify each list without affecting other tests.
+    
     def test_bubble_sort(self):
         for example in self.examples:
             expected = sorted(example)
@@ -60,8 +63,12 @@ class TestSort(unittest.TestCase):
                 self.assertEqual(nth_smallest(example, n), max(example))
             if n > 1:
                 middle = n // 2
-                # if items are in ascending order,
-                # the nth smallest is in position n-1 
                 expected = sorted(example)[middle - 1]
                 self.assertEqual(nth_smallest(example, middle), expected)
  
+# Exercises
+# ---------
+# - For each of the `...sort` tests, the expected output is needed only once.
+#   Why is the code not simply `self.assertEqual(example, sorted(example))`?
+# - Explain what the quickselect test is doing and why. For example,
+#   why is it comparing n against 0 and 1, and why `middle-1` and not `middle`?

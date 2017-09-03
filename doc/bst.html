@@ -190,10 +190,10 @@ Inductive step: not needed.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-13'>#</a>
       </div>
-      <p>Return True if the tree has the_key, otherwise False.</p>
+      <p>Implement the <code>in</code> operator for binary search trees.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">has</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -202,7 +202,7 @@ Inductive step: not needed.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-14'>#</a>
       </div>
-      
+      <p>Return True if the tree has the_key, otherwise False.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">the_key</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span></pre></div>
@@ -639,7 +639,7 @@ Inductive step: nothing to do.</p>
       <h2>Exercises</h2>
 <ul>
 <li>Write <code>smallest_key()</code> in an iterative way.</li>
-<li>Add a method that returns the size of the tree, i.e. the number of nodes.</li>
+<li>Add a method <code>__len__</code> that returns the number of nodes.</li>
 </ul>
     </div>
     <div class='code'>

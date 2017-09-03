@@ -51,8 +51,11 @@ class BinarySearchTree:
         else:
             return self._right.value(the_key)
 
-    def has(self, the_key):
-        """Return True if the tree has the_key, otherwise False."""
+    def __contains__(self, the_key):
+        """Implement the `in` operator for binary search trees.
+
+        Return True if the tree has the_key, otherwise False.
+        """
         return self.value(the_key) is not None
 
     def height(self):
@@ -203,4 +206,4 @@ class BinarySearchTree:
 # Exercises
 # ---------
 # - Write `smallest_key()` in an iterative way.
-# - Add a method that returns the size of the tree, i.e. the number of nodes.
+# - Add a method `__len__` that returns the number of nodes.

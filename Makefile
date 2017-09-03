@@ -7,7 +7,7 @@ usage:
 	echo "make test		run all unit tests in ./tests"
 	echo "make new		process new source files in ./lib"
 	echo "make -n		show what commands would be executed"
-		
+
 doc/%.html: lib/%.py
 # Check for syntax errors. Compile as module to add this directory to path.
 	python -m lib.$*
@@ -22,19 +22,22 @@ doc/%.html: lib/%.py
 	pydocstyle $<				
 # Write the help text to an HTML file in this directory.
 	pydoc -w lib.$*
+# Remove my local path of the generated file.
 # Edit the file in place without doing a backup.
-	sed -e 's|<font.*mw.*/font>||' -i '' lib.$*.html
+	sed -e 's|<font.*file:.*/font>||' -i '' lib.$*.html
 	mv lib.$*.html help/$*.html
 # Generate the side-by-side view of code and comments.
 	pycco -d doc $< 				
 
 test:
 # Discover and run all unit tests in the tests folder.
+# Don't generate binaries.
 # Unclear why the tests package has to be specified explicitly.
-	python -m unittest discover tests
+	python -B -m unittest discover tests
 
 new:
 	for f in lib/*py; do make doc/`basename $$f .py`.html; done
 		
 clean:
-	rm -r lib/__pycache__ tests/__pycache__
+	rm -r lib/__pycache__
+
