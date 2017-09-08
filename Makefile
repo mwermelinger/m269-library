@@ -35,9 +35,10 @@ test:
 # Unclear why the tests package has to be specified explicitly.
 	python -B -m unittest discover tests
 
+# Run the examples from the current folder to find the lib module.
+examples/%.py: export PYTHONPATH = .
 examples/%.py: FORCE
 # Check the example compiles and works.
-	export PYTHONPATH=.
 	python -B $@
 # Test the example using the docstring.
 	python -B -m doctest $@
@@ -53,5 +54,5 @@ new:
 	for f in lib/*py; do make doc/`basename $$f .py`.html; done
 		
 clean:
-	rm -r lib/__pycache__
+	rm -rf lib/__pycache__ tests/__pycache__ examples/__pycache__
 
