@@ -13,8 +13,8 @@ _NEXT = 2
 class Deque:
     """Provide a sequence of items that are accessed from the start and end.
 
-    A deque (pronounced: deck) is a queue where items 
-    can be added and removed from either end. 
+    A deque (pronounced: deck) is a queue where items
+    can be added and removed from either end.
     """
 
     # Representation
@@ -71,7 +71,7 @@ class Deque:
         """
         assert not self.is_empty()
         return self._last[_ITEM]
-        
+
     def __contains__(self, item):
         """Implement the `in` operator for queues.
 
@@ -81,7 +81,7 @@ class Deque:
         while node is not None and node[_ITEM] != item:
             node = node[_NEXT]
         return node is not None
-        
+
     def __str__(self):
         """Return a string representation of the deque."""
         string = "["
@@ -145,3 +145,10 @@ class Deque:
             self._last[_NEXT] = None
         self._length -= 1
         return item
+
+# Exercises
+# ---------
+# - Add methods `index_front` and `index_rear` that return
+#   the first (resp. last) position of a given item.
+#   Positions start at 0 from the front of the deque.
+#   Decide what to do if the item doesn't exist in the deque.

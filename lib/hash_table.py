@@ -35,6 +35,17 @@ class HashTable:
     # Inspectors
     # ----------
 
+    def __len__(self):
+        """Implement the `len` function for hash tables.
+
+        Return the number of key-value pairs in the hash table.
+        """
+        total = 0
+        for bucket in self._buckets:
+            if bucket[_VALUE] is not None:
+                total += 1
+        return total
+
     def value(self, the_key):
         """If the table has the_key, return the associated value.
 

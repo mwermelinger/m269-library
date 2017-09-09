@@ -133,10 +133,10 @@ whereas a deleted item is represented by a pair key-None.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-9'>#</a>
       </div>
-      <p>If the table has the_key, return the associated value.</p>
+      <p>Implement the <code>len</code> function for hash tables.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -144,6 +144,34 @@ whereas a deleted item is represented by a pair key-None.</p>
     <div class='docs'>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <p>Return the number of key-value pairs in the hash table.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buckets</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">bucket</span><span class="p">[</span><span class="n">_VALUE</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">total</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">total</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>If the table has the_key, return the associated value.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
       </div>
       <p>Otherwise return None.</p>
 <p>Remember the first bucket tried.</p>
@@ -154,10 +182,10 @@ whereas a deleted item is represented by a pair key-None.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-11'>
+  <div class='section' id='section-13'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-11'>#</a>
+        <a class='octothorpe' href='#section-13'>#</a>
       </div>
       <p>Keep going until we know whether the key exists or not.</p>
     </div>
@@ -167,10 +195,10 @@ whereas a deleted item is represented by a pair key-None.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-12'>
+  <div class='section' id='section-14'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-12'>#</a>
+        <a class='octothorpe' href='#section-14'>#</a>
       </div>
       <p>If the bucket is empty, the item doesn't exist.</p>
     </div>
@@ -180,10 +208,10 @@ whereas a deleted item is represented by a pair key-None.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-13'>
+  <div class='section' id='section-15'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-13'>#</a>
+        <a class='octothorpe' href='#section-15'>#</a>
       </div>
       <p>If the bucket has the key, return the value.</p>
     </div>
@@ -193,10 +221,10 @@ whereas a deleted item is represented by a pair key-None.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-14'>
+  <div class='section' id='section-16'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-14'>#</a>
+        <a class='octothorpe' href='#section-16'>#</a>
       </div>
       <p>Otherwise try the next bucket.</p>
     </div>
@@ -205,10 +233,10 @@ whereas a deleted item is represented by a pair key-None.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-15'>
+  <div class='section' id='section-17'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-15'>#</a>
+        <a class='octothorpe' href='#section-17'>#</a>
       </div>
       <p>If the search 'wrapped around', the item doesn't exist.</p>
     </div>
@@ -218,10 +246,10 @@ whereas a deleted item is represented by a pair key-None.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-16'>
+  <div class='section' id='section-18'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-16'>#</a>
+        <a class='octothorpe' href='#section-18'>#</a>
       </div>
       <p>Implement the <code>in</code> operator for hash tables.</p>
     </div>
@@ -230,10 +258,10 @@ whereas a deleted item is represented by a pair key-None.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-17'>
+  <div class='section' id='section-19'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-17'>#</a>
+        <a class='octothorpe' href='#section-19'>#</a>
       </div>
       <p>Return True if the table has the_key, otherwise False.</p>
     </div>
@@ -242,10 +270,10 @@ whereas a deleted item is represented by a pair key-None.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-18'>
+  <div class='section' id='section-20'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-18'>#</a>
+        <a class='octothorpe' href='#section-20'>#</a>
       </div>
       <h2>Modifiers</h2>
     </div>
@@ -254,10 +282,10 @@ whereas a deleted item is represented by a pair key-None.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-19'>
+  <div class='section' id='section-21'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-19'>#</a>
+        <a class='octothorpe' href='#section-21'>#</a>
       </div>
       <p>Add an item to the table and return if the operation succeeded.</p>
     </div>
@@ -266,10 +294,10 @@ whereas a deleted item is represented by a pair key-None.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-20'>
+  <div class='section' id='section-22'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-20'>#</a>
+        <a class='octothorpe' href='#section-22'>#</a>
       </div>
       <p>If there is an item with the_key, replace its value by the_value,
 otherwise try to add a new item with the_key and the_value.
@@ -286,10 +314,10 @@ Return False if the_value is None or the table is full.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-21'>
+  <div class='section' id='section-23'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-21'>#</a>
+        <a class='octothorpe' href='#section-23'>#</a>
       </div>
       <p>If the bucket is empty or has the_key, store the item there.</p>
     </div>
@@ -301,10 +329,10 @@ Return False if the_value is None or the table is full.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-22'>
+  <div class='section' id='section-24'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-22'>#</a>
+        <a class='octothorpe' href='#section-24'>#</a>
       </div>
       <p>If the search 'wrapped around', the table is full.</p>
     </div>
@@ -314,10 +342,10 @@ Return False if the_value is None or the table is full.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-23'>
+  <div class='section' id='section-25'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-23'>#</a>
+        <a class='octothorpe' href='#section-25'>#</a>
       </div>
       <p>Remove the item with the_key from the table. Return nothing.</p>
     </div>
@@ -326,10 +354,10 @@ Return False if the_value is None or the table is full.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-24'>
+  <div class='section' id='section-26'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-24'>#</a>
+        <a class='octothorpe' href='#section-26'>#</a>
       </div>
       <p>Do nothing if there's no item with the_key.</p>
     </div>
@@ -341,10 +369,10 @@ Return False if the_value is None or the table is full.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-25'>
+  <div class='section' id='section-27'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-25'>#</a>
+        <a class='octothorpe' href='#section-27'>#</a>
       </div>
       <p>If the bucket is empty, the item doesn't exist.</p>
     </div>
@@ -354,10 +382,10 @@ Return False if the_value is None or the table is full.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-26'>
+  <div class='section' id='section-28'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-26'>#</a>
+        <a class='octothorpe' href='#section-28'>#</a>
       </div>
       <p>If the bucket has the key, mark it as deleted.</p>
     </div>
@@ -371,10 +399,10 @@ Return False if the_value is None or the table is full.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-27'>
+  <div class='section' id='section-29'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-27'>#</a>
+        <a class='octothorpe' href='#section-29'>#</a>
       </div>
       <h2>Exercises</h2>
 <ul>
