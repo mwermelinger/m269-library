@@ -61,13 +61,6 @@ class TestBST(unittest.TestCase):
         self.assertEqual(self.linear.in_order(), self.houses)
         self.assertEqual(self.balanced.in_order(), self.houses)
         
-    def test_value(self):
-        self.assertEqual(self.new.value(), [])
-        self.assertEqual(self.empty.value(), [])
-        self.assertEqual(self.root.value(), [self.houses[-1]])   
-        self.assertEqual(self.linear.value(), self.houses)
-        self.assertEqual(self.balanced.value(), [key, 32, 31, 34, 35])
-        
     def test_post_order(self):
         self.assertEqual(self.new.post_order(), [])
         self.assertEqual(self.empty.post_order(), [])
