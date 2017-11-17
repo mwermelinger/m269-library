@@ -56,7 +56,7 @@ Please don't post solutions on any public site.
 
 ## Development
 
-This library was developed with Anaconda3 4.4.0 (Python 3.6) on Mac OS X.
+This library was developed on Mac OS X with Python 3.6 (Anaconda distribution).
 It should work on other platforms and with earlier Python versions,
 but they weren't tested.
 
@@ -85,7 +85,6 @@ The files in the `doc` folder were generated with
 [Pycco](https://pycco-docs.github.io/pycco/).
 
 The code was checked with
-[pylint](http://pylint.org) 1.6.4 
-(using the configuration file `pylintrc`),
-[flake8](http://flake8.pycqa.org/) 3.3.0 and
-[pydocstyle](http://www.pydocstyle.org/) 2.0.0.
+[pylint](http://pylint.org) (using the configuration file `pylintrc`),
+[flake8](http://flake8.pycqa.org/) and
+[pydocstyle](http://www.pydocstyle.org/).
