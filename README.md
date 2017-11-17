@@ -23,8 +23,7 @@ The exceptions are: `n`, `x`, `y`, `z`.
 
 ## Installation
 
-Click on the download icon (a cloud with a downward arrow) 
-on the left sidebar, then click on the link shown.
+Click on the file icon on the left sidebar, then click on the link shown.
 This will download all files as a single zip file.
 Create a new empty working folder and extract the zip file there.
 This will create these subfolders:

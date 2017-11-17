@@ -373,4 +373,4 @@ class DirectedGraph:
 #   print(graph.unweighted_distance(3, 5))
 #   print(graph.weighted_distance(2, 1))
 #   ```
-#   will only execute Dijkstra's method once.
+#   will execute Dijkstra's method only once.
