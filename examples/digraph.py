@@ -11,7 +11,7 @@ True
 
 The distance between an ingredient and eating is a lower bound
 on the number of sequential (i.e. non-parallel) steps needed
-to execute the recipe. For unweighted graphs, the distance 
+to execute the recipe. For unweighted graphs, the distance
 can be computed in two different ways.
 
 >>> recipe.unweighted_distance('1 egg', 'eat')

@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="pycco.css">
 </head>
 <body>
-<div id="background"></div>
 <div id='container'>
+  <div id="background"></div>
   <div class='section'>
     <div class='docs'><h1>sort.py</h1></div>
   </div>
@@ -26,7 +26,7 @@ This matches the Python built-in functions:
 <code>items.sort()</code> sorts the list in-place, <code>sorted(items)</code> returns a new list.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">.priority_queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>  <span class="c"># needed for heapsort</span></pre></div>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.priority_queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>  <span class="c1"># needed for heapsort</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -415,7 +415,7 @@ item of both halves.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">items</span><span class="p">[:]</span>  <span class="c"># return a copy to keep the original untouched</span></pre></div>
+        <span class="k">return</span> <span class="n">items</span><span class="p">[:]</span>  <span class="c1"># return a copy to keep the original untouched</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>

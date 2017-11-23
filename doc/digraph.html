@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="pycco.css">
 </head>
 <body>
-<div id="background"></div>
 <div id='container'>
+  <div id="background"></div>
   <div class='section'>
     <div class='docs'><h1>digraph.py</h1></div>
   </div>
@@ -20,7 +20,7 @@
       <p>An implementation of weighted directed graphs.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre></pre></div>
+      <div class="highlight"><pre><span></span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -32,9 +32,9 @@
       <p>This file is part of the <a href="http://tiny.cc/m269-library">M269 Library</a>.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">.queue</span> <span class="kn">import</span> <span class="n">Queue</span>  <span class="c"># for the breadth-first search</span>
-<span class="kn">from</span> <span class="nn">.stack</span> <span class="kn">import</span> <span class="n">Stack</span>  <span class="c"># for the depth-first search</span>
-<span class="kn">from</span> <span class="nn">.priority_queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>  <span class="c"># for Dijkstra&#39;s algorithm</span></pre></div>
+      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">.queue</span> <span class="kn">import</span> <span class="n">Queue</span>  <span class="c1"># for the breadth-first search</span>
+<span class="kn">from</span> <span class="nn">.stack</span> <span class="kn">import</span> <span class="n">Stack</span>  <span class="c1"># for the depth-first search</span>
+<span class="kn">from</span> <span class="nn">.priority_queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>  <span class="c1"># for Dijkstra&#39;s algorithm</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -100,7 +100,7 @@ After running an algorithm to visit the nodes, <code>_nodes</code> may be
       <p>Initialise the empty digraph.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -201,13 +201,13 @@ Return infinity if the path is empty or invalid.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;infinity&#39;</span><span class="p">)</span>
         <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">current</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">this_node</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="n">current</span><span class="p">]</span>
             <span class="n">next_node</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="n">current</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="n">this_node</span><span class="p">,</span> <span class="n">next_node</span><span class="p">):</span>
-                <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;infinity&#39;</span><span class="p">)</span>
             <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">this_node</span><span class="p">][</span><span class="n">next_node</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">total</span></pre></div>
     </div>
@@ -393,8 +393,8 @@ Initially, only the start node is to be visited.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span></pre></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s1">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -444,9 +444,9 @@ Initially, only the start node is to be visited.</p>
 and mark them as explored.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;seen&#39;</span><span class="p">]:</span>
+      <div class="highlight"><pre>                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;seen&#39;</span><span class="p">]:</span>
                     <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">neighbour</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">return</span> <span class="n">visited</span></pre></div>
     </div>
   </div>
@@ -488,21 +488,21 @@ Assume the graph has the start node.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-        <span class="n">infinity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span>
+        <span class="n">infinity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;infinity&#39;</span><span class="p">)</span>
         <span class="n">to_visit</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
         <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;hops&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s">&#39;hops&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">&#39;hops&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s1">&#39;hops&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
             <span class="n">next_node</span> <span class="o">=</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
-            <span class="n">hops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">next_node</span><span class="p">][</span><span class="s">&#39;hops&#39;</span><span class="p">]</span>
+            <span class="n">hops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">next_node</span><span class="p">][</span><span class="s1">&#39;hops&#39;</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">next_node</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">hops</span>
             <span class="k">for</span> <span class="n">neighbour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbours</span><span class="p">(</span><span class="n">next_node</span><span class="p">):</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;hops&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">infinity</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;hops&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">infinity</span><span class="p">:</span>
                     <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">neighbour</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;hops&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hops</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;hops&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hops</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">infinity</span></pre></div>
     </div>
   </div>
@@ -556,15 +556,15 @@ Assume the start node exists.</p>
         <span class="n">to_visit</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
         <span class="n">to_visit</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s1">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
             <span class="n">next_node</span> <span class="o">=</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
             <span class="n">visited</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_node</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">neighbour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbours</span><span class="p">(</span><span class="n">next_node</span><span class="p">):</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;seen&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;seen&#39;</span><span class="p">]:</span>
                     <span class="n">to_visit</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">neighbour</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;seen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">return</span> <span class="n">visited</span></pre></div>
     </div>
   </div>
@@ -603,7 +603,7 @@ Assume the start node exists.</p>
     <div class='code'>
       <div class="highlight"><pre>        <span class="n">to_visit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">to_visit</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;incoming&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span></pre></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">&#39;incoming&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -619,7 +619,7 @@ pylint: disable=unused-variable</p>
     <div class='code'>
       <div class="highlight"><pre>        <span class="k">for</span> <span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unweighted_edges</span><span class="p">():</span>
             <span class="n">to_visit</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">target</span><span class="p">][</span><span class="s">&#39;incoming&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span></pre></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">target</span><span class="p">][</span><span class="s1">&#39;incoming&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -658,7 +658,7 @@ decrementing its neighbours' incoming edges.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>            <span class="k">for</span> <span class="n">neighbour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbours</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;incoming&#39;</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span></pre></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;incoming&#39;</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -672,7 +672,7 @@ all its predecessors were visited and 'removed',
 hence it can be visited.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;incoming&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+      <div class="highlight"><pre>                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;incoming&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">to_visit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">neighbour</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sort</span></pre></div>
     </div>
@@ -718,7 +718,7 @@ There may be several shortest paths to a node, but only one is computed.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-        <span class="n">infinity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span></pre></div>
+        <span class="n">infinity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;infinity&#39;</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -743,8 +743,8 @@ There may be several shortest paths to a node, but only one is computed.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">infinity</span><span class="p">)</span></pre></div>
     </div>
   </div>
@@ -757,13 +757,13 @@ There may be several shortest paths to a node, but only one is computed.</p>
       <p>Correct the distance of the start node.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+      <div class="highlight"><pre>        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">to_visit</span><span class="o">.</span><span class="n">set_priority</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
             <span class="n">node</span> <span class="o">=</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
-            <span class="n">node_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span>
+            <span class="n">node_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">neighbour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbours</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-                <span class="n">neighbour_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span></pre></div>
+                <span class="n">neighbour_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -789,8 +789,8 @@ There may be several shortest paths to a node, but only one is computed.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>                <span class="k">if</span> <span class="n">new_distance</span> <span class="o">&lt;</span> <span class="n">neighbour_distance</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_distance</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_distance</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
                     <span class="n">to_visit</span><span class="o">.</span><span class="n">set_priority</span><span class="p">(</span><span class="n">neighbour</span><span class="p">,</span> <span class="n">new_distance</span><span class="p">)</span></pre></div>
     </div>
   </div>
@@ -822,7 +822,7 @@ Assume the graph has the start node.</p>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">end</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_shortest_paths</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">end</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">end</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;infinity&#39;</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">[]</span></pre></div>
     </div>
   </div>
@@ -839,7 +839,7 @@ Assume the graph has the start node.</p>
         <span class="n">current</span> <span class="o">=</span> <span class="n">end</span>
         <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="n">start</span><span class="p">:</span>
             <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
-            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">current</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">current</span><span class="p">][</span><span class="s1">&#39;from&#39;</span><span class="p">]</span>
         <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
         <span class="n">path</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">path</span></pre></div>
@@ -870,9 +870,8 @@ Assume the graph has start node.</p>
       <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_shortest_paths</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">end</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">end</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span></pre></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">end</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;infinity&#39;</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -1021,7 +1020,7 @@ Assume the nodes are of a hashable type.</p>
   print(graph.shortest_path(2, 3))
   print(graph.unweighted_distance(3, 5))
   print(graph.weighted_distance(2, 1))</code>
-  will only execute Dijkstra's method once.</li>
+  will execute Dijkstra's method only once.</li>
 </ul>
     </div>
     <div class='code'>

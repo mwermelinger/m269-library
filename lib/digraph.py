@@ -304,8 +304,7 @@ class DirectedGraph:
         self._shortest_paths(start)
         if self.has_node(end):
             return self._nodes[end]['distance']
-        else:
-            return float('infinity')
+        return float('infinity')
 
     # Modifiers
     # ---------

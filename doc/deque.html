@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="pycco.css">
 </head>
 <body>
-<div id="background"></div>
 <div id='container'>
+  <div id="background"></div>
   <div class='section'>
     <div class='docs'><h1>deque.py</h1></div>
   </div>
@@ -20,7 +20,7 @@
       <p>A double-ended queue.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre></pre></div>
+      <div class="highlight"><pre><span></span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -120,7 +120,7 @@ If the queue is empty, the first and last nodes are <code>None</code>.</p>
       <p>Initialise the queue to be empty.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -182,7 +182,7 @@ If the queue is empty, the first and last nodes are <code>None</code>.</p>
       <p>Implement the <code>len</code> function for queues.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -256,7 +256,7 @@ If the queue is empty, the first and last nodes are <code>None</code>.</p>
       <p>Implement the <code>in</code> operator for queues.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -283,7 +283,7 @@ If the queue is empty, the first and last nodes are <code>None</code>.</p>
       <p>Return a string representation of the deque.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -295,12 +295,12 @@ If the queue is empty, the first and last nodes are <code>None</code>.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;[&quot;</span>
+      <div class="highlight"><pre>        <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;[&quot;</span>
         <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first</span>
         <span class="k">while</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">string</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="n">_ITEM</span><span class="p">])</span>
             <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="n">_NEXT</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">string</span> <span class="o">+</span> <span class="s">&quot;]&quot;</span></pre></div>
+        <span class="k">return</span> <span class="n">string</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>

@@ -48,8 +48,7 @@ class BinarySearchTree:
         # Inductive step: not needed.
         if the_key < self._key:
             return self._left.value(the_key)
-        else:
-            return self._right.value(the_key)
+        return self._right.value(the_key)
 
     def __contains__(self, the_key):
         """Implement the `in` operator for binary search trees.

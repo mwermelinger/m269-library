@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="pycco.css">
 </head>
 <body>
-<div id="background"></div>
 <div id='container'>
+  <div id="background"></div>
   <div class='section'>
     <div class='docs'><h1>bst.py</h1></div>
   </div>
@@ -20,7 +20,7 @@
       <p>A binary tree ordered by key.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre></pre></div>
+      <div class="highlight"><pre><span></span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -74,7 +74,7 @@ and two subtrees (called the left and right subtree).</p>
       <p>Initialise the tree to be empty.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -180,8 +180,7 @@ Inductive step: not needed.</p>
     <div class='code'>
       <div class="highlight"><pre>        <span class="k">if</span> <span class="n">the_key</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_left</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">the_key</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_right</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">the_key</span><span class="p">)</span></pre></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_right</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">the_key</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -193,7 +192,7 @@ Inductive step: not needed.</p>
       <p>Implement the <code>in</code> operator for binary search trees.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_key</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
