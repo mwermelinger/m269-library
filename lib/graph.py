@@ -139,13 +139,13 @@ class Graph(DirectedGraph):
     def best_tour(self):
         """Return a best tour of the graph.
 
-        Assume the graph is complete.
+        Assume the graph is not empty and complete.
         A tour is a list with all the graph's nodes, in the order visited,
         and the first and last nodes are the same.
         A best tour has the lowest total weight.
         Use a brute-force algorithm (only works for very small graphs).
         """
-        # pylint: disable=redefined-variable-type
+        assert self.nodes()
         # Mark that no tour has been found yet.
         tour_found = None
         lowest_total = float('infinity')

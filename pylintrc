@@ -7,7 +7,7 @@ reports = no
 
 # Disable the message, report, category or checker with the given id(s).
 # redefined because pylint isn't able to handle relative imports
-disable = import-error
+disable = import-error, relative-beyond-top-level
 
 [BASIC]
 

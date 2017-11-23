@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="pycco.css">
 </head>
 <body>
-<div id="background"></div>
 <div id='container'>
+  <div id="background"></div>
   <div class='section'>
     <div class='docs'><h1>graph.py</h1></div>
   </div>
@@ -20,10 +20,10 @@
       <p>An implementation of weighted undirected graphs.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>  <span class="c"># needed for best_tour</span>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>  <span class="c1"># needed for best_tour</span>
 
 <span class="kn">from</span> <span class="nn">.digraph</span> <span class="kn">import</span> <span class="n">DirectedGraph</span>
-<span class="kn">from</span> <span class="nn">.priority_queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>  <span class="c"># for Prim&#39;s algorithm</span></pre></div>
+<span class="kn">from</span> <span class="nn">.priority_queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>  <span class="c1"># for Prim&#39;s algorithm</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -247,7 +247,7 @@ Assume the input graph has the start node and is connected.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-        <span class="n">infinity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span></pre></div>
+        <span class="n">infinity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;infinity&#39;</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -273,8 +273,8 @@ Assume the input graph has the start node and is connected.</p>
     <div class='code'>
       <div class="highlight"><pre>        <span class="n">tree</span> <span class="o">=</span> <span class="n">DirectedGraph</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="n">to_visit</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">infinity</span><span class="p">)</span></pre></div>
     </div>
   </div>
@@ -287,7 +287,7 @@ Assume the input graph has the start node and is connected.</p>
       <p>Correct the distance of the start node.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+      <div class="highlight"><pre>        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">to_visit</span><span class="o">.</span><span class="n">set_priority</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span></pre></div>
     </div>
@@ -305,7 +305,7 @@ connect it to the tree node it's closest to.</p>
     <div class='code'>
       <div class="highlight"><pre>            <span class="n">node</span> <span class="o">=</span> <span class="n">to_visit</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">node</span> <span class="o">!=</span> <span class="n">start</span><span class="p">:</span>
-                <span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span>
+                <span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">&#39;from&#39;</span><span class="p">]</span>
                 <span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">source</span><span class="p">][</span><span class="n">node</span><span class="p">]</span>
                 <span class="n">tree</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -323,7 +323,7 @@ connect it to the tree node it's closest to.</p>
     <div class='code'>
       <div class="highlight"><pre>            <span class="k">for</span> <span class="n">neighbour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbours</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">tree</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">neighbour</span><span class="p">):</span>
-                    <span class="n">neighbour_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span>
+                    <span class="n">neighbour_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span>
                     <span class="n">edge_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">neighbour</span><span class="p">]</span></pre></div>
     </div>
   </div>
@@ -348,8 +348,8 @@ connect it to the tree node it's closest to.</p>
       <p>update its distance and edge.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>                        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_distance</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+      <div class="highlight"><pre>                        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_distance</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">neighbour</span><span class="p">][</span><span class="s1">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
                         <span class="n">to_visit</span><span class="o">.</span><span class="n">set_priority</span><span class="p">(</span><span class="n">neighbour</span><span class="p">,</span> <span class="n">edge_distance</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tree</span></pre></div>
     </div>
@@ -392,17 +392,14 @@ so the best tours are the shortest, fastest or cheapest ones.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-26'>#</a>
       </div>
-      <p>Assume the graph is complete.
+      <p>Assume the graph is not empty and complete.
 A tour is a list with all the graph's nodes, in the order visited,
 and the first and last nodes are the same.
 A best tour has the lowest total weight.
 Use a brute-force algorithm (only works for very small graphs).</p>
-<p>pylint: disable=redefined-variable-type
-Mark that no tour has been found yet.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="n">tour_found</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="n">lowest_total</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;infinity&#39;</span><span class="p">)</span></pre></div>
+      <div class="highlight"><pre>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -411,10 +408,11 @@ Mark that no tour has been found yet.</p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-27'>#</a>
       </div>
-      <p>Go through all possible orderings of the nodes.</p>
+      <p>Mark that no tour has been found yet.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="k">for</span> <span class="n">permutation</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">()):</span></pre></div>
+      <div class="highlight"><pre>        <span class="n">tour_found</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">lowest_total</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;infinity&#39;</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -422,6 +420,18 @@ Mark that no tour has been found yet.</p>
     <div class='docs'>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-28'>#</a>
+      </div>
+      <p>Go through all possible orderings of the nodes.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">for</span> <span class="n">permutation</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">()):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-29'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-29'>#</a>
       </div>
       <p>A tour is a permutation with the start node at the end.
 First convert the permutation from a tuple to a list.</p>
@@ -432,10 +442,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-29'>
+  <div class='section' id='section-30'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-29'>#</a>
+        <a class='octothorpe' href='#section-30'>#</a>
       </div>
       <p>Compute the tour's weight. Update the best found, if the case.</p>
     </div>
@@ -448,10 +458,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-30'>
+  <div class='section' id='section-31'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-30'>#</a>
+        <a class='octothorpe' href='#section-31'>#</a>
       </div>
       <h2>Modifiers</h2>
 <p><code>add_node</code> and <code>remove_node</code> inherited from <code>Digraph</code>.</p>
@@ -461,10 +471,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-31'>
+  <div class='section' id='section-32'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-31'>#</a>
+        <a class='octothorpe' href='#section-32'>#</a>
       </div>
       <p>Add an edge between the two nodes with the given weight.</p>
     </div>
@@ -473,10 +483,10 @@ First convert the permutation from a tuple to a list.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-32'>
+  <div class='section' id='section-33'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-32'>#</a>
+        <a class='octothorpe' href='#section-33'>#</a>
       </div>
       <p>Replace the weight value if the edge already exists.
 Assume the nodes are of a hashable type and different.
@@ -492,10 +502,10 @@ Assume the weight is a positive number.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-33'>
+  <div class='section' id='section-34'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-33'>#</a>
+        <a class='octothorpe' href='#section-34'>#</a>
       </div>
       <p>Remove the edge between the nodes from the graph.</p>
     </div>
@@ -504,10 +514,10 @@ Assume the weight is a positive number.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-34'>
+  <div class='section' id='section-35'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-34'>#</a>
+        <a class='octothorpe' href='#section-35'>#</a>
       </div>
       <p>Do nothing if the edge doesn't exist.</p>
     </div>
@@ -518,10 +528,10 @@ Assume the weight is a positive number.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-35'>
+  <div class='section' id='section-36'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-35'>#</a>
+        <a class='octothorpe' href='#section-36'>#</a>
       </div>
       <h2>Exercises</h2>
 <ul>
