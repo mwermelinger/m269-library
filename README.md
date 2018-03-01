@@ -36,14 +36,15 @@ This will create these subfolders:
 
 ## Usage
 
-Your Python programs in the working folder can simply start with
+Put your Python file in the working folder, i.e. 'above' the `lib` subfolder. 
+Start your program with, for example,
 `from lib.stack import Stack` to use the stack data structure,
 or `from lib.sort import bubble_sort` to use the bubble sort algorithm.
 
 To see what algorithms and data structures are available,
 open the HTML files in the `help` folder.
-You can get the same documentation in the Python shell, 
-by typing for example
+You can get the same documentation in the Python shell
+(if run from the working folder), by typing for example
 ```
 >>> import lib.stack
 >>> help(lib.stack)
