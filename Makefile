@@ -1,6 +1,6 @@
 .SILENT:
 	
-all: doc/*.html examples/*.py test clean
+all: docs/code/*.html examples/*.py test clean
 
 usage:
 	echo "make clean	remove unnecessary files"
@@ -8,7 +8,7 @@ usage:
 	echo "make new		process new source files in ./lib"
 	echo "make -n		show what commands would be executed"
 
-doc/%.html: lib/%.py
+docs/code/%.html: lib/%.py
 # Check for syntax errors. Compile as module to add this directory to path.
 	python -m lib.$*
 # Run the corresponding tests if they exist.
@@ -25,9 +25,9 @@ doc/%.html: lib/%.py
 # Remove my local path of the generated file.
 # Edit the file in place without doing a backup.
 	sed -e 's|<font.*file:.*/font>||' -i '' lib.$*.html
-	mv lib.$*.html help/$*.html
+	mv lib.$*.html docs/api/$*.html
 # Generate the side-by-side view of code and comments.
-	pycco -d doc $< 				
+	pycco -d docs/code $< 				
 
 test:
 # Discover and run all unit tests in the tests folder.
@@ -51,8 +51,7 @@ examples/%.py: FORCE
 FORCE:
 
 new:
-	for f in lib/*py; do make doc/`basename $$f .py`.html; done
+	for f in lib/*py; do make dos/code/`basename $$f .py`.html; done
 		
 clean:
 	rm -rf lib/__pycache__ tests/__pycache__ examples/__pycache__
-

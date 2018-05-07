@@ -1,8 +1,6 @@
-This repository provides Python implementations of some
-commonly taught algorithms and data structures:
-binary search, quicksort, binary search trees, graphs, etc.
-
-This library was created for M269, the Open University's
+This library provides Python implementations of some
+commonly taught algorithms and data structures (see below).
+It was created for M269, the Open University's
 module on [Algorithms, Data Structures and Computability](http://www.open.ac.uk/courses/modules/m269),
 but is not specific to M269.
 
