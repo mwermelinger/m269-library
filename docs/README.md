@@ -1,5 +1,3 @@
-# The M269 Library
-
 This repository provides Python implementations of some
 commonly taught algorithms and data structures:
 binary search, quicksort, binary search trees, graphs, etc.
@@ -21,30 +19,45 @@ In addition, the code only uses full English words in identifiers,
 i.e. no abbreviations or single letters.
 The exceptions are: `n`, `x`, `y`, `z`.
 
+## Contents
+
+The library implements the following:
+
+- bubble, insertion, selection, quick and merge sort ([documentation](http://mwermelinger.github.io/m269-library/api/sort.html), [commented code](http://mwermelinger.github.io/m269-library/code/sort.html))
+- stack ([documentation](http://mwermelinger.github.io/m269-library/api/stack.html), [commented code](http://mwermelinger.github.io/m269-library/code/stack.html))
+- queue ([documentation](http://mwermelinger.github.io/m269-library/api/queue.html), [commented code](http://mwermelinger.github.io/m269-library/code/queue.html))
+- priority queue ([documentation](http://mwermelinger.github.io/m269-library/api/priority_queue.html), [commented code](http://mwermelinger.github.io/m269-library/code/priority_queue.html))
+- deque (double-ended queue) ([documentation](http://mwermelinger.github.io/m269-library/api/deque.html), [commented code](http://mwermelinger.github.io/m269-library/code/deque.html))
+- binary search trees ([documentation](http://mwermelinger.github.io/m269-library/api/bst.html), [commented code](http://mwermelinger.github.io/m269-library/code/bst.html))
+- hash table ([documentation](http://mwermelinger.github.io/m269-library/api/hash_table.html), [commented code](http://mwermelinger.github.io/m269-library/code/hash_table.html))
+- undirected graph (both weighted and unweighted) ([documentation](http://mwermelinger.github.io/m269-library/api/graph.html), [commented code](http://mwermelinger.github.io/m269-library/code/graph.html))
+- directed graph (both weighted and unweighted) ([documentation](http://mwermelinger.github.io/m269-library/api/digraph.html), [commented code](http://mwermelinger.github.io/m269-library/code/digraph.html))
+
 ## Installation
 
-Click on the file icon on the left sidebar, then click on the link shown.
-This will download all files as a single zip file.
-Create a new empty working folder and extract the zip file there.
-This will create these subfolders:
+Click on the button above to download all files as a single compressed archive. 
+Once on your disk, double-click it to extract the files, 
+if your web browser hasn't done so automatically. 
+This will create the M269 Library folder with these subfolders:
 
 - `lib` contains the M269 Library
 - `examples` contains simple 'apps' that use the library
-- `help` contains the documentation in HTML format
-- `doc` shows the code side by side with the comments
+- `docs/api` contains the documentation in HTML format
+- `docs/code` shows the code side by side with the comments
 - `tests` contains the test code.
 
 ## Usage
 
-Put your Python file in the working folder, i.e. 'above' the `lib` subfolder. 
+Put your Python file in the M269 Library folder, 
+i.e. 'above' the `lib` subfolder. 
 Start your program with, for example,
 `from lib.stack import Stack` to use the stack data structure,
 or `from lib.sort import bubble_sort` to use the bubble sort algorithm.
 
 To see what algorithms and data structures are available,
-open the HTML files in the `help` folder.
+open the HTML files in the `docs/api` subfolder.
 You can get the same documentation in the Python shell
-(if run from the working folder), by typing for example
+(if run from the M269 Library folder), by typing for example
 ```
 >>> import lib.stack
 >>> help(lib.stack)
@@ -78,11 +91,11 @@ For the example apps, tests are written in the docstrings
 and checked with Python's built-in 
 [doctest](https://docs.python.org/3/library/doctest.html) framework.
 
-The files in the `help` folder were generated with 
+The files in the `docs/api` folder were generated with 
 Python's built-in documentation generator
 [pydoc](https://docs.python.org/3/library/pydoc.html).
 
-The files in the `doc` folder were generated with
+The files in the `docs/code` folder were generated with
 [Pycco](https://pycco-docs.github.io/pycco/).
 
 The code was checked with
