@@ -32,12 +32,12 @@ class Graph(DirectedGraph):
     # Mostly inherited from `DirectedGraph`.
 
     # The following only changes the docstring.
-    def has_edge(self, node1, node2):
+    def has_edge(self, source, target):
         """Check if there's an edge between the two nodes.
 
         Return False if the edge or either node don't exist, otherwise True.
         """
-        return self.has_node(node1) and node2 in self._edges[node1]
+        return self.has_node(source) and target in self._edges[source]
 
     # The following were changed to not generate duplicate edges.
     def weighted_edges(self):
@@ -49,8 +49,7 @@ class Graph(DirectedGraph):
         """
         the_edges = set()
         for source in self._edges:
-            for target in self._edges[source]:
-                weight = self._edges[source][target]
+            for target, weight in self._edges[source].items():
                 if (target, source, weight) not in the_edges:
                     the_edges.add((source, target, weight))
         return the_edges
@@ -75,7 +74,6 @@ class Graph(DirectedGraph):
 
         Undirected graphs don't have a topological sort.
         """
-        # pylint: disable=no-self-use
         return []
 
     # Prim's algorithm
@@ -89,17 +87,17 @@ class Graph(DirectedGraph):
         Assume the input graph has the start node and is connected.
         """
         assert self.has_node(start)
-        infinity = float('infinity')
+        infinity = float("infinity")
         # Keep the nodes ordered by distance from the closest node in the tree.
         to_visit = PriorityQueue()
         # Initially there is no tree, so all nodes are unreachable.
         tree = DirectedGraph()
         for node in self.nodes():
-            self._nodes[node]['distance'] = infinity
-            self._nodes[node]['from'] = None
+            self._nodes[node]["distance"] = infinity
+            self._nodes[node]["from"] = None
             to_visit.enqueue(node, infinity)
         # Correct the distance of the start node.
-        self._nodes[start]['distance'] = 0
+        self._nodes[start]["distance"] = 0
         to_visit.set_priority(start, 0)
         while not to_visit.is_empty():
             # Visit the next node and add it to the tree.
@@ -107,7 +105,7 @@ class Graph(DirectedGraph):
             # connect it to the tree node it's closest to.
             node = to_visit.dequeue()
             if node != start:
-                source = self._nodes[node]['from']
+                source = self._nodes[node]["from"]
                 weight = self._edges[source][node]
                 tree.add_edge(source, node, weight)
             else:
@@ -115,13 +113,13 @@ class Graph(DirectedGraph):
             # For each neighbour that is not yet in the tree,
             for neighbour in self.neighbours(node):
                 if not tree.has_node(neighbour):
-                    neighbour_distance = self._nodes[neighbour]['distance']
+                    neighbour_distance = self._nodes[neighbour]["distance"]
                     edge_distance = self._edges[node][neighbour]
                     # if it's closer to this node than to other tree nodes,
                     if edge_distance < neighbour_distance:
                         # update its distance and edge.
-                        self._nodes[neighbour]['distance'] = edge_distance
-                        self._nodes[neighbour]['from'] = node
+                        self._nodes[neighbour]["distance"] = edge_distance
+                        self._nodes[neighbour]["from"] = node
                         to_visit.set_priority(neighbour, edge_distance)
         return tree
 
@@ -148,7 +146,7 @@ class Graph(DirectedGraph):
         assert self.nodes()
         # Mark that no tour has been found yet.
         tour_found = None
-        lowest_total = float('infinity')
+        lowest_total = float("infinity")
         # Go through all possible orderings of the nodes.
         for permutation in permutations(self.nodes()):
             # A tour is a permutation with the start node at the end.
@@ -166,28 +164,29 @@ class Graph(DirectedGraph):
     # ---------
     # `add_node` and `remove_node` inherited from `Digraph`.
 
-    def add_edge(self, this_node, that_node, weight=1):
+    def add_edge(self, source, target, weight=1):
         """Add an edge between the two nodes with the given weight.
 
         Replace the weight value if the edge already exists.
         Assume the nodes are of a hashable type and different.
         Assume the weight is a positive number.
         """
-        assert this_node != that_node
+        assert source != target
         assert weight > 0
-        self.add_node(this_node)
-        self.add_node(that_node)
-        self._edges[this_node][that_node] = weight
-        self._edges[that_node][this_node] = weight
+        self.add_node(source)
+        self.add_node(target)
+        self._edges[source][target] = weight
+        self._edges[target][source] = weight
 
-    def remove_edge(self, node1, node2):
+    def remove_edge(self, source, target):
         """Remove the edge between the nodes from the graph.
 
         Do nothing if the edge doesn't exist.
         """
-        if self.has_edge(node1, node2):
-            del self._edges[node1][node2]
-            del self._edges[node2][node1]
+        if self.has_edge(source, target):
+            del self._edges[source][target]
+            del self._edges[target][source]
+
 
 # Exercises
 # ---------

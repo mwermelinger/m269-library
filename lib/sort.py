@@ -25,7 +25,7 @@ def binary_search(items, item):
         if items[middle] == item:
             return True
         # Reduction step: find the half where the item should be.
-        elif items[middle] < item:
+        if items[middle] < item:
             # The item must be above the middle position.
             first = middle + 1
         else:
@@ -33,6 +33,7 @@ def binary_search(items, item):
             last = middle - 1
     # Base case: the search space is empty.
     return False
+
 
 # Bubblesort
 # ----------
@@ -201,6 +202,7 @@ def quick_sorted(items):
     # in the correct order.
     return left_sorted + [pivot] + right_sorted
 
+
 # Heapsort
 # --------
 # This algorithm transforms the list of items into a min binary heap
@@ -217,6 +219,7 @@ def heap_sorted(items):
     while not queue.is_empty():
         result.append(queue.dequeue())
     return result
+
 
 # Quickselect
 # -----------
@@ -258,6 +261,7 @@ def nth_smallest(items, n):
     # Discount the numbers up to and including the pivot.
     return nth_smallest(right_unsorted, n - (smaller_equal + 1))
     # Inductive step: none.
+
 
 # Exercises
 # ---------

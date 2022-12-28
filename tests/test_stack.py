@@ -6,12 +6,11 @@ from lib.stack import Stack
 
 
 class TestStack(unittest.TestCase):
-
     def setUp(self):
         # Create stacks for the tests to use
         self.new = Stack()
         self.empty = Stack()
-        self.empty.push('hi')
+        self.empty.push("hi")
         self.empty.pop()
         # Don't add in ascending or descending order
         self.non_empty = Stack()
@@ -52,4 +51,3 @@ class TestStack(unittest.TestCase):
         self.assertTrue(2 in self.non_empty)
         self.assertTrue(5 in self.non_empty)
         self.assertTrue(7 in self.non_empty)
-        

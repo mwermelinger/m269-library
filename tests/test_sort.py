@@ -6,8 +6,8 @@ from lib.sort import bubble_sort, selection_sort, insertion_sort
 from lib.sort import merge_sorted, quick_sorted, heap_sorted
 from lib.sort import nth_smallest, binary_search
 
-class TestSort(unittest.TestCase):
 
+class TestSort(unittest.TestCase):
     def setUp(self):
         # Create lists for the tests to use.
         # Each list has different values so that if a test fails,
@@ -20,13 +20,9 @@ class TestSort(unittest.TestCase):
             [-1, 1, 4],
             [7, 2, 0],
             # duplicate values
-            [30, 20, 10, 10, 20, 30]
+            [30, 20, 10, 10, 20, 30],
         )
-        self.strings = (
-            ['hi'],
-            ['hi', 'Jane'],
-            ['ho', 'ho', 'ho']
-        )
+        self.strings = (["hi"], ["hi", "Jane"], ["ho", "ho", "ho"])
         self.examples = self.integers + self.strings
 
     def test_sorted(self):
@@ -39,7 +35,7 @@ class TestSort(unittest.TestCase):
 
     # The examples are set up anew before each test. Hence each algorithm
     # can modify each list without affecting other tests.
-    
+
     def test_bubble_sort(self):
         for example in self.examples:
             expected = sorted(example)
@@ -78,9 +74,10 @@ class TestSort(unittest.TestCase):
                 self.assertEqual(binary_search(example, item), item in example)
         for example in self.strings:
             example = sorted(example)
-            for item in ('hi', 'Jane', 'ho'):
+            for item in ("hi", "Jane", "ho"):
                 self.assertEqual(binary_search(example, item), item in example)
- 
+
+
 # Exercises
 # ---------
 # - For each of the `...sort` tests, the expected output is needed only once.

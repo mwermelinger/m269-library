@@ -25,15 +25,15 @@ from lib.digraph import DirectedGraph
 recipe = DirectedGraph()
 
 # Adding the edges automatically adds the nodes.
-recipe.add_edge('3/4 cup milk', '1 cup mix')
-recipe.add_edge('1 egg', '1 cup mix')
-recipe.add_edge('1 Tbl Oil', '1 cup mix')
-recipe.add_edge('1 cup mix', 'pour 1/4 cup')
-recipe.add_edge('1 cup mix', 'heat syrup')
-recipe.add_edge('heat syrup', 'eat')
-recipe.add_edge('heat griddle', 'pour 1/4 cup')
-recipe.add_edge('pour 1/4 cup', 'turn when bubbly')
-recipe.add_edge('turn when bubbly', 'eat')
+recipe.add_edge("3/4 cup milk", "1 cup mix")
+recipe.add_edge("1 egg", "1 cup mix")
+recipe.add_edge("1 Tbl Oil", "1 cup mix")
+recipe.add_edge("1 cup mix", "pour 1/4 cup")
+recipe.add_edge("1 cup mix", "heat syrup")
+recipe.add_edge("heat syrup", "eat")
+recipe.add_edge("heat griddle", "pour 1/4 cup")
+recipe.add_edge("pour 1/4 cup", "turn when bubbly")
+recipe.add_edge("turn when bubbly", "eat")
 
 # If this file is imported, do nothing.
 # If it is run as a script, execute the app.

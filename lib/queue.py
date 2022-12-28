@@ -100,5 +100,6 @@ class Queue:
             self._last = None
         return item
 
+
 # - Why is there a method `is_empty`? Client code could easily just call
 #   `len(items) == 0` instead.

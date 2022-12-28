@@ -4,13 +4,13 @@ import unittest
 
 from lib.queue import Queue
 
-class TestQueue(unittest.TestCase):
 
+class TestQueue(unittest.TestCase):
     def setUp(self):
         # Create queues for the tests to use
         self.new = Queue()
         self.empty = Queue()
-        self.empty.enqueue('hi')
+        self.empty.enqueue("hi")
         self.empty.dequeue()
         # Don't add in ascending or descending order
         self.non_empty = Queue()
@@ -51,4 +51,3 @@ class TestQueue(unittest.TestCase):
         self.assertTrue(2 in self.non_empty)
         self.assertTrue(5 in self.non_empty)
         self.assertTrue(7 in self.non_empty)
-        

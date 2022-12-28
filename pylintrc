@@ -1,13 +1,18 @@
 [REPORTS]
 
 # Tells whether to display a full report or only the messages.
-reports = no
+reports = false
 
 [MESSAGES CONTROL]
 
 # Disable the message, report, category or checker with the given id(s).
 # redefined because pylint isn't able to handle relative imports
-disable = import-error, relative-beyond-top-level
+# the following are disabled for pedagogical reasons:
+# C0206: use `for k, v in d.items()` instead of `for k in d: for v in d[k]:`
+# C1803: use `not X` instead of `X == []`
+# R0801: duplicate code in different files
+# R1735: use `{}` instead of `dict()`
+disable = import-error, relative-beyond-top-level, C0206, C1803, R0801, R1735
 
 [BASIC]
 

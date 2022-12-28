@@ -1,5 +1,5 @@
 .SILENT:
-	
+
 all: docs/code/*.html examples/*.py test clean
 
 usage:
@@ -13,21 +13,23 @@ docs/code/%.html: lib/%.py
 	python -m lib.$*
 # Run the corresponding tests if they exist.
 	if [ -f tests/$*.py ]; then python -m tests.$*; fi
+# Format the code.
+	black $<
 # Fix any spacing issues.
 	autopep8 --in-place --aggressive $<
 # Check the code.
 	pylint $<
 	flake8 $<
 # Check the docstrings.
-	pydocstyle $<				
+	pydocstyle $<
 # Write the help text to an HTML file in this directory.
-	pydoc -w lib.$*
+	pydoc3 -w lib.$*
 # Remove my local path of the generated file.
 # Edit the file in place without doing a backup.
 	sed -e 's|<font.*file:.*/font>||' -i '' lib.$*.html
 	mv lib.$*.html docs/api/$*.html
 # Generate the side-by-side view of code and comments.
-	pycco -d docs/code $< 				
+	pycco -d docs/code $<
 
 test:
 # Discover and run all unit tests in the tests folder.
@@ -42,6 +44,8 @@ examples/%.py: FORCE
 	python -B $@
 # Test the example using the docstring.
 	python -B -m doctest $@
+# Format the code
+	black $@
 # Check the coding and commenting style.
 	autopep8 --in-place --aggressive $@
 	pylint $@
@@ -51,7 +55,7 @@ examples/%.py: FORCE
 FORCE:
 
 new:
-	for f in lib/*py; do make dos/code/`basename $$f .py`.html; done
-		
+	for f in lib/*py; do make docs/code/`basename $$f .py`.html; done
+
 clean:
 	rm -rf lib/__pycache__ tests/__pycache__ examples/__pycache__

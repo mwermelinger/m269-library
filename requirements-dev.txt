@@ -1,0 +1,6 @@
+autopep8        # fixes some deviations from PEP8
+black           # code formatter
+flake8          # code style checker
+pycco           # documentation generator
+pydocstyle      # docstring style checker
+pylint          # code style checker

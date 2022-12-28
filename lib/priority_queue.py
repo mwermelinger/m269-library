@@ -2,7 +2,7 @@
 
 # The following constants make the code more readable.
 
-_KEY = 0    # pylint: disable=invalid-name
+_KEY = 0  # pylint: disable=invalid-name
 _VALUE = 1  # pylint: disable=invalid-name
 
 

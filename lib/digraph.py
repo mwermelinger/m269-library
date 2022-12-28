@@ -63,13 +63,13 @@ class DirectedGraph:
         Return infinity if the path is empty or invalid.
         """
         if not path:
-            return float('infinity')
+            return float("infinity")
         total = 0
         for current in range(0, len(path) - 1):
             this_node = path[current]
             next_node = path[current + 1]
             if not self.has_edge(this_node, next_node):
-                return float('infinity')
+                return float("infinity")
             total = total + self._edges[this_node][next_node]
         return total
 
@@ -128,8 +128,8 @@ class DirectedGraph:
         to_visit.enqueue(start)
         # Mark all nodes except the start node as unexplored.
         for node in self._nodes:
-            self._nodes[node]['seen'] = False
-        self._nodes[start]['seen'] = True
+            self._nodes[node]["seen"] = False
+        self._nodes[start]["seen"] = True
         # While there are nodes to be visited:
         while not to_visit.is_empty():
             # Visit the next node at the front of the queue.
@@ -139,9 +139,9 @@ class DirectedGraph:
             for neighbour in self.neighbours(next_node):
                 # Put unexplored nodes at the back of the queue
                 # and mark them as explored.
-                if not self._nodes[neighbour]['seen']:
+                if not self._nodes[neighbour]["seen"]:
                     to_visit.enqueue(neighbour)
-                    self._nodes[neighbour]['seen'] = True
+                    self._nodes[neighbour]["seen"] = True
         return visited
 
     # Breadth-first search can be used to find the smallest number
@@ -156,21 +156,21 @@ class DirectedGraph:
         """
         # Like breadth-first search but keep each node's distance from `start`.
         assert self.has_node(start)
-        infinity = float('infinity')
+        infinity = float("infinity")
         to_visit = Queue()
         to_visit.enqueue(start)
         for node in self._nodes:
-            self._nodes[node]['hops'] = infinity
-        self._nodes[start]['hops'] = 0
+            self._nodes[node]["hops"] = infinity
+        self._nodes[start]["hops"] = 0
         while not to_visit.is_empty():
             next_node = to_visit.dequeue()
-            hops = self._nodes[next_node]['hops']
+            hops = self._nodes[next_node]["hops"]
             if next_node == end:
                 return hops
             for neighbour in self.neighbours(next_node):
-                if self._nodes[neighbour]['hops'] == infinity:
+                if self._nodes[neighbour]["hops"] == infinity:
                     to_visit.enqueue(neighbour)
-                    self._nodes[neighbour]['hops'] = hops + 1
+                    self._nodes[neighbour]["hops"] = hops + 1
         return infinity
 
     # Depth-first search
@@ -188,15 +188,15 @@ class DirectedGraph:
         to_visit = Stack()
         to_visit.push(start)
         for node in self._nodes:
-            self._nodes[node]['seen'] = False
-        self._nodes[start]['seen'] = True
+            self._nodes[node]["seen"] = False
+        self._nodes[start]["seen"] = True
         while not to_visit.is_empty():
             next_node = to_visit.pop()
             visited.append(next_node)
             for neighbour in self.neighbours(next_node):
-                if not self._nodes[neighbour]['seen']:
+                if not self._nodes[neighbour]["seen"]:
                     to_visit.push(neighbour)
-                    self._nodes[neighbour]['seen'] = True
+                    self._nodes[neighbour]["seen"] = True
         return visited
 
     def topological_sort(self):
@@ -208,13 +208,13 @@ class DirectedGraph:
         # Initially, all nodes have 0 incoming edges and can be visited.
         to_visit = self.nodes()
         for node in to_visit:
-            self._nodes[node]['incoming'] = 0
+            self._nodes[node]["incoming"] = 0
         # For each edge, its target has 1 more incoming edge,
         # and can't be yet visited (the source must be visited first).
         # pylint: disable=unused-variable
         for (source, target) in self.unweighted_edges():
             to_visit.discard(target)
-            self._nodes[target]['incoming'] += 1
+            self._nodes[target]["incoming"] += 1
         # While there are nodes to visit,
         while to_visit:
             # visit any of them,
@@ -223,11 +223,11 @@ class DirectedGraph:
             # and virtually remove it from the graph, by
             # decrementing its neighbours' incoming edges.
             for neighbour in self.neighbours(node):
-                self._nodes[neighbour]['incoming'] -= 1
+                self._nodes[neighbour]["incoming"] -= 1
                 # If a node has no incoming edges left,
                 # all its predecessors were visited and 'removed',
                 # hence it can be visited.
-                if self._nodes[neighbour]['incoming'] == 0:
+                if self._nodes[neighbour]["incoming"] == 0:
                     to_visit.add(neighbour)
         return sort
 
@@ -245,29 +245,29 @@ class DirectedGraph:
     def _shortest_paths(self, start):
         # Compute a shortest path from start to each other node, if it exists.
         assert self.has_node(start)
-        infinity = float('infinity')
+        infinity = float("infinity")
         # Keep the nodes ordered by distance from the start node.
         to_visit = PriorityQueue()
         # All nodes are initially unreachable from the start node.
         for node in self.nodes():
-            self._nodes[node]['distance'] = infinity
-            self._nodes[node]['from'] = None
+            self._nodes[node]["distance"] = infinity
+            self._nodes[node]["from"] = None
             to_visit.enqueue(node, infinity)
         # Correct the distance of the start node.
-        self._nodes[start]['distance'] = 0
+        self._nodes[start]["distance"] = 0
         to_visit.set_priority(start, 0)
         while not to_visit.is_empty():
             node = to_visit.dequeue()
-            node_distance = self._nodes[node]['distance']
+            node_distance = self._nodes[node]["distance"]
             for neighbour in self.neighbours(node):
-                neighbour_distance = self._nodes[neighbour]['distance']
+                neighbour_distance = self._nodes[neighbour]["distance"]
                 # Compute the new distance to neighbour, going through node.
                 edge_distance = self._edges[node][neighbour]
                 new_distance = node_distance + edge_distance
                 # If it's shorter going this way, update the distance and path.
                 if new_distance < neighbour_distance:
-                    self._nodes[neighbour]['distance'] = new_distance
-                    self._nodes[neighbour]['from'] = node
+                    self._nodes[neighbour]["distance"] = new_distance
+                    self._nodes[neighbour]["from"] = node
                     to_visit.set_priority(neighbour, new_distance)
 
     def shortest_path(self, start, end):
@@ -282,14 +282,14 @@ class DirectedGraph:
         if not self.has_node(end):
             return []
         self._shortest_paths(start)
-        if self._nodes[end]['distance'] == float('infinity'):
+        if self._nodes[end]["distance"] == float("infinity"):
             return []
         # Construct the path backwards and then reverse it.
         path = []
         current = end
         while current != start:
             path.append(current)
-            current = self._nodes[current]['from']
+            current = self._nodes[current]["from"]
         path.append(start)
         path.reverse()
         return path
@@ -303,8 +303,8 @@ class DirectedGraph:
         assert self.has_node(start)
         self._shortest_paths(start)
         if self.has_node(end):
-            return self._nodes[end]['distance']
-        return float('infinity')
+            return self._nodes[end]["distance"]
+        return float("infinity")
 
     # Modifiers
     # ---------

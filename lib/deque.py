@@ -146,6 +146,7 @@ class Deque:
         self._length -= 1
         return item
 
+
 # Exercises
 # ---------
 # - Add methods `index_front` and `index_rear` that return

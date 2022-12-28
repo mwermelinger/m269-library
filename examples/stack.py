@@ -28,7 +28,7 @@ def brackets_match(string):
             expected.push(")")
         elif character == "[":
             expected.push("]")
-        elif character == ")" or character == "]":
+        elif character in ")]":
             if expected and character == expected.top():
                 expected.pop()
             else:

@@ -4,13 +4,13 @@ import unittest
 
 from lib.hash_table import HashTable
 
-class TestHashTable(unittest.TestCase):
 
+class TestHashTable(unittest.TestCase):
     def setUp(self):
         # The keys are unique house numbers in a street.
         # The values are the names of inhabitants.
-        self.houses = [number for number in range(31, 36)]
-        self.people = ['Jane', 'John', 'Ann', 'Bob', 'John']
+        self.houses = list(range(31, 36))
+        self.people = ["Jane", "John", "Ann", "Bob", "John"]
         # Create tables for the tests to use.
         # A brand new table.
         self.new = HashTable(5)
@@ -36,7 +36,7 @@ class TestHashTable(unittest.TestCase):
         self.assertEqual(len(self.single), 1)
         self.assertEqual(len(self.ascending), 5)
         self.assertEqual(len(self.descending), 5)
-        
+
     def test_value(self):
         for key, value in zip(self.houses, self.people):
             self.assertEqual(self.new.value(key), None)
@@ -44,10 +44,10 @@ class TestHashTable(unittest.TestCase):
             if key == self.houses[-1]:
                 self.assertEqual(self.single.value(key), value)
             else:
-                self.assertEqual(self.single.value(key), None)                
+                self.assertEqual(self.single.value(key), None)
             self.assertEqual(self.ascending.value(key), value)
             self.assertEqual(self.descending.value(key), value)
-            
+
     def test_value_change(self):
         # The previous tests with setUp already test adding new entries.
         # This test checks the change of value for an existing key.
@@ -61,7 +61,7 @@ class TestHashTable(unittest.TestCase):
         self.descending.add(self.houses[-1], self.people[-1])
         # Test retrieval of the new values.
         self.test_value()
-        
+
     def test_remove_and_contains(self):
         # Get the middle key: it doesn't exist in the single-entry table.
         index = len(self.houses) // 2
@@ -82,7 +82,7 @@ class TestHashTable(unittest.TestCase):
         self.houses.pop(index)
         self.people.pop(index)
         self.test_value()
-        
+
     def test_replacement(self):
         # Remove all entries.
         for key in self.houses:
@@ -93,10 +93,10 @@ class TestHashTable(unittest.TestCase):
         # Check they're found.
         for key, value in zip(self.houses, reversed(self.people)):
             self.assertEqual(self.ascending.value(key), value)
-     
+
     def test_capacity(self):
         # Remove all entries.
         for key in self.houses:
             self.ascending.remove(key)
         # Try to add a new one.
-        self.assertEqual(self.ascending.add(30, 'me'), False)
+        self.assertEqual(self.ascending.add(30, "me"), False)
