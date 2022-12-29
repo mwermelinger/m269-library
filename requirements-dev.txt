@@ -1,6 +1,10 @@
-autopep8        # fixes some deviations from PEP8
-black           # code formatter
-flake8          # code style checker
-pycco           # documentation generator
-pydocstyle      # docstring style checker
-pylint          # code style checker
+autopep8            # fixes some deviations from PEP8
+black               # code formatter
+
+flake8              # code style checker
+pydocstyle          # docstring style checker
+pylint              # code style checker
+
+sphinx              # documentation generator
+myst-parser         # required by sphinx to process Markdown
+sphinx-rtd-theme    # Read the Docs theme

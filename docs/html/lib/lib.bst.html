@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lib.bst module &mdash; m269-library  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="lib.deque module" href="lib.deque.html" />
+    <link rel="prev" title="lib package" href="lib.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> m269-library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="lib.html">Library</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">lib.bst module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.deque.html">lib.deque module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.digraph.html">lib.digraph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.graph.html">lib.graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.hash_table.html">lib.hash_table module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.priority_queue.html">lib.priority_queue module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.queue.html">lib.queue module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.sort.html">lib.sort module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.stack.html">lib.stack module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">m269-library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="lib.html">lib package</a></li>
+      <li class="breadcrumb-item active">lib.bst module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-lib.bst">
+<span id="lib-bst-module"></span><h1>lib.bst module<a class="headerlink" href="#module-lib.bst" title="Permalink to this headline"></a></h1>
+<p>A binary tree ordered by key.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lib.bst.BinarySearchTree">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lib.bst.</span></span><span class="sig-name descname"><span class="pre">BinarySearchTree</span></span><a class="headerlink" href="#lib.bst.BinarySearchTree" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Provide a collection of key-value pairs with unique and comparable keys.</p>
+<p>A binary tree is either empty or consists of a node (called the root)
+and two subtrees (called the left and right subtree).</p>
+<p>A Binary Search Tree (BST) is a binary tree in which
+- every node is a key-value pair,
+- every key in the left subtree is smaller than the root’s key,
+- every key in the right subtree is larger than the root’s key.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.bst.BinarySearchTree.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">the_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">the_value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.bst.BinarySearchTree.add" title="Permalink to this definition"></a></dt>
+<dd><p>Associate the_value to the_key in the tree. Return nothing.</p>
+<p>Assume the_value is not None.
+If the tree has the_key, replace its associated value by the_value.
+If it hasn’t, add a new node with the_key and the_value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.bst.BinarySearchTree.height">
+<span class="sig-name descname"><span class="pre">height</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.bst.BinarySearchTree.height" title="Permalink to this definition"></a></dt>
+<dd><p>Return the height of the tree.</p>
+<p>Follow the definition in M269:
+The height is the maximum number of edges from the root to any leaf.
+The height of the empty tree is -1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.bst.BinarySearchTree.in_order">
+<span class="sig-name descname"><span class="pre">in_order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.bst.BinarySearchTree.in_order" title="Permalink to this definition"></a></dt>
+<dd><p>Do an in-order traversal of the tree.</p>
+<p>Return a list of the keys in the tree, in the order visited.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.bst.BinarySearchTree.is_empty">
+<span class="sig-name descname"><span class="pre">is_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.bst.BinarySearchTree.is_empty" title="Permalink to this definition"></a></dt>
+<dd><p>Return True if the tree is empty, otherwise False.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.bst.BinarySearchTree.post_order">
+<span class="sig-name descname"><span class="pre">post_order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.bst.BinarySearchTree.post_order" title="Permalink to this definition"></a></dt>
+<dd><p>Do a post-order traversal of the tree.</p>
+<p>Return a list of the keys in the tree, in the order visited.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.bst.BinarySearchTree.pre_order">
+<span class="sig-name descname"><span class="pre">pre_order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.bst.BinarySearchTree.pre_order" title="Permalink to this definition"></a></dt>
+<dd><p>Do a pre-order traversal of the tree.</p>
+<p>Return a list of the keys in the tree, in the order visited.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.bst.BinarySearchTree.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">the_key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.bst.BinarySearchTree.remove" title="Permalink to this definition"></a></dt>
+<dd><p>Remove the node with the_key from the tree. Return nothing.</p>
+<p>Do nothing if the tree hasn’t the_key.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.bst.BinarySearchTree.smallest_key">
+<span class="sig-name descname"><span class="pre">smallest_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.bst.BinarySearchTree.smallest_key" title="Permalink to this definition"></a></dt>
+<dd><p>Return the smallest key in the tree.</p>
+<p>Return None if the tree is empty.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.bst.BinarySearchTree.value">
+<span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">the_key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.bst.BinarySearchTree.value" title="Permalink to this definition"></a></dt>
+<dd><p>Return the value associated to the_key in the tree.</p>
+<p>Return None if the tree hasn’t the_key.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lib.html" class="btn btn-neutral float-left" title="lib package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lib.deque.html" class="btn btn-neutral float-right" title="lib.deque module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017–2022, Michel Wermelinger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

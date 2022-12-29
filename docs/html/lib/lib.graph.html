@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lib.graph module &mdash; m269-library  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="lib.hash_table module" href="lib.hash_table.html" />
+    <link rel="prev" title="lib.digraph module" href="lib.digraph.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> m269-library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="lib.html">Library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lib.bst.html">lib.bst module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.deque.html">lib.deque module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.digraph.html">lib.digraph module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">lib.graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.hash_table.html">lib.hash_table module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.priority_queue.html">lib.priority_queue module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.queue.html">lib.queue module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.sort.html">lib.sort module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.stack.html">lib.stack module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">m269-library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="lib.html">lib package</a></li>
+      <li class="breadcrumb-item active">lib.graph module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-lib.graph">
+<span id="lib-graph-module"></span><h1>lib.graph module<a class="headerlink" href="#module-lib.graph" title="Permalink to this headline"></a></h1>
+<p>An implementation of weighted undirected graphs.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lib.graph.Graph">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lib.graph.</span></span><span class="sig-name descname"><span class="pre">Graph</span></span><a class="headerlink" href="#lib.graph.Graph" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="lib.digraph.html#lib.digraph.DirectedGraph" title="lib.digraph.DirectedGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">lib.digraph.DirectedGraph</span></code></a></p>
+<p>Implements an undirected graph.</p>
+<p>Each node must be a hashable value:
+a number, a string, a tuple of hashable values, etc.
+Each edge must be between two different nodes.
+Each edge has a weight, which must be a positive number.
+If all weights are the same, the graph is effectively unweighted.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.graph.Graph.add_edge">
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.graph.Graph.add_edge" title="Permalink to this definition"></a></dt>
+<dd><p>Add an edge between the two nodes with the given weight.</p>
+<p>Replace the weight value if the edge already exists.
+Assume the nodes are of a hashable type and different.
+Assume the weight is a positive number.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.graph.Graph.best_tour">
+<span class="sig-name descname"><span class="pre">best_tour</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.graph.Graph.best_tour" title="Permalink to this definition"></a></dt>
+<dd><p>Return a best tour of the graph.</p>
+<p>Assume the graph is not empty and complete.
+A tour is a list with all the graph’s nodes, in the order visited,
+and the first and last nodes are the same.
+A best tour has the lowest total weight.
+Use a brute-force algorithm (only works for very small graphs).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.graph.Graph.has_edge">
+<span class="sig-name descname"><span class="pre">has_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.graph.Graph.has_edge" title="Permalink to this definition"></a></dt>
+<dd><p>Check if there’s an edge between the two nodes.</p>
+<p>Return False if the edge or either node don’t exist, otherwise True.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.graph.Graph.minimum_spanning_tree">
+<span class="sig-name descname"><span class="pre">minimum_spanning_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.graph.Graph.minimum_spanning_tree" title="Permalink to this definition"></a></dt>
+<dd><p>Compute a spanning tree of minimal total weight rooted at start.</p>
+<p>Return a digraph.
+Assume the input graph has the start node and is connected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.graph.Graph.remove_edge">
+<span class="sig-name descname"><span class="pre">remove_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.graph.Graph.remove_edge" title="Permalink to this definition"></a></dt>
+<dd><p>Remove the edge between the nodes from the graph.</p>
+<p>Do nothing if the edge doesn’t exist.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.graph.Graph.topological_sort">
+<span class="sig-name descname"><span class="pre">topological_sort</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.graph.Graph.topological_sort" title="Permalink to this definition"></a></dt>
+<dd><p>Return the empty list.</p>
+<p>Undirected graphs don’t have a topological sort.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.graph.Graph.unweighted_edges">
+<span class="sig-name descname"><span class="pre">unweighted_edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.graph.Graph.unweighted_edges" title="Permalink to this definition"></a></dt>
+<dd><p>Return the set of all edges in self, without weights.</p>
+<p>An edge is a tuple (node1, node2).
+The returned set doesn’t duplicate edges, i.e. only one of
+(node1, node2) and (node2, node1) is included.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.graph.Graph.weighted_edges">
+<span class="sig-name descname"><span class="pre">weighted_edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.graph.Graph.weighted_edges" title="Permalink to this definition"></a></dt>
+<dd><p>Return the set of all edges in self, with weights.</p>
+<p>An edge is a tuple (node1, node2, weight).
+The returned set doesn’t duplicate edges, i.e. only one of
+(node1, node2, weight) and (node2, node1, weight) is included.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lib.digraph.html" class="btn btn-neutral float-left" title="lib.digraph module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lib.hash_table.html" class="btn btn-neutral float-right" title="lib.hash_table module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017–2022, Michel Wermelinger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

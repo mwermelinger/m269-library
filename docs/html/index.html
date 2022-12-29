@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>m269-library &mdash; m269-library  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lib package" href="lib/lib.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> m269-library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="lib/lib.html">Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/modules.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">m269-library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">m269-library</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="m269-library">
+<h1>m269-library<a class="headerlink" href="#m269-library" title="Permalink to this headline"></a></h1>
+<p><a class="reference external" href="https://github.com/PyCQA/pylint"><img alt="linting: pylint" src="https://img.shields.io/badge/linting-pylint-yellowgreen" /></a>
+<a class="reference external" href="https://pycqa.github.io/isort/"><img alt="imports: isort" src="https://img.shields.io/badge/imports-isort-%231674b1?style=flat&amp;labelColor=ef8336" /></a>
+<a class="reference external" href="https://github.com/psf/black"><img alt="code style: black" src="https://img.shields.io/badge/code%20style-black-black" /></a></p>
+<p>This library provides Python implementations of some
+commonly taught algorithms and data structures (see the sidebar).
+It was created for M269, the Open University’s
+module on <a class="reference external" href="http://www.open.ac.uk/courses/modules/m269">Algorithms, Data Structures and Computability</a>,
+but is not specific to M269.</p>
+<p>The library aims to be pedagogical: simple, readable and documented.
+It is meant to complement (not replace) the code
+given in M269 and its textbook,
+to emphasise that there are many ways of implementing
+the same algorithms and data structures.</p>
+<p>The code aims to follow the official Python coding style,
+defined in <a class="reference external" href="http://pep8.org">PEP8</a>
+and <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">PEP257</a>.
+In addition, the code only uses full English words in identifiers,
+i.e. no abbreviations or single letters.
+The exceptions are: <code class="docutils literal notranslate"><span class="pre">n</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<p>Go to the <a class="reference external" href="https://github.com/mwermelinger/m269-library">code repository</a> and
+click on the green ‘Code’ button to download all files as a single compressed archive.
+Once downloaded, double-click the archive to extract the files,
+if your web browser hasn’t done so automatically.
+This will create the M269 Library folder with these subfolders:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lib</span></code> contains the M269 Library</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples</span></code> contains simple applications that use the library</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs</span></code> contains this documentation in HTML format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests</span></code> contains the test code.</p></li>
+</ul>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>Put your Python file in the M269 Library folder,
+i.e. ‘above’ the <code class="docutils literal notranslate"><span class="pre">lib</span></code> subfolder.
+Start your program with, for example,
+<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">lib.stack</span> <span class="pre">import</span> <span class="pre">Stack</span></code> to use the stack data structure,
+or <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">lib.sort</span> <span class="pre">import</span> <span class="pre">bubble_sort</span></code> to use the bubble sort algorithm.</p>
+<p>You can browse this documentation on your computer by double-clicking the file
+<code class="docutils literal notranslate"><span class="pre">docs/index.html</span></code> subfolder.
+You can get the same documentation in the Python shell
+(if run from the M269 Library folder), by typing for example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lib.stack</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">stack</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are some suggested exercises at the end of code files.
+You’re welcome to discuss them in the M269 forums and tutorials,
+unless they are used in the assignments.
+Please don’t post solutions on any public site.</p>
+</section>
+<section id="development">
+<h2>Development<a class="headerlink" href="#development" title="Permalink to this headline"></a></h2>
+<p>This library was created on Mac OS X with Python 3.6 (Anaconda distribution).
+In December 2022 I created a virtual environment with the most recent versions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m venv venv
+<span class="nb">source</span> venv/bin/activate
+pip install -r requirements-dev.txt
+</pre></div>
+</div>
+<p>The library should work on other platforms and with earlier Python versions,
+but they weren’t tested.</p>
+<p>For each class <code class="docutils literal notranslate"><span class="pre">ADT</span></code> in file <code class="docutils literal notranslate"><span class="pre">lib/adt.py</span></code> there is (or will be)
+a class <code class="docutils literal notranslate"><span class="pre">TestADT</span></code> in file <code class="docutils literal notranslate"><span class="pre">tests/test_adt.py</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">TestADT</span></code> class has one method <code class="docutils literal notranslate"><span class="pre">setUp</span></code> and
+one or more methods <code class="docutils literal notranslate"><span class="pre">test_...</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">setUp</span></code> method creates the inputs used by the tests,
+and each test method tests one method of the <code class="docutils literal notranslate"><span class="pre">ADT</span></code> class.</p>
+<p>Python’s built-in
+<a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a> framework
+automatically runs each test method of each test class.
+The <code class="docutils literal notranslate"><span class="pre">setUp</span></code> method is run before <em>each</em> test method,
+so that each test can change the inputs without influencing other tests.</p>
+<p>For the example apps, tests are written in the docstrings
+and checked with Python’s built-in
+<a class="reference external" href="https://docs.python.org/3/library/doctest.html">doctest</a> framework.</p>
+<p>The documentation is generated with <a class="reference external" href="http://sphinx-doc.org">sphinx</a>,
+using the <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> script to generate an initial set of pages,
+one per library or example file, in the <code class="docutils literal notranslate"><span class="pre">docsrc</span></code> folder.
+The <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> script then generates the HTML files in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder,
+which is rendered with <a class="reference external" href="https://docs.github.com/en/pages/quickstart">GitHub Pages</a>.</p>
+<p>The code was formatted with <a class="reference external" href="https://black.readthedocs.io/en/stable/">black</a>
+and <a class="reference external" href="https://pycqa.github.io/isort/">isort</a> and checked with
+<a class="reference external" href="http://pylint.org">pylint</a>,
+<a class="reference external" href="http://flake8.pycqa.org/">flake8</a> and
+<a class="reference external" href="http://www.pydocstyle.org/">pydocstyle</a>.
+File <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> configures the tools.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lib/lib.html" class="btn btn-neutral float-right" title="lib package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017–2022, Michel Wermelinger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

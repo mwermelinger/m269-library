@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lib.digraph module &mdash; m269-library  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="lib.graph module" href="lib.graph.html" />
+    <link rel="prev" title="lib.deque module" href="lib.deque.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> m269-library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="lib.html">Library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lib.bst.html">lib.bst module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.deque.html">lib.deque module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">lib.digraph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.graph.html">lib.graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.hash_table.html">lib.hash_table module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.priority_queue.html">lib.priority_queue module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.queue.html">lib.queue module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.sort.html">lib.sort module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.stack.html">lib.stack module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">m269-library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="lib.html">lib package</a></li>
+      <li class="breadcrumb-item active">lib.digraph module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-lib.digraph">
+<span id="lib-digraph-module"></span><h1>lib.digraph module<a class="headerlink" href="#module-lib.digraph" title="Permalink to this headline"></a></h1>
+<p>An implementation of weighted directed graphs.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lib.digraph.</span></span><span class="sig-name descname"><span class="pre">DirectedGraph</span></span><a class="headerlink" href="#lib.digraph.DirectedGraph" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Implement a directed graph (digraph).</p>
+<p>Each node must be a hashable value:
+a number, string, tuple of hashable values, etc.
+Each edge has a direction, i.e. it goes <strong>from</strong> a node <strong>to</strong> another.
+The two nodes must be different.
+Each edge has a weight, which must be a positive number.
+If all weights are the same, the graph is effectively unweighted.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.add_edge">
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.add_edge" title="Permalink to this definition"></a></dt>
+<dd><p>Add a directed edge from source to target with the given weight.</p>
+<p>Replace the weight value if the edge already exists.
+Add any node that doesn’t exist.
+Assume the two nodes are different.
+Assume the weight is a positive number.
+Assume the nodes are of a hashable type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.add_node">
+<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.add_node" title="Permalink to this definition"></a></dt>
+<dd><p>Add the node to the graph.</p>
+<p>Do nothing if the graph already has the node.
+Assume the node is of a hashable type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.has_edge">
+<span class="sig-name descname"><span class="pre">has_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.has_edge" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the graph has a directed edge from source to target.</p>
+<p>Return False if the edge or either node don’t exist, otherwise True.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.has_node">
+<span class="sig-name descname"><span class="pre">has_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.has_node" title="Permalink to this definition"></a></dt>
+<dd><p>Return True if the graph contains the node, otherwise False.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.neighbours">
+<span class="sig-name descname"><span class="pre">neighbours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.neighbours" title="Permalink to this definition"></a></dt>
+<dd><p>Return the set of neighbours of node.</p>
+<p>Assume the graph has the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.nodes">
+<span class="sig-name descname"><span class="pre">nodes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.nodes" title="Permalink to this definition"></a></dt>
+<dd><p>Return the set of all nodes in the graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.remove_edge">
+<span class="sig-name descname"><span class="pre">remove_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.remove_edge" title="Permalink to this definition"></a></dt>
+<dd><p>Remove the edge from source to target from the graph.</p>
+<p>Do nothing if the edge doesn’t exist.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.remove_node">
+<span class="sig-name descname"><span class="pre">remove_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.remove_node" title="Permalink to this definition"></a></dt>
+<dd><p>Remove the node and its edges from the graph.</p>
+<p>Do nothing if the node doesn’t exist.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.shortest_path">
+<span class="sig-name descname"><span class="pre">shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.shortest_path" title="Permalink to this definition"></a></dt>
+<dd><p>Compute a shortest path from the start to the end node.</p>
+<p>A shortest path is a path of minimal total weight.
+Return a list of nodes forming a path from start to end.
+Return the empty list if there is no path.
+Assume the graph has the start node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.topological_sort">
+<span class="sig-name descname"><span class="pre">topological_sort</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.topological_sort" title="Permalink to this definition"></a></dt>
+<dd><p>Return a list of nodes, in topological order.</p>
+<p>Return the empty list if the graph is cyclic.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.unweighted_distance">
+<span class="sig-name descname"><span class="pre">unweighted_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.unweighted_distance" title="Permalink to this definition"></a></dt>
+<dd><p>Return the smallest number of edges to go from <cite>start</cite> to <cite>end</cite>.</p>
+<p>Return infinity if there is no path from <cite>start</cite> to <cite>end</cite>.
+Assume the graph has the start node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.unweighted_edges">
+<span class="sig-name descname"><span class="pre">unweighted_edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.unweighted_edges" title="Permalink to this definition"></a></dt>
+<dd><p>Return the set of all edges in the graph, without weights.</p>
+<p>An edge is a tuple (source, target).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.visited_bfs">
+<span class="sig-name descname"><span class="pre">visited_bfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.visited_bfs" title="Permalink to this definition"></a></dt>
+<dd><p>Do a breadth-first search of the graph, from the start node.</p>
+<p>Return a list of nodes in visited order, the first being start.
+Assume the start node exists.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.visited_dfs">
+<span class="sig-name descname"><span class="pre">visited_dfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.visited_dfs" title="Permalink to this definition"></a></dt>
+<dd><p>Do a depth-first search of the graph, from the start node.</p>
+<p>Return a list of nodes in visited order, the first being start.
+Assume the start node exists.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.weight">
+<span class="sig-name descname"><span class="pre">weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.weight" title="Permalink to this definition"></a></dt>
+<dd><p>Return the total weight of the path.</p>
+<p>A path is a list of nodes of the graph [n1, n2, …]
+such that n1-n2, n2-n3, etc. are edges in the graph.
+Return 0 if the path has a single node.
+Return infinity if the path is empty or invalid.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.weighted_distance">
+<span class="sig-name descname"><span class="pre">weighted_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.weighted_distance" title="Permalink to this definition"></a></dt>
+<dd><p>Return the minimal total weight to go from start to end.</p>
+<p>Return infinity if there is no path.
+Assume the graph has start node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib.digraph.DirectedGraph.weighted_edges">
+<span class="sig-name descname"><span class="pre">weighted_edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lib.digraph.DirectedGraph.weighted_edges" title="Permalink to this definition"></a></dt>
+<dd><p>Return the set of all edges in the graph, with weights.</p>
+<p>An edge is a tuple (source, target, weight).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lib.deque.html" class="btn btn-neutral float-left" title="lib.deque module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lib.graph.html" class="btn btn-neutral float-right" title="lib.graph module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017–2022, Michel Wermelinger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
