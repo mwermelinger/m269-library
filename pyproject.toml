@@ -1,0 +1,53 @@
+# see the specification in
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata
+
+[project]
+
+name = "m269-library"
+license = {file = "LICENSE.txt"}
+description = "A pedagogical library of algorithms and data structures."
+requires-python = ">=3.6"
+readme = "docs/README.md"
+
+[project.urls]
+
+homepage = "https://mwermelinger.github.io/m269-library"
+repository = "https://github.com/mwermelinger/m269-library"
+
+[tool.isort]
+profile = "black"       # make isort format imports like black
+
+[tool.pylint]
+max-line-length = 88    # make pylint use black's maximum length
+
+# Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
+# number of processors available to use, and will cap the count on Windows to
+# avoid hangs.
+jobs = 0
+
+# Good variable names which should always be accepted, separated by a comma.
+good-names = ["n", "x", "y", "z"]
+
+# Include a hint for the correct naming format with invalid-name.
+include-naming-hint = true
+
+load-plugins = [
+    "pylint.extensions.docparams",  # check docstrings include args and return
+    "pylint.extensions.docstyle",  # check docstrings start with
+    "pylint.extensions.bad_builtin",  # check for deprecated builtins
+    "pylint.extensions.mccabe",  # check for excessive cyclomatic complexity
+
+]
+# Disable the message, report, category or checker with the given id(s).
+disable = [
+    # allow relative imports
+    "import-error", "relative-beyond-top-level",
+    # allow `for k in d: for v in d[k]:` instead of using `d.items()`
+    "consider-using-dict-items",
+    # allow duplicated lines across files
+    "duplicate-code",
+    # allow `X == []` instead of `not X`
+    "use-implicit-booleaness-not-comparison",
+    # allow `dict()` instead of {}
+    "use-dict-literal"
+]

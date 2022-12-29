@@ -14,6 +14,7 @@ docs/code/%.html: lib/%.py
 # Run the corresponding tests if they exist.
 	if [ -f tests/$*.py ]; then python -m tests.$*; fi
 # Format the code.
+	isort $<
 	black $<
 # Fix any spacing issues.
 	autopep8 --in-place --aggressive $<
@@ -45,6 +46,7 @@ examples/%.py: FORCE
 # Test the example using the docstring.
 	python -B -m doctest $@
 # Format the code
+	isort $@
 	black $@
 # Check the coding and commenting style.
 	autopep8 --in-place --aggressive $@

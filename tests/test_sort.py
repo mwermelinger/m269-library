@@ -2,9 +2,16 @@
 
 import unittest
 
-from lib.sort import bubble_sort, selection_sort, insertion_sort
-from lib.sort import merge_sorted, quick_sorted, heap_sorted
-from lib.sort import nth_smallest, binary_search
+from lib.sort import (
+    binary_search,
+    bubble_sort,
+    heap_sorted,
+    insertion_sort,
+    merge_sorted,
+    nth_smallest,
+    quick_sorted,
+    selection_sort,
+)
 
 
 class TestSort(unittest.TestCase):

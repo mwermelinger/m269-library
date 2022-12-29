@@ -1,3 +1,7 @@
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
+[![imports: isort](https://img.shields.io/badge/imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
+[![code style: black](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
+
 This library provides Python implementations of some
 commonly taught algorithms and data structures (see below).
 It was created for M269, the Open University's
@@ -103,7 +107,8 @@ The files in the `docs/code` folder were generated with
 [Pycco](https://pycco-docs.github.io/pycco/).
 
 The code was formatted with [black](https://black.readthedocs.io/en/stable/)
-and checked with
-[pylint](http://pylint.org) (using the configuration file `pylintrc`),
+and [isort](https://pycqa.github.io/isort/) and checked with
+[pylint](http://pylint.org)
 [flake8](http://flake8.pycqa.org/) and
 [pydocstyle](http://www.pydocstyle.org/).
+File `pyproject.toml` configures the tools.
