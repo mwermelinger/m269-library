@@ -33,18 +33,14 @@ docs/code/%.html: lib/%.py
 	pycco -d docs/code $<
 
 test:
-# Discover and run all unit tests in the tests folder.
-# Don't generate binaries.
-# Unclear why the tests package has to be specified explicitly.
-	python -B -m unittest discover tests
+# Discover and run all unit and doctests. Report their coverage.
+	pytest -q --doctest-modules --cov=lib
 
 # Run the examples from the current folder to find the lib module.
 examples/%.py: export PYTHONPATH = .
 examples/%.py: FORCE
 # Check the example compiles and works.
 	python -B $@
-# Test the example using the docstring.
-	python -B -m doctest $@
 # Format the code
 	isort $@
 	black $@

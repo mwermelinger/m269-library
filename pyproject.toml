@@ -51,3 +51,7 @@ disable = [
     # allow `dict()` instead of {}
     "use-dict-literal"
 ]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+doctest_optionflags = ["DONT_ACCEPT_TRUE_FOR_1"]

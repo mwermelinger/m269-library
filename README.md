@@ -1,6 +1,7 @@
 [![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
 [![imports: isort](https://img.shields.io/badge/imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![code style: black](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
+![license: MIT](https://img.shields.io/github/license/mwermelinger/m269-library)
 
 This library provides Python implementations of some
 commonly taught algorithms and data structures (see the sidebar).
@@ -42,8 +43,7 @@ Start your program with, for example,
 `from lib.stack import Stack` to use the stack data structure,
 or `from lib.sort import bubble_sort` to use the bubble sort algorithm.
 
-You can browse this documentation on your computer by double-clicking the file
-`docs/index.html` subfolder.
+You can browse this documentation on your computer by opening file `docs/index.html`.
 You can get the same documentation in the Python shell
 (if run from the M269 Library folder), by typing for example
 ```
@@ -71,19 +71,16 @@ but they weren't tested.
 For each class `ADT` in file `lib/adt.py` there is (or will be)
 a class `TestADT` in file `tests/test_adt.py`.
 The `TestADT` class has one method `setUp` and
-one or more methods `test_...`.
+one or more methods `test_...`, following the
+[unittest](https://docs.python.org/3/library/unittest.html) framework.
 The `setUp` method creates the inputs used by the tests,
 and each test method tests one method of the `ADT` class.
-
-Python's built-in
-[unittest](https://docs.python.org/3/library/unittest.html) framework
-automatically runs each test method of each test class.
 The `setUp` method is run before _each_ test method,
 so that each test can change the inputs without influencing other tests.
 
-For the example apps, tests are written in the docstrings
-and checked with Python's built-in
+For the example apps, tests follow the
 [doctest](https://docs.python.org/3/library/doctest.html) framework.
+Both unit and doc tests are run with [pytest](https://docs.pytest.org).
 
 The documentation is generated with [sphinx](http://sphinx-doc.org),
 using the `sphinx-apidoc` script to generate an initial set of pages,
@@ -93,7 +90,6 @@ which is rendered with [GitHub Pages](https://docs.github.com/en/pages/quickstar
 
 The code was formatted with [black](https://black.readthedocs.io/en/stable/)
 and [isort](https://pycqa.github.io/isort/) and checked with
-[pylint](http://pylint.org),
-[flake8](http://flake8.pycqa.org/) and
+[pylint](http://pylint.org), [flake8](http://flake8.pycqa.org/) and
 [pydocstyle](http://www.pydocstyle.org/).
 File `pyproject.toml` configures the tools.
