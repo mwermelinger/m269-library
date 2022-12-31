@@ -6,7 +6,7 @@
 name = "m269-library"
 license = {file = "LICENSE.txt"}
 description = "A pedagogical library of algorithms and data structures."
-requires-python = ">=3.6"
+requires-python = ">=3.9"
 readme = "docs/README.md"
 
 [project.urls]
@@ -19,25 +19,26 @@ profile = "black"       # make isort format imports like black
 
 [tool.pylint]
 max-line-length = 88    # make pylint use black's maximum length
+score = "n"             # don't show the evaluation score
+jobs = 0                # auto-detect available CPUs to speed up Pylint
 
-# Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
-# number of processors available to use, and will cap the count on Windows to
-# avoid hangs.
-jobs = 0
-
-# Good variable names which should always be accepted, separated by a comma.
+# Good variable names which should always be accepted.
 good-names = ["n", "x", "y", "z"]
 
 # Include a hint for the correct naming format with invalid-name.
 include-naming-hint = true
 
 load-plugins = [
-    "pylint.extensions.docparams",  # check docstrings include args and return
-    "pylint.extensions.docstyle",  # check docstrings start with
-    "pylint.extensions.bad_builtin",  # check for deprecated builtins
-    "pylint.extensions.mccabe",  # check for excessive cyclomatic complexity
-
+    # check that docstrings document the parameters and the return value
+    "pylint.extensions.docparams",
+    # check that docstrings use """ and don't start with a blank line
+    "pylint.extensions.docstyle",
+    # check for deprecated builtins
+    "pylint.extensions.bad_builtin",
+    # check for excessive cyclomatic complexity (too many if's and loops)
+    "pylint.extensions.mccabe",
 ]
+
 # Disable the message, report, category or checker with the given id(s).
 disable = [
     # allow relative imports
@@ -55,3 +56,34 @@ disable = [
 [tool.pytest.ini_options]
 pythonpath = "."
 doctest_optionflags = ["DONT_ACCEPT_TRUE_FOR_1"]
+
+[tool.mypy]
+# see https://mypy.readthedocs.io/en/stable/existing_code.html#introduce-stricter-options
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+no_implicit_optional = true
+
+# Getting these passing should be easy
+strict_equality = true
+strict_concatenate = true
+
+# Strongly recommend enabling this one as soon as you can
+# check_untyped_defs = true
+
+# These shouldn't be too much additional work, but may be tricky to
+# get passing if you use a lot of untyped libraries
+disallow_subclassing_any = true
+disallow_untyped_decorators = true
+disallow_any_generics = true
+
+# # These next few are various gradations of forcing use of type annotations
+# disallow_untyped_calls = true
+# disallow_incomplete_defs = true
+# disallow_untyped_defs = true
+
+# # This one isn't too hard to get passing, but return on investment is lower
+no_implicit_reexport = true
+
+# # This one can be tricky to get passing if you use a lot of untyped libraries
+warn_return_any = true

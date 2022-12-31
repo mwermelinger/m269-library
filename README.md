@@ -24,6 +24,8 @@ The exceptions are: `n`, `x`, `y`, `z`.
 
 ## Installation
 
+Make sure you have Python version 3.9 or higher.
+
 Go to the [code repository](https://github.com/mwermelinger/m269-library) and
 click on the green 'Code' button to download all files as a single compressed archive.
 Once downloaded, double-click the archive to extract the files,
@@ -65,8 +67,8 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements-dev.txt
 ```
-The library should work on other platforms and with earlier Python versions,
-but they weren't tested.
+Due to the type annotations, the library requires at least Python 3.9.
+The library should work on other platforms but they weren't tested.
 
 For each class `ADT` in file `lib/adt.py` there is (or will be)
 a class `TestADT` in file `tests/test_adt.py`.

@@ -1,9 +1,10 @@
-autopep8            # fixes some deviations from PEP8
 black               # code formatter
 
 flake8              # code style checker
-pydocstyle          # docstring style checker
+pydocstyle[toml]    # docstring style checker
+                    # warns about ignoring pyproject.toml if no toml package
 pylint              # code style checker
+mypy                # type checker
 
 pytest              # testing framework
 pytest-cov          # coverage checking
