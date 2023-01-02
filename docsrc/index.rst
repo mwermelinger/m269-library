@@ -9,3 +9,4 @@ m269-library
 
    Library <lib/lib>
    Examples <examples/modules>
+   style.md

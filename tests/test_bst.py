@@ -1,12 +1,10 @@
 """Unit tests for binary search trees."""
 
-import unittest
-
 from lib.bst import BinarySearchTree
 
 
-class TestBST(unittest.TestCase):
-    def setUp(self):
+class TestBST:
+    def setup_method(self):
         # The keys are unique house numbers in a street.
         # The values are the names of inhabitants.
         self.houses = list(range(31, 36))
@@ -34,50 +32,50 @@ class TestBST(unittest.TestCase):
         self.balanced.add(31, "Jane")
 
     def test_is_empty(self):
-        self.assertTrue(self.new.is_empty())
-        self.assertTrue(self.empty.is_empty())
-        self.assertFalse(self.root.is_empty())
-        self.assertFalse(self.linear.is_empty())
-        self.assertFalse(self.balanced.is_empty())
+        assert self.new.is_empty()
+        assert self.empty.is_empty()
+        assert not self.root.is_empty()
+        assert not self.linear.is_empty()
+        assert not self.balanced.is_empty()
 
     def test_height(self):
-        self.assertEqual(self.new.height(), -1)
-        self.assertEqual(self.empty.height(), -1)
-        self.assertEqual(self.root.height(), 0)
-        self.assertEqual(self.linear.height(), 4)
-        self.assertEqual(self.balanced.height(), 2)
+        assert self.new.height() == 0
+        assert self.empty.height() == 0
+        assert self.root.height() == 1
+        assert self.linear.height() == 5
+        assert self.balanced.height() == 3
 
     def test_smallest_key(self):
-        self.assertEqual(self.new.smallest_key(), None)
-        self.assertEqual(self.empty.smallest_key(), None)
-        self.assertEqual(self.root.smallest_key(), self.houses[-1])
-        self.assertEqual(self.linear.smallest_key(), self.houses[0])
-        self.assertEqual(self.balanced.smallest_key(), self.houses[0])
+        assert self.new.smallest_key() is None
+        assert self.empty.smallest_key() is None
+        assert self.root.smallest_key() == self.houses[-1]
+        assert self.linear.smallest_key() == self.houses[0]
+        assert self.balanced.smallest_key() == self.houses[0]
 
     def test_in_order(self):
-        self.assertEqual(self.new.in_order(), [])
-        self.assertEqual(self.empty.in_order(), [])
-        self.assertEqual(self.root.in_order(), [self.houses[-1]])
-        self.assertEqual(self.linear.in_order(), self.houses)
-        self.assertEqual(self.balanced.in_order(), self.houses)
+        assert self.new.in_order() == []
+        assert self.empty.in_order() == []
+        assert self.root.in_order() == [self.houses[-1]]
+        assert self.linear.in_order() == self.houses
+        assert self.balanced.in_order() == self.houses
 
     def test_post_order(self):
-        self.assertEqual(self.new.post_order(), [])
-        self.assertEqual(self.empty.post_order(), [])
-        self.assertEqual(self.root.post_order(), [self.houses[-1]])
-        self.assertEqual(self.linear.post_order(), [35, 34, 33, 32, 31])
-        self.assertEqual(self.balanced.post_order(), [31, 32, 35, 34, 33])
+        assert self.new.post_order() == []
+        assert self.empty.post_order() == []
+        assert self.root.post_order() == [self.houses[-1]]
+        assert self.linear.post_order() == [35, 34, 33, 32, 31]
+        assert self.balanced.post_order() == [31, 32, 35, 34, 33]
 
     def test_value(self):
         for key, value in zip(self.houses, self.people):
-            self.assertEqual(self.new.value(key), None)
-            self.assertEqual(self.empty.value(key), None)
+            assert self.new.value(key) is None
+            assert self.empty.value(key) is None
             if key == self.houses[-1]:
-                self.assertEqual(self.root.value(key), value)
+                assert self.root.value(key) == value
             else:
-                self.assertEqual(self.root.value(key), None)
-            self.assertEqual(self.linear.value(key), value)
-            self.assertEqual(self.balanced.value(key), value)
+                assert self.root.value(key) is None
+            assert self.linear.value(key) == value
+            assert self.balanced.value(key) == value
 
     def test_value_change(self):
         # The previous tests with setUp already test adding new nodes.
@@ -101,15 +99,15 @@ class TestBST(unittest.TestCase):
         # Remove it from each tree and confirm it's not found anymore.
         # This also tests that removing an unknown key doesn't change a tree.
         self.new.remove(key)
-        self.assertFalse(key in self.new)
+        assert not key in self.new
         self.empty.remove(key)
-        self.assertFalse(key in self.empty)
+        assert not key in self.empty
         self.root.remove(key)
-        self.assertFalse(key in self.root)
+        assert not key in self.root
         self.linear.remove(key)
-        self.assertFalse(key in self.linear)
+        assert not key in self.linear
         self.balanced.remove(key)
-        self.assertFalse(key in self.balanced)
+        assert not key in self.balanced
         # Remove from the inputs. Test retrieval for the other keys.
         self.houses.pop(index)
         self.people.pop(index)

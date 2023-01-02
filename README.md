@@ -80,6 +80,9 @@ and each test method tests one method of the `ADT` class.
 The `setUp` method is run before _each_ test method,
 so that each test can change the inputs without influencing other tests.
 
+Some test files may already be using the pytest framework, which
+uses simple `assert` statements and `setup_method` instead of `setUp`.
+
 For the example apps, tests follow the
 [doctest](https://docs.python.org/3/library/doctest.html) framework.
 Both unit and doc tests are run with [pytest](https://docs.pytest.org).

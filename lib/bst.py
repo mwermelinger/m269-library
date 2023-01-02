@@ -76,15 +76,13 @@ class BinarySearchTree:
         return self.value(the_key) is not None
 
     def height(self) -> int:
-        """Return the height of the tree.
+        """Return how many levels the tree has.
 
-        Follow the definition in M269:
-        The height is the maximum number of edges from the root to any leaf.
-        The height of the empty tree is -1.
+        The root is in level 1, its children in level 2, etc.
         """
         # Base case: the empty tree.
         if self.is_empty():
-            return -1
+            return 0
         assert self._left is not None and self._right is not None
         # Reduction step: consider both subtrees.
         # Recursive step: find their height.
