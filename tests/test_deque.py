@@ -25,40 +25,40 @@ class TestDeque:
         self.from_rear.add_rear(5)
 
     def test_length(self):
-        assert (len(self.new) == 0)
-        assert (len(self.empty) == 0)
-        assert (len(self.from_front) == 4)
+        assert len(self.new) == 0
+        assert len(self.empty) == 0
+        assert len(self.from_front) == 4
 
     def test_is_empty(self):
-        assert (self.new.is_empty())
-        assert (self.empty.is_empty())
-        assert not (self.from_front.is_empty())
+        assert self.new.is_empty()
+        assert self.empty.is_empty()
+        assert not self.from_front.is_empty()
 
     def test_str(self):
-        assert (str(self.new) == str(self.empty))
-        assert (str(self.from_front) == str(self.from_rear))
+        assert str(self.new) == str(self.empty)
+        assert str(self.from_front) == str(self.from_rear)
 
     def test_fifo_order(self):
-        assert (self.from_front.remove_rear() == 5)
-        assert (self.from_front.remove_rear() == 2)
-        assert (self.from_front.remove_rear() == 7)
-        assert (self.from_front.remove_rear() == 2)
+        assert self.from_front.remove_rear() == 5
+        assert self.from_front.remove_rear() == 2
+        assert self.from_front.remove_rear() == 7
+        assert self.from_front.remove_rear() == 2
         # FIFO is opposite order in other deque
-        assert (self.from_rear.remove_front() == 2)
-        assert (self.from_rear.remove_front() == 7)
-        assert (self.from_rear.remove_front() == 2)
-        assert (self.from_rear.remove_front() == 5)
+        assert self.from_rear.remove_front() == 2
+        assert self.from_rear.remove_front() == 7
+        assert self.from_rear.remove_front() == 2
+        assert self.from_rear.remove_front() == 5
 
     def test_lifo_order(self):
-        assert (self.from_front.remove_front() == 2)
-        assert (self.from_front.remove_front() == 7)
-        assert (self.from_front.remove_front() == 2)
-        assert (self.from_front.remove_front() == 5)
+        assert self.from_front.remove_front() == 2
+        assert self.from_front.remove_front() == 7
+        assert self.from_front.remove_front() == 2
+        assert self.from_front.remove_front() == 5
         # LIFO is opposite order in other deque
-        assert (self.from_rear.remove_rear() == 5)
-        assert (self.from_rear.remove_rear() == 2)
-        assert (self.from_rear.remove_rear() == 7)
-        assert (self.from_rear.remove_rear() == 2)
+        assert self.from_rear.remove_rear() == 5
+        assert self.from_rear.remove_rear() == 2
+        assert self.from_rear.remove_rear() == 7
+        assert self.from_rear.remove_rear() == 2
 
     def test_access_to_empty(self):
         with pytest.raises(AssertionError):

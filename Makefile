@@ -1,6 +1,6 @@
 .SILENT:
 
-all: test docs/html/*.html examples/*.py clean
+all: test examples/*.py new clean
 
 usage:
 	echo "make clean	remove unnecessary files"
@@ -42,7 +42,7 @@ examples/%.py: FORCE
 FORCE:
 
 new:
-	for f in lib/*py; do make docs/code/`basename $$f .py`.html; done
+	for f in lib/[a-z]*py; do make docs/html/lib/lib.`basename $$f .py`.html; done
 
 clean:
 	rm -rf lib/__pycache__ tests/__pycache__ examples/__pycache__

@@ -3,6 +3,8 @@
 [![code style: black](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
 ![license: MIT](https://img.shields.io/github/license/mwermelinger/m269-library)
 
+**This repo is not yet open for contributions.**
+
 This library provides Python implementations of some
 commonly taught algorithms and data structures (see the sidebar).
 It was created for M269, the Open University's
